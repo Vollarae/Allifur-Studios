@@ -997,15 +997,43 @@ select {
     height: 0;
 }
 
+/* 1. Base State */
 .method-tile span {
     display: block;
     padding: 18px 10px;
-    background: var(--bg-elevated); /* Solid white/off-white */
+    background-color: var(--bg-elevated);
     border: 1px solid var(--border);
+    color: var(--text-dim);
     font-size: 0.75rem;
     letter-spacing: 1px;
-    color: var(--text-dim);
     transition: var(--transition-fast);
+    text-align: center;
+    user-select: none; /* Prevents text highlighting on double click */
+}
+
+/* 2. Hover State (PC specific) */
+/* We add :not(:checked) so the hover doesn't fight the selected blue */
+.method-tile:hover input:not(:checked) + span {
+    border-color: var(--accent);
+    color: var(--accent);
+    background-color: var(--accent-soft);
+}
+
+/* 3. The "Checked" State (The Fix for PC) */
+/* We use the input:checked selector to force the style */
+.method-tile input:checked + span {
+    background-color: var(--accent) !important;
+    color: #FFFFFF !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 5px 15px var(--accent-glow);
+    transform: translateY(-2px);
+    z-index: 2;
+}
+
+/* 4. Ensure the text stays white even if hovering over a selected item */
+.method-tile input:checked:hover + span {
+    color: #FFFFFF !important;
+    opacity: 0.9;
 }
 
 /* THE FIX: When the radio is checked, use the Blue Accent */
