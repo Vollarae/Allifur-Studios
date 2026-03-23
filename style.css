@@ -5,6 +5,28 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap');
 
+/* --- GLOBAL OVERFLOW PREVENTER --- */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* This kills the horizontal scroll/lean */
+    position: relative;
+}
+
+/* Ensure every container respects the screen width */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Or whatever your design width is */
+    margin: 0 auto;
+    padding: 0 20px; /* Balanced side-gutters */
+    box-sizing: border-box; /* Crucial: includes padding in the width calculation */
+}
+
+* {
+    box-sizing: border-box; /* Applies to every single element on the site */
+}
+
 :root {
     /* Modern Neutral Palette */
     --bg: #1A1A1C;           /* Deep Graphite / Studio Slate */
