@@ -191,3 +191,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+window.addEventListener('load', () => {
+    const quoteElement = document.getElementById('quote-text');
+    const preloader = document.getElementById('preloader');
+    
+    // Quote
+    const quote = "“Art isn't a release; it's a reckoning. Leave the pretty things for the amateurs.”";
+    
+    if (quoteElement) {
+        quoteElement.textContent = quote;
+    }
+
+    // (3500ms)
+    setTimeout(() => {
+        if (preloader) {
+            preloader.classList.add('loaded');
+        }
+        document.body.style.overflow = 'auto';
+        document.body.classList.remove('loading');
+    }, 3500);
+});
+
+// Lock scroll immediately when the script file is read
+document.body.style.overflow = 'hidden';
+document.body.classList.add('loading');
