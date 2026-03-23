@@ -45,8 +45,9 @@
                     <span class="icon" style="font-size: 1.5rem; font-weight: 300;">+</span>
                 </button>
                 
-                <div class="accordion-content" id="guidelineContent">
-                    <div class="guideline-detailed-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; padding: 20px 0;">
+                <div class="accordion-content" id="guidelineContent" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
+                    <div class="guideline-detailed-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; padding: 40px 20px;">
+                        
                         <div class="g-item">
                             <span class="g-num" style="color: var(--accent); font-family: 'Playfair Display'; font-style: italic; font-size: 1.2rem;">01.</span>
                             <h3 style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;">Creative Boundaries</h3>
@@ -54,6 +55,7 @@
                                 To maintain the integrity of the Allifur portfolio, <b>NSFW, suggestive themes, or extreme gore</b> are strictly prohibited.
                             </p>
                         </div>
+
                         <div class="g-item">
                             <span class="g-num" style="color: var(--accent); font-family: 'Playfair Display'; font-style: italic; font-size: 1.2rem;">02.</span>
                             <h3 style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;">Secure Financials</h3>
@@ -61,6 +63,7 @@
                                 Commencing a project requires a <b>100% upfront commitment</b>. No digital assets (NFTs) are accepted.
                             </p>
                         </div>
+
                         <div class="g-item">
                             <span class="g-num" style="color: var(--accent); font-family: 'Playfair Display'; font-style: italic; font-size: 1.2rem;">03.</span>
                             <h3 style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;">Rights & Usage</h3>
@@ -68,6 +71,7 @@
                                 Deliverables are granted for <b>Personal Use Only</b>. For commercial integration, please specify for a custom quote.
                             </p>
                         </div>
+
                         <div class="g-item">
                             <span class="g-num" style="color: var(--accent); font-family: 'Playfair Display'; font-style: italic; font-size: 1.2rem;">04.</span>
                             <h3 style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;">The Evolution</h3>
@@ -76,7 +80,15 @@
                             </p>
                         </div>
                     </div>
-                    <div class="safety-footer" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--glass-border); text-align: center;">
+
+                    <div class="rights-clause" style="padding: 30px; background: rgba(209, 182, 124, 0.03); border: 1px solid rgba(209, 182, 124, 0.1); margin: 0 20px 30px 20px; text-align: center;">
+                        <h4 style="font-size: 0.6rem; letter-spacing: 3px; color: var(--accent); margin-bottom: 10px; text-transform: uppercase;">Studio Sovereignty</h4>
+                        <p class="text-dim" style="font-size: 0.8rem; font-style: italic; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+                            "The artist reserves the right to decline any commission request at her discretion, including projects that may not align with studio standards or creative direction, regardless of whether the specific reason is listed above."
+                        </p>
+                    </div>
+
+                    <div class="safety-footer" style="margin-top: 10px; padding: 20px; border-top: 1px solid var(--glass-border); text-align: center;">
                         <p style="font-size: 0.65rem; color: var(--accent); letter-spacing: 1px;">BY SUBMITTING AN INQUIRY, YOU ACKNOWLEDGE AND AGREE TO THESE TERMS.</p>
                     </div>
                 </div>
@@ -84,7 +96,7 @@
 
             <div class="form-container reveal" style="max-width: 900px; margin: 0 auto; background: var(--glass); border: 1px solid var(--glass-border); padding: 60px;">
                 <form action="https://formspree.io/f/maqpryer" method="POST">
-                    <div class="form-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; margin-bottom: 40px;">
+                    <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 40px;">
                         <div class="form-group">
                             <label class="elegant-label">Commission Selection</label>
                             <select name="type" required style="width:100%; background:#111; border:1px solid var(--glass-border); padding:15px; color:white; height:54px;">
