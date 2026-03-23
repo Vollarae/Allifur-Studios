@@ -1,2 +1,2 @@
-# Allifur-Studios
-Allifur Art Studios
+# ALLIFUR ART | MASTER ARCHIVE 2026
+Managed by Vollarae
