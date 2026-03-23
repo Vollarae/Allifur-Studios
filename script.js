@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (icon) icon.innerText = isOpen ? '−' : '+';
             
             if (isOpen) {
-                accContent.style.maxHeight = accContent.scrollHeight + "px";
+                accContent.style.maxHeight = (accContent.scrollHeight + 40) + "px";
             } else {
                 accContent.style.maxHeight = "0";
             }
