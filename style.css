@@ -1422,3 +1422,34 @@ body::after,
         width: auto !important;
     }
 }
+
+/* Ensure inputs and selects have consistent, readable colors */
+input, 
+textarea, 
+select {
+    background-color: #ffffff !important; /* Forces a light background */
+    color: #333333 !important;            /* Forces dark, readable text */
+    border: 1px solid #dddddd !important; /* A light grey border */
+}
+
+/* Fix for the dropdown options specifically */
+select option {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* Update the focus state so it doesn't turn black when clicking */
+input:focus, 
+textarea:focus, 
+select:focus {
+    background-color: #f9f9f9 !important;
+    border-color: var(--accent) !important;
+    color: #000000 !important;
+    outline: none;
+}
+
+/* Placeholder text color adjustment */
+::placeholder {
+    color: #999999 !important;
+    opacity: 1; 
+}
