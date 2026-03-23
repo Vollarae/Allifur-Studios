@@ -24,9 +24,9 @@ html, body {
 
 :root {
     /* Main Backgrounds */
-    --bg: #F7F5F2;                /* Warm off-white (gallery feel) */
-    --bg-elevated: #FFFFFF;       /* Cards / surfaces */
-    --bg-soft: #EFECE6;           /* Subtle section contrast */
+    --bg: #E3F2FD;                /* Soft Sky Blue (calm and easy on eyes) */
+    --bg-elevated: #FFFFFF;       /* Keep cards white for that clean "float" look */
+    --bg-soft: #D1E9FA;           /* A slightly deeper sky blue for sections */
 
     /* Accents */
     --accent: #6B8FA3;            /* Muted blue (trust + modern) */
