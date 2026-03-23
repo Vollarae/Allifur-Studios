@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INQUIRY | ALLIFUR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: var(--bg);">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="navbar">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <a href="index.html" class="logo">ALLIFUR</a>
+            <div class="menu-toggle">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="commission.html">Commissions</a></li>
+                <li><a href="vouches.html">Vouches</a></li>
+                <li><a href="request.html" class="active">Inquiry</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="request-section" style="padding-top: 180px; padding-bottom: 100px;">
+        <div class="container">
+            
+            <header class="editorial-header reveal" style="margin-bottom: 80px; text-align: center;">
+                <span class="sub-title" style="letter-spacing: 5px;">Project Intake</span>
+                <h1 class="h2-editorial" style="font-family: 'Playfair Display'; font-size: 3.5rem; margin-top: 10px;">
+                    Start a <i>Collaboration</i>
+                </h1>
+                <div class="thin-line" style="width: 50px; height: 1px; background: var(--accent); margin: 30px auto; opacity: 0.5;"></div>
+            </header>
+
+            <div class="guidelines-accordion reveal" style="max-width: 900px; margin: 0 auto 80px auto;">
+                <button class="accordion-header" id="guidelineToggle">
+                    <span style="font-family: 'Montserrat'; font-weight: 500;">READ STUDIO TERMS & BOUNDARIES</span>
+                    <span class="icon" style="font-size: 1.5rem; font-weight: 300;">+</span>
+                </button>
+                
+                <div class="accordion-content" id="guidelineContent">
+                    <div class="guideline-detailed-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; padding: 20px 0;">
+                        <div class="g-item">
+                            <span class="g-num" style="color: var(--accent); font-family: 'Playfair Display'; font-style: italic; font-size: 1.2rem;">01.</span>
+                            <h3 style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;">Creative Boundaries</h3>
+                            <p class="text-dim" style="font-size: 0.85rem; line-height: 1.8;">
+                                To maintain the integrity of the Allifur portfolio, <b>NSFW, suggestive themes, or extreme gore</b> are strictly prohibited.
+                            </p>
+                        </div>
+                        <div class="g-item">
+                            <span class="g-num" style="color: var(--accent); font-family: 'Playfair Display'; font-style: italic; font-size: 1.2rem;">02.</span>
+                            <h3 style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;">Secure Financials</h3>
+                            <p class="text-dim" style="font-size: 0.85rem; line-height: 1.8;">
+                                Commencing a project requires a <b>100% upfront commitment</b>. No digital assets (NFTs) are accepted.
+                            </p>
+                        </div>
+                        <div class="g-item">
+                            <span class="g-num" style="color: var(--accent); font-family: 'Playfair Display'; font-style: italic; font-size: 1.2rem;">03.</span>
+                            <h3 style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;">Rights & Usage</h3>
+                            <p class="text-dim" style="font-size: 0.85rem; line-height: 1.8;">
+                                Deliverables are granted for <b>Personal Use Only</b>. For commercial integration, please specify for a custom quote.
+                            </p>
+                        </div>
+                        <div class="g-item">
+                            <span class="g-num" style="color: var(--accent); font-family: 'Playfair Display'; font-style: italic; font-size: 1.2rem;">04.</span>
+                            <h3 style="font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 15px; text-transform: uppercase;">The Evolution</h3>
+                            <p class="text-dim" style="font-size: 0.85rem; line-height: 1.8;">
+                                You will receive a conceptual sketch. Up to <b>two minor adjustments</b> are permitted at this stage.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="safety-footer" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--glass-border); text-align: center;">
+                        <p style="font-size: 0.65rem; color: var(--accent); letter-spacing: 1px;">BY SUBMITTING AN INQUIRY, YOU ACKNOWLEDGE AND AGREE TO THESE TERMS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-container reveal" style="max-width: 900px; margin: 0 auto; background: var(--glass); border: 1px solid var(--glass-border); padding: 60px;">
+                <form action="https://formspree.io/f/maqpryer" method="POST">
+                    <div class="form-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; margin-bottom: 40px;">
+                        <div class="form-group">
+                            <label class="elegant-label">Commission Selection</label>
+                            <select name="type" required style="width:100%; background:#111; border:1px solid var(--glass-border); padding:15px; color:white; height:54px;">
+                                <option value="clean-sketch">Clean Graphite Sketch ($5+)</option>
+                                <option value="soft-render">Soft Rendered Illustration ($12+)</option>
+                                <option value="custom">Custom / Large Scale Project</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="elegant-label">Desired Budget (USD)</label>
+                            <input type="text" name="budget" placeholder="$0.00" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--glass-border); padding:15px; color:white;">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 40px;">
+                        <label class="elegant-label">Preferred Communication Channel</label>
+                        <div class="contact-method-grid">
+                            <label class="method-tile"><input type="radio" name="contact-method" value="Discord" required><span>Discord</span></label>
+                            <label class="method-tile"><input type="radio" name="contact-method" value="Instagram"><span>Instagram</span></label>
+                            <label class="method-tile"><input type="radio" name="contact-method" value="Twitter"><span>Twitter (X)</span></label>
+                            <label class="method-tile"><input type="radio" name="contact-method" value="Facebook"><span>Facebook</span></label>
+                            <label class="method-tile"><input type="radio" name="contact-method" value="Email"><span>Email Only</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 40px;">
+                        <label class="elegant-label">Your Social Handle / Username</label>
+                        <input type="text" name="social-handle" placeholder="@username or User#0000" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--glass-border); padding:15px; color:white;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 40px;">
+                        <label class="elegant-label">Detailed Project Brief</label>
+                        <textarea name="message" rows="5" placeholder="Tell me about your character..." required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--glass-border); padding:15px; color:white;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 25px; font-size: 0.8rem; letter-spacing: 4px;">
+                        SEND INQUIRY
+                    </button>
+                </form>
+            </div>
+
+            <div id="form-status" style="display: none; text-align: center; padding: 60px 0;">
+                <div class="success-content">
+                    <span class="sub-title" style="letter-spacing: 8px; opacity: 0.8;">Inquiry Received</span>
+                    <h2 class="h2-editorial" style="font-family: 'Playfair Display'; font-size: 3.5rem; margin: 20px 0;">
+                        Thank <i>You</i>
+                    </h2>
+                    <div class="thin-line" style="width: 40px; height: 1px; background: var(--accent); margin: 20px auto;"></div>
+                    <p class="text-dim" style="max-width: 400px; margin: 0 auto 30px auto; font-size: 0.8rem; line-height: 2; letter-spacing: 1px;">
+                        Your vision has been transmitted. Please allow the studio 24-48 hours to review your brief.
+                    </p>
+                    <a href="index.html" class="btn" style="padding: 15px 40px; font-size: 0.6rem; letter-spacing: 3px;">RETURN TO GALLERY</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container" style="text-align: center; padding: 40px 0;">
+            <span class="footer-logo">ALLIFUR</span>
+            <p class="footer-credits" style="font-size: 0.6rem; opacity: 0.5; margin-top: 10px;">© 2026 ALLIFUR ART • TRADITIONAL & DIGITAL</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

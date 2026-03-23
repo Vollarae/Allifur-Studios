@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOUCHES | ALLIFUR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: var(--bg);">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="navbar">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <a href="index.html" class="logo">ALLIFUR</a>
+            <div class="menu-toggle">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="commission.html">Commissions</a></li>
+                <li><a href="vouches.html" class="active">Vouches</a></li>
+                <li><a href="request.html">Inquiry</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="vouches-hero" style="padding: 180px 0 80px 0;">
+        <div class="container reveal">
+            <header style="text-align: center; margin-bottom: 100px;">
+                <span class="sub-title" style="letter-spacing: 15px; opacity: 0.6;">Public Record</span>
+                <h1 class="h2-editorial" style="font-family: 'Playfair Display'; font-size: 3.5rem; margin-top: 10px;">
+                    Verified <i>Vouches</i>
+                </h1>
+                <div class="thin-line" style="width: 60px; height: 1px; background: var(--accent); margin: 30px auto;"></div>
+                <p class="text-dim" style="max-width: 600px; margin: 0 auto; font-size: 0.8rem; letter-spacing: 1px;">
+                    A transparent archive of past collaborations and client satisfaction.
+                </p>
+            </header>
+
+            <div class="vouch-masonry">
+                
+                <div class="vouch-card vouch-featured vouch-clickable reveal" data-img="images/proof-vollarae.jpg" data-privacy="true">
+                    <div class="vouch-badge">VERIFIED</div>
+                    <div class="vouch-content">
+                        <h3 class="client-name">Vollarae</h3>
+                        <span class="client-title">A Novelist + Website Developer</span>
+                        <p class="vouch-quote">"The level of detail in the graphite work is unmatched. The rendering process was transparent and professional from start to finish."</p>
+                        <div class="vouch-footer">
+                            <span>Clean Sketch</span>
+                            <span class="view-label">OPEN RECORD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vouch-card vouch-template reveal">
+                    <div class="vouch-badge" style="opacity: 0.2;">PENDING</div>
+                    <div class="vouch-content">
+                        <h3 class="client-name" style="opacity: 0.3;">Reserved</h3>
+                        <span class="client-title" style="opacity: 0.3;">Client Title</span>
+                        <p class="vouch-quote" style="opacity: 0.2;">"Future testimonial from a verified collaboration will be archived here."</p>
+                        <div class="vouch-footer" style="opacity: 0.2;">
+                            <span>Project Type</span>
+                            <span class="view-label">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vouch-card vouch-template reveal">
+                    <div class="vouch-badge" style="opacity: 0.2;">PENDING</div>
+                    <div class="vouch-content">
+                        <h3 class="client-name" style="opacity: 0.3;">Reserved</h3>
+                        <span class="client-title" style="opacity: 0.3;">Client Title</span>
+                        <p class="vouch-quote" style="opacity: 0.2;">"Future testimonial from a verified collaboration will be archived here."</p>
+                        <div class="vouch-footer" style="opacity: 0.2;">
+                            <span>Project Type</span>
+                            <span class="view-label">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vouch-card vouch-template reveal">
+                    <div class="vouch-badge" style="opacity: 0.2;">PENDING</div>
+                    <div class="vouch-content">
+                        <h3 class="client-name" style="opacity: 0.3;">Reserved</h3>
+                        <span class="client-title" style="opacity: 0.3;">Client Title</span>
+                        <p class="vouch-quote" style="opacity: 0.2;">"Future testimonial from a verified collaboration will be archived here."</p>
+                        <div class="vouch-footer" style="opacity: 0.2;">
+                            <span>Project Type</span>
+                            <span class="view-label">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vouch-card vouch-template reveal">
+                    <div class="vouch-badge" style="opacity: 0.2;">PENDING</div>
+                    <div class="vouch-content">
+                        <h3 class="client-name" style="opacity: 0.3;">Reserved</h3>
+                        <span class="client-title" style="opacity: 0.3;">Client Title</span>
+                        <p class="vouch-quote" style="opacity: 0.2;">"Future testimonial from a verified collaboration will be archived here."</p>
+                        <div class="vouch-footer" style="opacity: 0.2;">
+                            <span>Project Type</span>
+                            <span class="view-label">LOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="vouch-overlay" class="vouch-overlay">
+        <div class="overlay-close">&times;</div>
+        <div class="overlay-wrapper">
+            <img id="overlay-img" src="" alt="Proof Illustration">
+        </div>
+    </div>
+
+    <footer>
+        <div class="container" style="text-align: center; padding: 80px 0;">
+            <span class="footer-logo">ALLIFUR</span>
+            <p class="footer-credits">© 2026 • PUBLIC RECORD ARCHIVE</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

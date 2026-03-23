@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMMISSIONS | ALLIFUR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: var(--bg); color: var(--text);">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="navbar" style="background: var(--bg); border-bottom: 1px solid var(--glass-border);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <a href="index.html" class="logo">ALLIFUR</a>
+            <div class="menu-toggle">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="commission.html" class="active">Commissions</a></li>
+                <li><a href="vouches.html">Vouches</a></li>
+                <li><a href="request.html">Inquiry</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-header" style="padding-top: 150px; text-align: center;">
+        <div class="container reveal">
+            <span class="sub-title">Service Menu</span>
+            <h1 class="h2-editorial" style="font-family: 'Playfair Display'; font-size: var(--fs-h2);">Commission <i>Types</i></h1>
+        </div>
+    </section>
+
+<section class="commissions-list">
+        <div class="container">
+            <div class="reveal" style="text-align: center; margin-bottom: 50px;">
+                <p class="text-dim" style="font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;">
+                    * Base rates shown below. Final price may vary depending on character complexity.
+                </p>
+            </div>
+
+            <div class="comm-grid-container">
+                
+                <div class="comm-card reveal">
+                    <div class="card-image-preview">
+                        <div class="art-placeholder" style="height: 200px; margin-bottom: 25px;">SKETCH_SAMPLE.JPG</div>
+                    </div>
+                    <h3 style="letter-spacing: 3px; margin-bottom: 10px;">CLEAN SKETCH</h3>
+                    <p class="comm-desc">Perfect for quick character concepts. High-energy pencil strokes with minimal cleanup.</p>
+                    <ul class="price-list">
+                        <li><span>Headshot</span> <span>$5</span></li>
+                        <li><span>Bust Up</span> <span>$10</span></li>
+                        <li><span>Full Body</span> <span>$15</span></li>
+                    </ul>
+                    <a href="request.html" class="btn">START ORDER</a>
+                </div>
+
+                <div class="comm-card featured reveal">
+                    <div class="tag">RECOMMENDED</div>
+                    <div class="card-image-preview">
+                        <div class="art-placeholder" style="height: 200px; margin-bottom: 25px;">POLISHED_SAMPLE.JPG</div>
+                    </div>
+                    <h3 style="letter-spacing: 3px; margin-bottom: 10px;">SOFT RENDER</h3>
+                    <p class="comm-desc">Traditional pencil work enhanced with soft digital shading and focus on lighting.</p>
+                    <ul class="price-list">
+                        <li><span>Headshot</span> <span>$12</span></li>
+                        <li><span>Bust Up</span> <span>$20</span></li>
+                        <li><span>Full Body</span> <span>$35</span></li>
+                    </ul>
+                    <a href="request.html" class="btn btn-primary">START ORDER</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <span class="footer-logo">ALLIFUR</span>
+            <p class="footer-credits">© 2026 ALLIFUR ART • PRICING SUBJECT TO COMPLEXITY</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
