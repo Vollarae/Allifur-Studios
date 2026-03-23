@@ -23,27 +23,36 @@ html, body {
 }
 
 :root {
-    /* Modern Neutral Palette */
-    --bg: #1A1A1C;           /* Deep Graphite / Studio Slate */
-    --accent: #D1B67C;       /* Champagne Gold (Modern & Lighter) */
-    --accent-rgb: 209, 182, 124;
-    --accent-glow: rgba(209, 182, 124, 0.1);
+    --bg: #F7F5F2;              /* Warm off-white (gallery feel) */
+    --bg-elevated: #FFFFFF;     /* Cards / surfaces */
+    --bg-soft: #EFECE6;         /* Subtle section contrast */
+
+    --accent: #6B8FA3;          /* Muted blue (trust + modern) */
+    --accent-rgb: 107, 143, 163;
+    --accent-soft: #DCE6EC;     /* Hover / background tint */
     
-    /* Modern Text Stack */
-    --text: #ECECEC;         /* Off-White (Not piercingly bright) */
-    --text-dim: #949494;     /* Neutral Stone */
-    --text-maint: rgba(236, 236, 236, 0.8);
+    --accent-secondary: #C6A96B; /* Soft champagne (luxury touch) */
+
+    --text: #1C1C1C;            /* Primary text */
+    --text-dim: #555555;        /* Secondary text */
+    --text-soft: #888888;       /* Subtle text */
+
+    --border: #E2E2E2;
+    --border-soft: #EEEEEE;
+
+    --glass: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --glass-surface: rgba(255, 255, 255, 0.85);
     
-    /* Modern Glass (Using the accent-rgb for a warmer tint) */
-    --glass: rgba(255, 255, 255, 0.02);
-    --glass-border: rgba(255, 255, 255, 0.07);
-    --glass-surface: rgba(255, 255, 255, 0.04);
-    
-    /* Physics & Type */
-    --transition-slow: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-    --fs-h1: clamp(2.5rem, 7vw, 4.5rem); 
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+    --transition-slow: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+    --fs-h1: clamp(2.5rem, 7vw, 4.5rem);
     --fs-h2: clamp(1.8rem, 4vw, 2.5rem);
     --fs-body: 1rem;
+
     --container: 1250px;
 }
 
