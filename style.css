@@ -970,18 +970,18 @@ select {
 /* --- ELEGANT FORM STYLING --- */
 .elegant-label {
     display: block;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent); /* Your new Muted Blue */
     margin-bottom: 15px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .contact-method-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 10px;
+    gap: 12px;
 }
 
 .method-tile {
@@ -992,29 +992,35 @@ select {
 
 .method-tile input {
     position: absolute;
-    opacity: 0; /* Hide the actual radio circle */
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .method-tile span {
     display: block;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--glass-border);
-    font-size: 0.7rem;
+    padding: 18px 10px;
+    background: var(--bg-elevated); /* Solid white/off-white */
+    border: 1px solid var(--border);
+    font-size: 0.75rem;
     letter-spacing: 1px;
     color: var(--text-dim);
-    transition: all 0.3s ease;
+    transition: var(--transition-fast);
 }
 
+/* THE FIX: When the radio is checked, use the Blue Accent */
 .method-tile input:checked + span {
-    background: rgba(212, 175, 55, 0.1);
-    border-color: var(--accent);
-    color: white;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    background: var(--accent) !important; /* Muted Blue */
+    border-color: var(--accent) !important;
+    color: #FFFFFF !important;            /* Pure White text for contrast */
+    box-shadow: 0 5px 15px var(--accent-glow);
+    transform: translateY(-2px);
 }
 
 .method-tile:hover span {
-    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft); /* Very light blue tint on hover */
 }
 
 /* Accordion spacing fix */
