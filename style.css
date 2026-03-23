@@ -291,14 +291,18 @@ a {
 }
 
 .nav-links a {
+    color: var(--text);
     text-decoration: none;
-    color: var(--text-dim);
     font-size: 0.7rem;
-    font-weight: 500;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
-    position: relative;
-    padding: 10px 0;
+    transition: var(--transition-fast);
+    opacity: 0.8;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+    opacity: 1;
 }
 
 /* Elegant Underline Animation */
@@ -323,21 +327,21 @@ a {
 
 /* --- 5. BUTTON SYSTEM (HIGH-END) --- */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 18px 40px;
-    text-align: center;
-    border: 1px solid var(--glass-border);
-    color: var(--text);
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    font-weight: 600;
+    background-color: var(--accent); /* Muted Blue */
+    color: var(--text-on-accent);
     text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid var(--accent);
     transition: var(--transition-slow);
     cursor: pointer;
-    background: transparent;
     position: relative;
     overflow: hidden;
-    z-index: 1;
 }
 
 /* Inverted hover effect */
@@ -352,8 +356,10 @@ a {
 }
 
 .btn:hover {
-    color: #000;
-    border-color: var(--text);
+    background-color: transparent;
+    color: var(--accent);
+    box-shadow: 0 10px 25px var(--accent-glow);
+    transform: translateY(-3px);
 }
 
 .btn:hover::before {
@@ -372,6 +378,19 @@ a {
 
 .btn-primary:hover {
     box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--accent-secondary); /* Soft Champagne */
+    color: var(--accent-secondary);
+}
+
+.btn-outline:hover {
+    background-color: var(--accent-secondary);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(198, 169, 107, 0.2);
+    transform: translateY(-3px);
 }
 
 /* --- 6. SCROLL REVEAL UTILITY --- */
@@ -1467,4 +1486,29 @@ select:focus {
 ::placeholder {
     color: #999999 !important;
     opacity: 1; 
+}
+
+.contact-method-grid .method-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    padding: 15px;
+    text-align: center;
+    transition: var(--transition-fast);
+    cursor: pointer;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.contact-method-grid .method-card:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background-color: var(--accent-soft);
+}
+
+/* State when a channel is selected */
+.method-card.selected {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
 }
