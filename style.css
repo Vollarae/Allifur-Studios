@@ -1344,3 +1344,43 @@ body::after,
     padding-left: 25px;
     margin-bottom: 20px;
 }
+
+/* --- MOBILE REFINEMENTS --- */
+@media (max-width: 768px) {
+    /* Shrink the massive headers so they don't push the screen wide */
+    .h2-editorial {
+        font-size: 2.2rem !important; 
+        line-height: 1.2;
+    }
+
+    /* Give the overall container more side-room */
+    .container {
+        padding: 0 25px; 
+    }
+
+    /* Fix the button/tile padding in the form */
+    .method-tile {
+        padding: 10px;
+        font-size: 0.7rem;
+    }
+
+    /* Ensure the accordion content has internal padding so text doesn't touch the border */
+    .accordion-content {
+        padding: 0 15px;
+    }
+}
+
+.hero-btns { /* Replace with whatever class contains those two buttons */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* This allows them to stack vertically on tiny phones */
+    width: 100%;
+}
+
+.btn {
+    flex: 1; /* Makes them equal width */
+    min-width: 140px; /* Prevents them from getting TOO skinny */
+    max-width: 200px;
+    text-align: center;
+}
