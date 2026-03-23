@@ -1481,34 +1481,3 @@ select:focus {
     color: #000000 !important;
     outline: none;
 }
-
-/* Placeholder text color adjustment */
-::placeholder {
-    color: #999999 !important;
-    opacity: 1; 
-}
-
-.contact-method-grid .method-card {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    padding: 15px;
-    text-align: center;
-    transition: var(--transition-fast);
-    cursor: pointer;
-    color: var(--text-dim);
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-
-.contact-method-grid .method-card:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background-color: var(--accent-soft);
-}
-
-/* State when a channel is selected */
-.method-card.selected {
-    background-color: var(--accent);
-    color: white;
-    border-color: var(--accent);
-}
