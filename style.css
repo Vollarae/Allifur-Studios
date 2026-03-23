@@ -1291,23 +1291,3 @@ body::after,
     padding: 60px;
     box-shadow: 0 0 50px var(--accent-glow);
 }
-
-/* --- MOBILE GUIDELINE FIX --- */
-
-@media (max-width: 768px) {
-    #guidelineContent {
-        padding: 20px !important; /* Reduces side padding so text has more room */
-    }
-
-    #guidelineContent div {
-        width: 100% !important; /* Forces the internal boxes to stay within the screen */
-        box-sizing: border-box;
-    }
-
-    .vouch-quote, 
-    #guidelineContent p {
-        font-size: 0.85rem; /* Slightly smaller text for better fit on mobile */
-        line-height: 1.6;
-        word-wrap: break-word; /* Prevents long words from breaking the layout */
-    }
-}
