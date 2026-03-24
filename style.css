@@ -1,3 +1,5 @@
+/* --- PLEASE DO NOT MESS WITH MY NOTES IF YOU'RE GOING TO EDIT THE SCRIPT--- */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap');
 
 /* --- GLOBAL OVERFLOW PREVENTER --- */
@@ -5,14 +7,14 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* This kills the horizontal scroll/lean */
+    overflow-x: hidden; /* Kills the horizontal scroll/lean */
     position: relative;
 }
 
 /* Ensure every container respects the screen width */
 .container {
     width: 100%;
-    max-width: 1200px; /* Or whatever your design width is */
+    max-width: 1200px; /* Whatever design width is */
     margin: 0 auto;
     padding: 0 20px; /* Balanced side-gutters */
     box-sizing: border-box; /* Crucial: includes padding in the width calculation */
@@ -26,7 +28,7 @@ html, body {
     /* Main Backgrounds */
     --bg: #E3F2FD;                /* Soft Sky Blue (calm and easy on eyes) */
     --bg-elevated: #FFFFFF;       /* Keep cards white for that clean "float" look */
-    --bg-soft: #D1E9FA;           /* A slightly deeper sky blue for sections */
+    --bg-soft: #D1E9FA;           /* Slightly deeper sky blue for sections */
 
     /* Accents */
     --accent: #6B8FA3;            /* Muted blue (trust + modern) */
@@ -65,7 +67,7 @@ html, body {
     --fs-body: 1rem;
 
     /* --- FORM SPECIFIC FIXES --- */
-    /* This ensures your inputs stay light even if browser defaults try to interfere */
+    /* Makes inputs stay light even if browser defaults try to interfere */
     --input-bg: var(--bg-elevated);
     --input-text: var(--text);
     --input-border: var(--border);
@@ -83,7 +85,7 @@ html, body {
     align-items: center;
     z-index: 10000; /* Ensures it stays on top of everything */
     
-    /* The cinematic fade-out transition */
+    /* Cinematic fade-out transition */
     transition: opacity 1.2s ease-in-out, visibility 1.2s;
 }
 
@@ -278,7 +280,7 @@ body {
 }
 
 /* --- 2. THE GRAIN ENGINE --- */
-/* This creates a cinematic film-grain look that moves */
+/* Cinematic film-grain look that moves */
 body::after {
     content: "";
     position: fixed;
@@ -290,7 +292,7 @@ body::after {
     opacity: 0.04;
     pointer-events: none;
     z-index: 9999;
-    /* We'll use a subtler animation that doesn't move the actual box */
+    /* Subtler animation that doesn't move the actual box */
     animation: grain-shift 1s steps(2) infinite;
 }
 
@@ -390,14 +392,14 @@ a {
     padding-bottom: 8px; /* Gives the underline some breathing room */
 }
 
-/* THE GOLD HIGHLIGHT: Hover and Active states */
+/* Hover and Active states */
 .nav-links a:hover, 
 .nav-links a.active {
     color: var(--accent-secondary) !important; /* Champagne Gold */
     opacity: 1;
 }
 
-/* Elegant Gold Underline Animation */
+/* Gold Underline Animation */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -515,7 +517,7 @@ a {
     overflow: hidden; /* Contains the hover sheen */
 }
 
-/* Elegant Light-Sweep Effect on Hover */
+/* Light-Sweep Effect on Hover */
 .comm-card::before {
     content: '';
     position: absolute;
@@ -560,7 +562,7 @@ a {
     text-transform: uppercase;
 }
 
-/* --- 8. THE PRICE LIST (EDITORIAL STYLE) --- */
+/* --- 8. PRICE LIST --- */
 .price-list {
     list-style: none;
     margin: 30px 0 40px 0;
@@ -620,7 +622,7 @@ a {
     overflow: hidden; /* Contains the hover sheen */
 }
 
-/* Elegant Light-Sweep Effect on Hover */
+/* Light-Sweep Effect on Hover */
 .comm-card::before {
     content: '';
     position: absolute;
@@ -665,7 +667,7 @@ a {
     text-transform: uppercase;
 }
 
-/* --- 8. THE PRICE LIST (EDITORIAL STYLE) --- */
+/* --- 8. PRICE LIST  --- */
 .price-list {
     list-style: none;
     margin: 30px 0 40px 0;
@@ -704,7 +706,7 @@ a {
     font-weight: 300;
 }
 
-/* --- 12. INQUIRY FORM (THE GLASS PRESS) --- */
+/* --- 12. INQUIRY FORM  --- */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -1062,7 +1064,7 @@ select {
     font-size: 0.65rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--accent); /* Your new Muted Blue */
+    color: var(--accent); /* New Muted Blue */
     margin-bottom: 15px;
     font-weight: 700;
 }
@@ -1119,7 +1121,7 @@ select {
     z-index: 2;
 }
 
-/* 4. Ensure the text stays white even if hovering over a selected item */
+/* 4. Text stays white even if hovering over a selected item */
 .method-tile input:checked:hover + span {
     color: #FFFFFF !important;
     opacity: 0.9;
