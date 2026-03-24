@@ -167,7 +167,7 @@ body.loading {
     font-size: 0.75rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--accent-secondary); /* That gold we just perfected */
+    color: var(--accent-secondary); /* That gold just perfected */
     font-style: normal;
     font-family: sans-serif; /* A clean contrast to the serif quote */
     opacity: 0.8;
