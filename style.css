@@ -1190,6 +1190,23 @@ footer {
         /* Ensure no 'transform' is accidentally moving it off-screen */
         transform: none !important; 
     }
+
+    .hero-btns {
+        display: flex !important;
+        flex-direction: row !important; /* Forces them horizontal on PC */
+        gap: 20px;
+        width: 100%;
+        justify-content: flex-start; /* Aligns them to the left to match your header */
+        margin-top: 40px;
+    }
+
+    .btn {
+        flex: 0 0 auto; /* THE FIX: Tells the button "Do not grow, DO NOT SHRINK" */
+        min-width: 220px; /* Ensures they are wide enough for the text */
+        padding: 20px 40px; 
+        text-align: center;
+        white-space: nowrap; /* Prevents text from jumping to a second line */
+    }
 }
 
 /* --- THE SCALPING FIX --- */
