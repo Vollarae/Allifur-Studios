@@ -235,8 +235,6 @@ window.addEventListener('mousemove', (e) => {
     dot.style.left = e.clientX + 'px';
     dot.style.top = e.clientY + 'px';
     
-    // The outline follows the same path but the CSS 'transition' 
-    // makes it feel smoother and more premium.
     outline.style.left = e.clientX + 'px';
     outline.style.top = e.clientY + 'px';
 });
@@ -249,5 +247,17 @@ allClickables.forEach(item => {
     });
     item.addEventListener('mouseleave', () => {
         outline.classList.remove('cursor-active-outline');
+    });
+});
+
+const formInputs = document.querySelectorAll('input, textarea, select');
+
+formInputs.forEach(input => {
+    input.addEventListener('mouseenter', () => {
+        outline.style.transform = 'translate(-50%, -50%) scale(0.8)'; // Shrinks to show focus
+        outline.style.borderColor = '#C5A059';
+    });
+    input.addEventListener('mouseleave', () => {
+        outline.style.transform = 'translate(-50%, -50%) scale(1)';
     });
 });
