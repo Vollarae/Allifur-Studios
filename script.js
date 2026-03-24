@@ -1,8 +1,3 @@
-/**
- * ALLIFUR ART - MASTER SCRIPT 2026
- * Unified Digital Gallery Engine
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
 
@@ -231,4 +226,17 @@ window.addEventListener('load', () => {
         document.body.style.overflow = 'auto';
         document.body.classList.remove('loading');
     }, 3500);
+});
+
+const dot = document.querySelector('.cursor-dot');
+const outline = document.querySelector('.cursor-outline');
+
+window.addEventListener('mousemove', (e) => {
+    dot.style.left = e.clientX + 'px';
+    dot.style.top = e.clientY + 'px';
+    
+    // The outline follows the same path but the CSS 'transition' 
+    // makes it feel smoother and more premium.
+    outline.style.left = e.clientX + 'px';
+    outline.style.top = e.clientY + 'px';
 });
