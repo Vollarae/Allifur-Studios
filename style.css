@@ -1672,3 +1672,10 @@ html, body, a, button, input, textarea, .nav-links a {
     background-color: rgba(212, 175, 55, 0.05); /* Very faint gold fill */
     z-index: 10000;
 }
+
+.cursor-active-outline {
+    transform: translate(-50%, -50%) scale(1.4);
+    background-color: rgba(212, 175, 55, 0.2);
+    border-color: #FFFFFF; /* Turns white-gold when hovering for max contrast */
+    border-width: 1px;
+}
