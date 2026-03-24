@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALLIFUR | Traditional Illustrator</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="loading">
+<body>
 
-    <div id="preloader">
+     <div id="preloader">
         <div class="loader-content">
             <p id="quote-text"></p>
             <div class="loader-bar">
@@ -24,89 +21,89 @@
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <nav class="glass-nav">
-        <div class="nav-container">
+    <nav class="navbar">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <a href="index.html" class="logo">ALLIFUR</a>
             
+            <div class="menu-toggle">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="commission.html">Commissions</a></li>
                 <li><a href="vouches.html">Vouches</a></li>
-                <li><a href="request.html" class="nav-btn">Inquiry</a></li>
+                <li><a href="request.html">Inquiry</a></li>
             </ul>
-
-            <div class="menu-toggle">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
         </div>
     </nav>
 
-    <main>
-        <section id="hero" class="hero-section reveal">
-            <div class="container">
-                <div class="hero-wrapper">
-                    <span class="sub-title">Fine Art & Illustration</span>
-                    <h1 class="h1-hero">Elegance in <i>Traditional</i> Pencil.</h1>
-                    <p class="hero-sub">
-                        Capturing character through high-fidelity sketches and curated digital finishing.
-                    </p>
-                    
-                    <div class="hero-btns">
-                        <a href="commission.html" class="btn btn-primary">VIEW SERVICES</a>
-                        <a href="vouches.html" class="btn btn-secondary">PORTFOLIO</a>
-                    </div>
-                </div>
-            </div>
+<main class="hero">
+    <div class="container reveal">
+        <div class="hero-wrapper">
+            <span class="sub-title">Fine Art & Illustration</span>
+            <h1 class="h1-hero">Elegance in <i>Traditional</i> Pencil.</h1>
+            <p class="text-dim" style="max-width: 500px; margin-bottom: 40px;">
+                Capturing character through high-fidelity sketches and curated digital finishing. 
+            </p>
             
-            <div class="scroll-indicator">
-                <div class="mouse"></div>
+            <div class="hero-btns" style="display: flex; gap: 20px;">
+                <a href="commission.html" class="btn btn-primary">VIEW SERVICES</a>
+                <a href="vouches.html" class="btn">PORTFOLIO</a>
             </div>
-        </section>
+        </div>
+    </div>
+</main>
+        
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </main>
 
-        <section class="about-section reveal">
-            <div class="container">
-                <div class="editorial-grid">
-                    
-                    <div class="art-display-box">
-                        <span class="box-label">Featured Work</span>
-                        <div class="inner-frame">
-                            <img src="latest-piece.jpg" alt="Allifur's Latest Work">
-                            <p class="file-tag">LATEST_PIECE.PNG</p>
-                        </div>
-                        <div class="art-meta">
-                            TRADITIONAL GRAPHITE • DIGITAL FINISH • 1 YEAR EXP.
-                        </div>
-                    </div>
-
-                    <div class="testimony-content">
-                        <span class="sub-title">A Perspective by Vollarae</span>
-                        <h2 class="h2-editorial">The Genesis of <i>Allifur</i></h2>
-                        
-                        <div class="quote-body">
-                            <p>"To witness a craft in its infancy is to observe the most honest form of creation. Allifur does not merely draw; she laboriously carves her vision into the digital and graphite medium alike."</p>
-                            
-                            <p>"While she carries the humble mantle of a 'beginner,' her dedication to the craft suggests the discipline of a veteran. There is a rare beauty in watching an artist bloom."</p>
-                        </div>
-
-                        <div class="testimony-footer">
-                            <p class="sig-name">Vollarae (JPX)</p>
-                            <p class="sig-title">Novelist & Former Artist</p>
-                        </div>
-                    </div>
-
+<section class="about-section" style="padding: 100px 0; border-top: 1px solid var(--glass-border);">
+    <div class="container reveal">
+        <div class="editorial-grid">
+            
+            <div class="art-display-box">
+                <span class="box-label">Featured Work</span>
+                <div class="inner-frame">
+                    <img src="latest-piece.jpg" alt="Allifur's Latest Work" style="width:100%; height:100%; object-fit:cover;">
+                    <p class="text-dim" style="font-size: 0.6rem;">LATEST_PIECE.PNG</p>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.65rem; letter-spacing: 1px; color: var(--accent);">
+                    TRADITIONAL GRAPHITE • DIGITAL FINISH • 1 YEAR EXP.
                 </div>
             </div>
-        </section>
 
-        <footer>
-            <div class="container">
-                <span class="footer-logo">ALLIFUR</span>
-                <p class="footer-credits">© 2026 ALLIFUR ART • DEVELOPED BY VOLLARAE</p>
+            <div class="testimony-content">
+                <span class="sub-title">A Perspective by Vollarae</span>
+                <h2 class="h2-editorial" style="font-family: 'Playfair Display'; margin-bottom: 30px;">The Genesis of <i>Allifur</i></h2>
+                
+                <div class="quote-body">
+                    <p>"To witness a craft in its infancy is to observe the most honest form of creation. Allifur does not merely draw; she laboriously carves her vision into the digital and graphite medium alike. Having navigated the first year of her journey, there is a palpable sincerity in her strokes—a quiet refusal to disappoint."</p>
+                    
+                    <p>"While she carries the humble mantle of a 'beginner,' her dedication to the craft suggests the discipline of a veteran. She paints with a dual purpose: practical necessity and the infectious joy of a hobbyist."</p>
+                    
+                    <p>"There is a rare beauty in watching an artist bloom. With every piece delivered, the growth is evident, the evolution undeniable."</p>
+                </div>
+
+                <div class="testimony-footer" style="margin-top: 40px; border-top: 1px solid var(--glass-border); padding-top: 20px;">
+                    <p style="font-family: 'Playfair Display'; font-size: 1.2rem; font-weight: 700;">Vollarae (JPX)</p>
+                    <p class="text-dim" style="font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;">Novelist & Former Artist</p>
+                </div>
             </div>
-        </footer>
-    </main>
+
+        </div>
+    </div>
+</section>
+
+    <footer>
+        <div class="container">
+            <span class="footer-logo">ALLIFUR</span>
+            <p class="footer-credits">© 2026 ALLIFUR ART • ALL RIGHTS RESERVED</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
