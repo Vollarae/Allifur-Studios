@@ -1177,35 +1177,34 @@ footer {
 /* --- PC SPECIFIC ALIGNMENT --- */
 @media (min-width: 992px) {
     .hero {
-        padding-top: 160px; /* This creates a "buffer" so the Nav doesn't cover the text */
-        min-height: 80vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Centers the text vertically in the remaining space */
+        padding-top: 180px; /* High buffer to clear the Navbar */
+        padding-bottom: 100px;
+        display: block; /* Changes from 'flex' to 'block' to prevent crushing */
+        min-height: auto; 
+        text-align: left;
     }
 
     .sub-title {
         display: block !important;
-        margin-top: 0;
-        /* Ensure no 'transform' is accidentally moving it off-screen */
-        transform: none !important; 
+        margin-bottom: 20px;
+        line-height: 2; /* Safety for the top of letters */
+        overflow: visible;
     }
 
     .hero-btns {
         display: flex !important;
-        flex-direction: row !important; /* Forces them horizontal on PC */
-        gap: 20px;
-        width: 100%;
-        justify-content: flex-start; /* Aligns them to the left to match your header */
-        margin-top: 40px;
+        flex-direction: row !important;
+        gap: 30px;
+        margin-top: 50px; /* Space between description and buttons */
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     .btn {
-        flex: 0 0 auto; /* THE FIX: Tells the button "Do not grow, DO NOT SHRINK" */
-        min-width: 220px; /* Ensures they are wide enough for the text */
-        padding: 20px 40px; 
-        text-align: center;
-        white-space: nowrap; /* Prevents text from jumping to a second line */
+        flex: 0 0 auto;
+        min-width: 220px;
+        padding: 20px 40px;
+        display: inline-flex;
     }
 }
 
