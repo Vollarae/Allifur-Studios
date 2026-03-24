@@ -261,3 +261,18 @@ formInputs.forEach(input => {
         outline.style.transform = 'translate(-50%, -50%) scale(1)';
     });
 });
+
+const selectBox = document.querySelector('select');
+
+if (selectBox) {
+    // When the user clicks the dropdown, keep the custom cursor active
+    selectBox.addEventListener('mousedown', () => {
+        dot.style.opacity = "1";
+        outline.style.opacity = "1";
+    });
+
+    // If the mouse gets "stuck," force it to wake up on move
+    selectBox.addEventListener('change', () => {
+        document.body.dispatchEvent(new MouseEvent('mousemove'));
+    });
+}
