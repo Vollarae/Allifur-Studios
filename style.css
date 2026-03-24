@@ -1174,6 +1174,31 @@ footer {
 
 /* --- 16. STRUCTURAL OVERRIDES: THE RESPONSIVE FIX --- */
 
+/* --- PC SPECIFIC ALIGNMENT --- */
+@media (min-width: 992px) {
+    .hero {
+        padding-top: 160px; /* This creates a "buffer" so the Nav doesn't cover the text */
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centers the text vertically in the remaining space */
+    }
+
+    .sub-title {
+        display: block !important;
+        margin-top: 0;
+        /* Ensure no 'transform' is accidentally moving it off-screen */
+        transform: none !important; 
+    }
+}
+
+/* --- THE SCALPING FIX --- */
+.sub-title {
+    line-height: 1.8 !important; /* Increases the box height so the tops of letters aren't cut */
+    padding-top: 10px; /* Small safety cushion */
+    overflow: visible !important; /* Ensures letters can bleed out of the box if needed */
+}
+
 /* Tablet & Small Laptop (992px) */
 @media (max-width: 992px) {
     .editorial-grid {
