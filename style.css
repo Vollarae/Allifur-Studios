@@ -1221,9 +1221,9 @@ select option {
 
 /* Forces the navbar to blend with the charcoal background */
 header, nav, .navbar {
-    background-color: var(--bg) !important;
+    background-color: var(--bg); /* Keeps it Sky Blue */
     background: var(--bg) !important; /* Catch-all for gradients */
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid rgba(198, 169, 107, 0.3); /* Soft Champagne Gold */
 }
 
 /* If you have a sticky/fixed header, ensure it doesn't have a shadow that looks like black ink */
