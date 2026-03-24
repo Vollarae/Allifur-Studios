@@ -1195,8 +1195,8 @@ footer {
     }
 }
 
-/* Phones & Portrait Tablets (768px) */
-@media (max-width: 768px) {
+/* Phones & Portrait Tablets (600px) */
+@media (max-width: 600px) {
 
     /* 1. TYPOGRAPHY: Shrink headers so they don't cause side-scrolling */
     .h2-editorial {
@@ -1243,14 +1243,17 @@ footer {
     /* 6. BUTTONS: The "Hero" buttons should stack or sit side-by-side */
     .hero-btns {
         display: flex;
-        gap: 20px; /* Space between the two buttons */
+        flex-direction: column;
+        width: 100%;
         margin-top: 20px;
+        gap: 15px; /* Tighter gap for mobile */
     }
 
 .btn {
-    padding: 18px 35px;
+    padding: 16px 20px;
     text-decoration: none;
-    font-size: 0.75rem;
+    margin-left: 0 !important;
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1258,10 +1261,17 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     min-width: 200px; /* Ensures buttons are consistent size */
 }
 
-    /* 7. SPECIAL BOXES: The Legal/Sovereignty Clause */
+    /* 7. ADJUST MAIN HEADER SIZE */
+    .h1-hero {
+        font-size: 3.2rem; 
+        line-height: 1.05;
+    }
+    
+    /* 8. SPECIAL BOXES: The Legal/Sovereignty Clause */
     .rights-clause {
         margin: 0 10px 30px 10px;
         padding: 20px;
