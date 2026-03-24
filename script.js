@@ -240,3 +240,14 @@ window.addEventListener('mousemove', (e) => {
     outline.style.left = e.clientX + 'px';
     outline.style.top = e.clientY + 'px';
 });
+
+const allClickables = document.querySelectorAll('a, button, .clickable');
+
+allClickables.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        outline.classList.add('cursor-active-outline');
+    });
+    item.addEventListener('mouseleave', () => {
+        outline.classList.remove('cursor-active-outline');
+    });
+});
