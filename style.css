@@ -1620,3 +1620,32 @@ select:focus {
     color: #000000 !important;
     outline: none;
 }
+
+/* Hide the default mouse so the gold one takes over */
+html, body {
+    cursor: none;
+}
+
+.cursor-dot, .cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10000;
+}
+
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #C5A059;
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(197, 160, 89, 0.5);
+    /* This makes the ring follow with a tiny, smooth 'lag' */
+    transition: all 0.1s ease-out; 
+}
