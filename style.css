@@ -200,9 +200,9 @@ body.loading {
 
 .hero-wrapper {
     display: flex;
-    flex-direction: column; /* Forces vertical stacking */
+    flex-direction: column;
     align-items: flex-start;
-    max-width: 800px;
+    padding-top: 40px; /* Pushes content down so it's not under the Nav on PC */
 }
 
 /* --- PREVIEW SECTION: TRANSITION AREA BELOW HERO --- */
@@ -388,12 +388,17 @@ body::after {
 
 /* Uppercase Sub-titles: Used for labels or section headers */
 .sub-title {
-    display: block;
+    display: block !important; /* Forces to exist on all devices */
+    visibility: visible !important; 
+    opacity: 1 !important; /* Fixes disappearing issue */
     font-size: 0.8rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #C5A059; /* Gold */
-    margin-bottom: 10px;
+    color: #C5A059;
+    /* CUT-OFF FIX: */
+    line-height: 1.6; /* Gives the letters headroom so tops aren't cut */
+    margin-bottom: 15px;
+    padding-top: 5px; /* Extra safety buffer */
 }
 
 /* Secondary/Description Text */
