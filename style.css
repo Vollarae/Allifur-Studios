@@ -1225,6 +1225,7 @@ header, nav, .navbar {
     background: var(--bg) !important; /* Catch-all for gradients */
     border-bottom: 1px solid #C5A059; /* A deeper, more visible "Vintage Gold" */
     opacity: 0.8; /* Keeps it elegant rather than a solid plastic yellow */
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4); /* A tiny "highlight" under the gold line */
 }
 
 /* If you have a sticky/fixed header, ensure it doesn't have a shadow that looks like black ink */
