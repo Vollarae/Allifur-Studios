@@ -1672,3 +1672,16 @@ option, .form-control {
     cursor: none !important;
 }
 
+/* Specifically target select boxes and their options */
+select, 
+select *, 
+option, 
+optgroup {
+    cursor: none !important;
+    appearance: none; /* Helps remove some default OS styling */
+}
+
+.cursor-dot, 
+.cursor-outline {
+    z-index: 2147483647 !important; /* The highest possible number in CSS */
+}
