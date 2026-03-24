@@ -1176,43 +1176,53 @@ footer {
 
 /* --- PC SPECIFIC ALIGNMENT --- */
 @media (min-width: 992px) {
-    .hero {
-        padding-top: 180px; /* High buffer to clear the Navbar */
-        padding-bottom: 100px;
-        display: block; /* Changes from 'flex' to 'block' to prevent crushing */
-        min-height: auto; 
-        text-align: left;
+.hero {
+        /* Padding to push content away from the Nav */
+        padding: 180px 0 120px 0; 
+        /* Flex column keeps everything in a vertical line */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Keeps text left-aligned */
+        min-height: 100vh; /* Ensures the section takes up the full screen */
+        width: 100%;
+        background-color: #E3F2FD;
+    }
+    
+    .hero-wrapper {
+        width: 100%;
+        max-width: 900px;
+        z-index: 2;
     }
 
-    .sub-title {
-        display: block !important;
-        margin-bottom: 20px;
-        line-height: 2; /* Safety for the top of letters */
-        overflow: visible;
+    .h1-hero {
+        font-size: 5.5rem;
+        line-height: 1.1;
+        margin: 20px 0 30px 0;
+        display: block;
     }
 
     .hero-btns {
         display: flex !important;
         flex-direction: row !important;
-        gap: 30px;
-        margin-top: 50px; /* Space between description and buttons */
-        opacity: 1 !important;
-        visibility: visible !important;
+        gap: 25px;
+        margin-top: 40px;
+        width: 100%;
     }
 
     .btn {
-        flex: 0 0 auto;
-        min-width: 220px;
-        padding: 20px 40px;
-        display: inline-flex;
+        flex: 0 0 auto !important; /* Forces buttons to stay as rectangles */
+        width: 240px; /* Specific width for PC elegance */
+        padding: 20px 0;
+        text-align: center;
     }
 }
 
-/* --- THE SCALPING FIX --- */
+/* --- THE SCALPED TEXT FIX --- */
 .sub-title {
-    line-height: 1.8 !important; /* Increases the box height so the tops of letters aren't cut */
-    padding-top: 10px; /* Small safety cushion */
-    overflow: visible !important; /* Ensures letters can bleed out of the box if needed */
+    display: inline-block !important;
+    line-height: 2 !important; 
+    margin-bottom: 10px;
+    padding-top: 5px;
 }
 
 /* Tablet & Small Laptop (992px) */
