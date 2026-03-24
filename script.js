@@ -196,23 +196,39 @@ window.addEventListener('load', () => {
     const quoteElement = document.getElementById('quote-text');
     const preloader = document.getElementById('preloader');
     
-    // Quote
-    const quote = "“Art isn't a release; it's a reckoning. Leave the pretty things for the amateurs.”";
+    const quotes = [
+        "“Art isn't a release; it's a reckoning. Leave the pretty things for the amateurs.”",
+        "“If your art doesn't scare you a little, you aren't looking deep enough.”",
+        "“Creation is a slow burn. Don't let the world put out the fire.”",
+        "“They want a mirror; give them a window instead.”",
+        "“Paint the truth, even if your hands shake while doing it.”",
+        "“The canvas is the only place where you are truly allowed to be dangerous.”",
+        "“Silence is loud, but a stroke of ink is louder.”",
+        "“Perfection is a ghost. Stop chasing things that don't breathe.”",
+        "“Every masterpiece began as a mess someone refused to give up on.”",
+        "“Do not ask for permission to exist. Just create.”",
+        "“Art is the blood of the soul spilled onto the page.”",
+        "“Comfort is the enemy of growth. Stay uncomfortable.”",
+        "“We don't draw to see; we draw to understand.”",
+        "“Style is just the shadow your character casts on your work.”",
+        "“The world is heavy; let your art be the gravity that holds it together.”",
+        "“Burn your ego before you pick up the brush.”",
+        "“Obsession is just another word for dedication that people don't understand yet.”",
+        "“A blank page is not a void; it is a dare.”",
+        "“Don't paint what you see. Paint what it feels like to stand there.”",
+        "“Vulnerability is the sharpest tool in your kit. Use it.”"
+    ];
+    
+    const selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
     
     if (quoteElement) {
-        quoteElement.textContent = quote;
+        // This adds the quote and the signature on a new line
+        quoteElement.innerHTML = `${selectedQuote}<br><span class="quote-sig">— Vollarae</span>`;
     }
 
-    // (3500ms)
     setTimeout(() => {
-        if (preloader) {
-            preloader.classList.add('loaded');
-        }
+        if (preloader) preloader.classList.add('loaded');
         document.body.style.overflow = 'auto';
         document.body.classList.remove('loading');
     }, 3500);
 });
-
-// Lock scroll immediately when the script file is read
-document.body.style.overflow = 'hidden';
-document.body.classList.add('loading');
