@@ -1636,41 +1636,26 @@ html, body {
 }
 
 .cursor-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #C5A059;
-    box-shadow: 0 0 10px rgba(197, 160, 89, 0.4);
+    width: 8px;
+    height: 8px;
+    background-color: #D4AF37; /* Brighter Gold */
+    /* This double shadow makes it glow on white backgrounds */
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.9), 
+                0 0 2px rgba(0, 0, 0, 0.2); 
+    z-index: 10001;
 }
 
 .cursor-outline {
-    width: 30px;
-    height: 30px;
-    border: 1px solid rgba(197, 160, 89, 0.5);
-    /* This makes the ring follow with a tiny, smooth 'lag' */
-    transition: all 0.1s ease-out; 
+    width: 35px;
+    height: 35px;
+    border: 2px solid #D4AF37; /* Thicker line */
+    background-color: rgba(212, 175, 55, 0.03); 
+    z-index: 10000;
 }
 
 /* mouse remover */
 html, body, a, button, input, textarea, .nav-links a {
     cursor: none !important;
-}
-
-/* More visibility */
-.cursor-dot {
-    width: 8px; /* Slightly larger */
-    height: 8px;
-    background-color: #D4AF37; /* Brighter "Vivid Gold" */
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), /* Stronger glow */
-                0 0 5px rgba(255, 255, 255, 0.5); /* White core for "pop" */
-    z-index: 10001;
-}
-
-.cursor-outline {
-    width: 35px; /* Larger ring */
-    height: 35px;
-    border: 2px solid #D4AF37; /* Thicker, solid gold ring */
-    background-color: rgba(212, 175, 55, 0.05); /* Very faint gold fill */
-    z-index: 10000;
 }
 
 .cursor-active-outline {
@@ -1679,3 +1664,11 @@ html, body, a, button, input, textarea, .nav-links a {
     border-color: #FFFFFF; /* Turns white-gold when hovering for max contrast */
     border-width: 1px;
 }
+
+html, body, a, button, 
+input, textarea, select, 
+label, .nav-links a, 
+option, .form-control {
+    cursor: none !important;
+}
+
