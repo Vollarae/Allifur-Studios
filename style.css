@@ -199,9 +199,10 @@ body.loading {
 }
 
 .hero-wrapper {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
+    display: flex;
+    flex-direction: column; /* Forces vertical stacking */
+    align-items: flex-start;
+    max-width: 800px;
 }
 
 /* --- PREVIEW SECTION: TRANSITION AREA BELOW HERO --- */
@@ -370,41 +371,39 @@ body::after {
 
 /* Main Hero Heading: High-contrast serif with tight spacing */
 .h1-hero {
-    font-size: var(--fs-h1);
     font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.03em; /* Creates a modern "compact" editorial look */
-    margin-bottom: 20px;
-    color: var(--text);
+    font-size: clamp(3rem, 8vw, 5.5rem); /* Forces it to stay large */
+    line-height: 1.1;
+    margin: 10px 0 25px 0;
+    display: block; /* Prevents "Elegance" from shrinking */
 }
 
 /* Italicized Hero Text: Usually used for names or emphasis */
 .h1-hero i {
-    font-family: 'Playfair Display', serif;
     font-style: italic;
+    font-family: 'Playfair Display', serif;
     font-weight: 400;
-    color: var(--accent);
-    padding-right: 0.05em; /* Prevents italic slant from clipping */
+    color: #728FA1; /* Muted Blue-Grey */
 }
 
-/* Uppercase Sub-titles: Used for "VOLLARAE" labels or section headers */
+/* Uppercase Sub-titles: Used for labels or section headers */
 .sub-title {
-    color: var(--accent-antique); /* Updated to Gold for consistent branding */
-    text-transform: uppercase;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 5px; /* Airy, luxury spacing */
     display: block;
-    margin-bottom: 15px;
-    opacity: 0.9;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #C5A059; /* Gold */
+    margin-bottom: 10px;
 }
 
 /* Secondary/Description Text */
 .text-dim {
-    color: var(--text-dim);
-    font-weight: 300;
-    line-height: 1.8;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #546E7A;
+    margin-bottom: 45px;
+    max-width: 550px;
+    display: block;
 }
 
 /* Global Link Behavior */
@@ -549,9 +548,10 @@ a {
 }
 
 .btn-primary:hover {
-    background-color: transparent; /* Allows the ::before color to show */
-    box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
     color: #fff;
+    background-color: transparent; /* This lets your 'before' or 'after' effect shine */
+    box-shadow: 0 15px 40px rgba(197, 160, 89, 0.3);
+    transform: translateY(-3px);
 }
 
 /* --- OUTLINE BUTTON: ELEGANT BORDER ONLY --- */
@@ -1243,17 +1243,23 @@ footer {
     /* 6. BUTTONS: The "Hero" buttons should stack or sit side-by-side */
     .hero-btns {
         display: flex;
-        justify-content: center;
-        gap: 12px;
-        flex-wrap: wrap; 
-        width: 100%;
+        gap: 20px; /* Space between the two buttons */
+        margin-top: 20px;
     }
 
-    .btn {
-        flex: 1; 
-        min-width: 140px; 
-        max-width: 100%; /* Allows them to go full-width on tiny phones */
-    }
+.btn {
+    padding: 18px 35px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px; /* Ensures buttons are consistent size */
+}
 
     /* 7. SPECIAL BOXES: The Legal/Sovereignty Clause */
     .rights-clause {
