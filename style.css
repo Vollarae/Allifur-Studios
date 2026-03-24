@@ -2,107 +2,114 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap');
 
-/* --- GLOBAL OVERFLOW PREVENTER --- */
+/* --- ROOT VARIABLES: CENTRAL COLOR AND SPACING CONTROL --- */
+:root {
+    /* Backgrounds */
+    --bg: #E3F2FD;                /* Primary Sky Blue */
+    --bg-elevated: #FFFFFF;       /* Pure white for cards/modals */
+    --bg-soft: #D1E9FA;           /* Slightly darker blue for section depth */
+
+    /* Accents & Brand Colors */
+    --accent: #6B8FA3;            /* Muted Slate Blue */
+    --accent-gold: #D4AF37;       /* Vivid Gold for highlights */
+    --accent-antique: #C5A059;    /* Antique Gold for lines and borders */
+    --accent-soft: #DCE6EC;       /* Subtle blue tint for hovers */
+
+    /* Text Hierarchy */
+    --text: #1C1C1C;              /* High contrast primary text */
+    --text-dim: #555555;          /* Medium contrast secondary text */
+    --text-soft: #888888;         /* Low contrast meta/label text */
+
+    /* UI Elements */
+    --border-gold: var(--accent-antique);
+    --glass: rgba(255, 255, 255, 0.6);
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+    /* Animation Timing */
+    --transition-slow: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    --transition-fast: all 0.3s ease;
+}
+
+/* --- GLOBAL RESET: PREVENTS LAYOUT SHIFT AND SCROLL BUGS --- */
+* {
+    box-sizing: border-box;
+    /* Force-hides default mouse to allow custom gold cursor to work */
+    cursor: none !important; 
+}
+
 html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Kills the horizontal scroll/lean */
+    background-color: var(--bg);
+    /* Prevents horizontal "jiggle" on mobile and desktop */
+    overflow-x: hidden; 
     position: relative;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* Ensure every container respects the screen width */
+/* --- LAYOUT WRAPPER: KEEPS CONTENT CENTERED ON WIDE SCREENS --- */
 .container {
     width: 100%;
-    max-width: 1200px; /* Whatever design width is */
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* Balanced side-gutters */
-    box-sizing: border-box; /* Crucial: includes padding in the width calculation */
+    padding: 0 20px;
 }
 
-* {
-    box-sizing: border-box; /* Applies to every single element on the site */
+/* --- CUSTOM GOLD SCROLLBAR --- */
+::-webkit-scrollbar {
+    width: 6px;
 }
 
-:root {
-    /* Main Backgrounds */
-    --bg: #E3F2FD;                /* Soft Sky Blue (calm and easy on eyes) */
-    --bg-elevated: #FFFFFF;       /* Keep cards white for that clean "float" look */
-    --bg-soft: #D1E9FA;           /* Slightly deeper sky blue for sections */
-
-    /* Accents */
-    --accent: #6B8FA3;            /* Muted blue (trust + modern) */
-    --accent-rgb: 107, 143, 163;
-    --accent-soft: #DCE6EC;       /* Hover / background tint */
-    --accent-secondary: #C6A96B;  /* Soft champagne (luxury touch) */
-    --accent-glow: rgba(107, 143, 163, 0.2);
-
-    /* Text Colors */
-    --text: #1C1C1C;              /* Primary text */
-    --text-dim: #555555;          /* Secondary text */
-    --text-soft: #888888;         /* Subtle text / labels */
-    --text-on-accent: #FFFFFF;    /* Text when inside a blue button */
-
-    /* Borders & Lines */
-    --border: #E2E2E2;
-    --border-soft: #EEEEEE;
-
-    /* Glassmorphism (Updated for Light Theme) */
-    --glass: rgba(255, 255, 255, 0.6);
-    --glass-border: rgba(0, 0, 0, 0.08);
-    --glass-surface: rgba(255, 255, 255, 0.85);
-    
-    /* Shadows */
-    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
-    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.08);
-
-    /* Animation & Layout */
-    --transition-slow: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    --transition-fast: all 0.3s ease;
-    --container: 1250px;
-
-    /* Typography Clamps */
-    --fs-h1: clamp(2.5rem, 7vw, 4.5rem);
-    --fs-h2: clamp(1.8rem, 4vw, 2.5rem);
-    --fs-body: 1rem;
-
-    /* --- FORM SPECIFIC FIXES --- */
-    /* Makes inputs stay light even if browser defaults try to interfere */
-    --input-bg: var(--bg-elevated);
-    --input-text: var(--text);
-    --input-border: var(--border);
+::-webkit-scrollbar-track {
+    background: var(--bg);
 }
 
+::-webkit-scrollbar-thumb {
+    background: var(--accent-antique);
+    border-radius: 10px;
+}
+
+/* --- SHARED FORM DEFAULTS --- */
+input, textarea, select {
+    background-color: var(--bg-elevated);
+    color: var(--text);
+    border: 1px solid #E2E2E2;
+}
+
+/* --- PRELOADER: THE FULL-SCREEN CINEMATIC OVERLAY --- */
 #preloader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #E3F2FD; /* Sky Blue */
+    background-color: var(--bg); /* Sky Blue from variables */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10000; /* Ensures it stays on top of everything */
+    z-index: 20000; /* Stays above cursor and navigation */
     
-    /* Cinematic fade-out transition */
+    /* Cinematic fade-out timing */
     transition: opacity 1.2s ease-in-out, visibility 1.2s;
 }
 
-/* Class added by JavaScript when loading is finished */
+/* State triggered by script.js when loading timer ends */
 #preloader.loaded {
     opacity: 0;
     visibility: hidden;
 }
 
+/* --- LOADER CONTENT: WRAPPER FOR QUOTE AND PROGRESS BAR --- */
 .loader-content {
     text-align: center;
     padding: 40px;
     max-width: 500px;
 }
 
+/* --- THE DYNAMIC QUOTE: SERIF TYPOGRAPHY WITH FADE-IN --- */
 #quote-text {
-    font-family: serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
     color: var(--accent);
     letter-spacing: 0.5px;
@@ -110,34 +117,49 @@ html, body {
     line-height: 1.8;
     margin-bottom: 40px;
     
-    /* Initial state for the fade-in animation */
+    /* Initial state for the 'quoteReveal' animation */
     opacity: 0;
     filter: blur(8px);
     transform: translateY(15px);
     animation: quoteReveal 2.5s forwards 0.5s;
 }
 
+/* --- THE "VOLLARAE" SIGNATURE: GOLD ACCENT BELOW QUOTE --- */
+.quote-sig {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-antique); /* Antique Gold */
+    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.8;
+}
+
+/* --- PROGRESS TRACKER: MINIMALIST THREAD BELOW QUOTE --- */
 .loader-bar {
     width: 150px;
-    height: 1px; /* Ultra-thin minimalist line */
-    background: rgba(107, 143, 163, 0.1);
+    height: 1px; 
+    background: rgba(107, 143, 163, 0.1); /* Faint blue track */
     margin: 0 auto;
     position: relative;
     overflow: hidden;
 }
 
+/* The actual filling gold/blue line */
 .progress {
     width: 0%;
     height: 100%;
-    background: var(--accent);
+    background: var(--accent-antique); /* Gold progress to match luxury feel */
     position: absolute;
     top: 0;
     left: 0;
-    /* Matches the 3.5s timer JS */
+    /* Duration synchronized with the 3.5s JS wait time */
     animation: progressFill 3s forwards cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* ANIMATIONS */
+/* --- KEYFRAMES: DEFINES THE FADE-IN AND BAR-FILL --- */
 @keyframes quoteReveal {
     0% {
         opacity: 0;
@@ -156,81 +178,24 @@ html, body {
     100% { width: 100%; }
 }
 
-/* Prevent page from jumping when preloader vanishes */
+/* Lock scroll while loading to prevent "peek-a-boo" scrolling */
 body.loading {
     overflow: hidden;
 }
 
-.quote-sig {
-    display: block;
-    margin-top: 15px;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent-secondary); /* That gold just perfected */
-    font-style: normal;
-    font-family: sans-serif; /* A clean contrast to the serif quote */
-    opacity: 0.8;
-}
-
-/* --- 0. LAYOUT SAFETY FIXES --- */
+/* --- HERO SECTION: THE MAIN STAGE / LANDING AREA --- */
 .hero {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     height: 100vh;
-    height: 100dvh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
     width: 100%;
     padding: 0 8%;
     margin: 0;
     position: relative;
-    overflow: hidden; /* Important: Clips any runaway elements */
-}
-
-.preview-section {
-    padding: 80px 0;
-    background: var(--bg);
-    border-top: 1px solid var(--glass-border); /* Elegant divider */
-    margin-top: 0; 
-}
-
-.art-display-box {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    padding: 20px;
-    position: relative;
-    transition: var(--transition-slow);
-}
-
-.art-display-box:hover {
-    border-color: var(--accent);
-    box-shadow: 0 0 30px var(--accent-glow);
-}
-
-.inner-frame {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Or 4 / 5 depending on Joanah's art style */
-    background: #080808;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-.box-label {
-    position: absolute;
-    top: -12px;
-    left: 40px;
-    background: var(--bg);
-    padding: 0 15px;
-    font-size: 0.6rem;
-    letter-spacing: 3px;
-    color: var(--accent);
-    text-transform: uppercase;
+    overflow: hidden; /* Clips any runaway elements or large background art */
+    background-color: var(--bg);
 }
 
 .hero-wrapper {
@@ -239,42 +204,88 @@ body.loading {
     max-width: 1200px;
 }
 
-.h1-hero {
-    margin: 0 0 25px 0;
-    line-height: 1.1;
-    word-wrap: break-word; /* Prevents long words from breaking layout */
+/* --- PREVIEW SECTION: TRANSITION AREA BELOW HERO --- */
+.preview-section {
+    padding: 80px 0;
+    background: var(--bg);
+    border-top: 1px solid var(--accent-antique); /* Elegant gold divider */
+    margin-top: 0; 
 }
 
-.hero-header {
-    background: linear-gradient(to bottom, #050505, #080808);
-    padding-bottom: 60px;
+/* --- ART DISPLAY BOX: THE "GALLERY FRAME" FOR PREVIEWS --- */
+.art-display-box {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--bg-elevated); /* Clean white surface */
+    border: 1px solid var(--accent-antique); /* Gold frame border */
+    padding: 20px;
+    position: relative;
+    transition: var(--transition-slow);
 }
 
+/* Subtle gold glow when the user hovers over the art box */
+.art-display-box:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 10px 40px rgba(197, 160, 89, 0.15);
+}
+
+.inner-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Maintains cinematic proportions */
+    background: #080808; /* Dark interior to make art pop */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* The small floating label on the top-left of the art frame */
+.box-label {
+    position: absolute;
+    top: -12px;
+    left: 40px;
+    background: var(--bg);
+    padding: 0 15px;
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--accent-antique);
+    text-transform: uppercase;
+}
+
+/* --- NAVBAR LAYER: ENSURES NAVIGATION STAYS ABOVE CONTENT --- */
+.navbar {
+    /* Transparent to Sky Blue gradient for a soft "melt" into the hero */
+    height: 100px;
+    z-index: 1000;
+    border-bottom: 1px solid var(--accent-antique) !important;
+}
+
+/* Placeholder styling for art that hasn't loaded yet */
 .card-image-preview .art-placeholder {
-    border: 1px solid var(--glass-border);
+    border: 1px solid var(--accent-antique);
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.6rem;
     letter-spacing: 2px;
-    color: var(--text-dim);
+    color: var(--text-soft);
 }
 
-/* Ensure the navbar has a distinct layer */
-.navbar {
-    background: linear-gradient(to bottom, rgba(5,5,5,1) 0%, rgba(5,5,5,0) 100%);
-    height: 100px;
-    z-index: 1000;
-}
-
-/* --- 1. RESET & PERFORMANCE --- */
+/* --- 1A. RESET & PERFORMANCE: CORE BROWSER NORMALIZATION --- */
 * { 
     margin: 0; 
     padding: 0; 
     box-sizing: border-box; 
+    
+    /* Font smoothing for a crisp, high-end editorial look */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    /* Global cursor suppression for custom gold mouse */
+    cursor: none !important;
 }
 
 html { 
@@ -286,75 +297,127 @@ body {
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Montserrat', sans-serif;
-    line-height: 1.7;
-    overflow-x: hidden;
+    line-height: 1.7; /* Increased for better readability */
+    overflow-x: hidden; /* Prevents accidental side-scrolling */
+    
+    /* Subtle letter-tracking for a more premium typography feel */
     word-spacing: 0.05em;
+    letter-spacing: 0.01em;
 }
 
-/* --- 2. THE GRAIN ENGINE --- */
-/* Cinematic film-grain look that moves */
+/* --- SELECTION COLOR: MATCHES THE GOLD THEME --- */
+::selection {
+    background-color: rgba(197, 160, 89, 0.2); /* Antique Gold tint */
+    color: var(--text);
+}
+
+/* --- 1B. GLOBAL CLEAN-UP & RESET --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg) !important;
+    overflow-x: hidden; /* Prevents side-scrolling bugs on mobile */
+}
+
+/* Kill legacy dark gradients */
+.navbar, .hero-header, .commissions-hero, header, nav {
+    background-image: none !important; 
+    background: var(--bg) !important;
+    box-shadow: none !important;
+}
+
+/* Remove decorative 'fade' overlays from previous templates */
+body::before, body::after, .main-content::before {
+    display: none !important;
+}
+
+/* Ensure the Navbar is flexible but centered */
+.navbar {
+    min-height: 80px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--accent-antique); /* Keeps our gold signature */
+}
+
+/* --- 2. THE GRAIN ENGINE: ADDS A TACTILE, ANALOG FEEL TO THE DIGITAL CANVAS --- */
 body::after {
     content: "";
     position: fixed;
     top: 0; 
     left: 0; 
     width: 100%; 
-    height: 100%; /* Changed from 300% to 100% to stop the void */
+    height: 100%; 
+    /* High-fidelity SVG noise */
     background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-    opacity: 0.04;
-    pointer-events: none;
-    z-index: 9999;
-    /* Subtler animation that doesn't move the actual box */
-    animation: grain-shift 1s steps(2) infinite;
+    opacity: 0.03; /* Reduced for a "felt but not seen" professional look */
+    pointer-events: none; /* Crucial: allows clicking through the grain layer */
+    z-index: 9998; /* Sits just below the custom cursor (10001) */
+    
+    /* Cinematic micro-shiver to simulate film projection */
+    animation: grain-shift 0.8s steps(2) infinite;
 }
 
+/* Micro-translations to prevent the grain from looking like a frozen "dirty" screen */
 @keyframes grain-shift {
     0% { transform: translate(0,0); }
-    50% { transform: translate(-1%, -1%); }
-    100% { transform: translate(1%, 1%); }
+    33% { transform: translate(-0.5%, -0.5%); }
+    66% { transform: translate(0.5%, 0.5%); }
+    100% { transform: translate(0,0); }
 }
 
-/* --- 3. MASTER TYPOGRAPHY --- */
+/* --- 3. MASTER TYPOGRAPHY: THE EDITORIAL VOICE OF THE SITE --- */
+
+/* Main Hero Heading: High-contrast serif with tight spacing */
 .h1-hero {
     font-size: var(--fs-h1);
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     line-height: 1.05;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.03em; /* Creates a modern "compact" editorial look */
     margin-bottom: 20px;
+    color: var(--text);
 }
 
+/* Italicized Hero Text: Usually used for names or emphasis */
 .h1-hero i {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-weight: 400;
     color: var(--accent);
-    padding-right: 0.05em; /* Optical adjustment */
+    padding-right: 0.05em; /* Prevents italic slant from clipping */
 }
 
+/* Uppercase Sub-titles: Used for "VOLLARAE" labels or section headers */
 .sub-title {
-    color: var(--accent);
+    color: var(--accent-antique); /* Updated to Gold for consistent branding */
     text-transform: uppercase;
     font-size: 0.65rem;
     font-weight: 600;
-    letter-spacing: 5px;
+    letter-spacing: 5px; /* Airy, luxury spacing */
     display: block;
     margin-bottom: 15px;
     opacity: 0.9;
 }
 
+/* Secondary/Description Text */
 .text-dim {
     color: var(--text-dim);
     font-weight: 300;
+    line-height: 1.8;
 }
 
+/* Global Link Behavior */
 a { 
     color: inherit; 
     text-decoration: none; 
     transition: var(--transition-fast); 
+    /* The !important in reset ensures cursor remains hidden here */
 }
 
-/* --- 4. NAVIGATION ARCHITECTURE --- */
+/* --- 4. NAVIGATION ARCHITECTURE: THE STICKY HEADER SYSTEM --- */
+
+/* Base Navbar: Transparent on load to let the Hero shine through */
 .navbar {
     position: fixed;
     top: 0; 
@@ -365,17 +428,21 @@ a {
     align-items: center;
     z-index: 1000;
     transition: var(--transition-slow);
+    /* Your signature gold thread line */
+    border-bottom: 1px solid var(--accent-antique) !important;
 }
 
-/* Subtle glass effect when scrolling */
+/* Glass effect: Triggered when the user scrolls down */
 .navbar.scrolled {
     padding: 18px 6%;
-    background: rgba(5, 5, 5, 0.75);
+    /* Frosted Sky Blue instead of the old black/charcoal */
+    background: rgba(227, 242, 253, 0.85); 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--accent-antique);
 }
 
+/* Branding: The Vollarae Logo */
 .logo {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
@@ -386,12 +453,14 @@ a {
     position: relative;
 }
 
+/* Menu Layout */
 .nav-links {
     display: flex;
     gap: 35px;
     list-style: none;
 }
 
+/* Navigation Links: Airy and uppercase */
 .nav-links a {
     color: var(--text);
     text-decoration: none;
@@ -400,18 +469,18 @@ a {
     text-transform: uppercase;
     transition: var(--transition-fast);
     opacity: 0.8;
-    position: relative; /* CRITICAL: This allows the underline to position correctly */
-    padding-bottom: 8px; /* Gives the underline some breathing room */
+    position: relative; 
+    padding-bottom: 8px; 
 }
 
-/* Hover and Active states */
+/* Hover & Active States: Switches to Gold */
 .nav-links a:hover, 
 .nav-links a.active {
-    color: var(--accent-secondary) !important; /* Champagne Gold */
+    color: var(--accent-antique) !important; 
     opacity: 1;
 }
 
-/* Gold Underline Animation */
+/* Gold Underline Animation: A thin gold thread that expands */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -419,48 +488,51 @@ a {
     left: 0;
     width: 0; 
     height: 1px;
-    background: var(--accent-secondary); /* Champagne Gold */
+    background: var(--accent-antique); 
     transition: var(--transition-fast);
 }
 
+/* Interaction: Reveals the line on hover */
 .nav-links a:hover::after, 
 .nav-links a.active::after {
     width: 100%;
 }
 
-/* --- 5. BUTTON SYSTEM (HIGH-END) --- */
+/* --- 5. BUTTON SYSTEM: TACTILE INTERACTIONS --- */
+
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 18px 40px;
-    background-color: var(--accent); /* Muted Blue */
-    color: var(--text-on-accent);
+    background-color: var(--accent); /* Muted Slate Blue */
+    color: var(--bg-elevated);      /* White text */
     text-transform: uppercase;
     letter-spacing: 3px;
     font-size: 0.75rem;
     font-weight: 600;
     border: 1px solid var(--accent);
     transition: var(--transition-slow);
-    cursor: pointer;
     position: relative;
     overflow: hidden;
+    z-index: 1; /* Sets a base layer for the ::before effect */
 }
 
-/* Inverted hover effect */
+/* The Animated Slide-in Background */
 .btn::before {
     content: '';
     position: absolute;
-    top: 0; left: 0;
-    width: 0; height: 100%;
-    background: var(--text);
+    top: 0; 
+    left: 0;
+    width: 0; 
+    height: 100%;
+    background: var(--text); /* Dark slide-over */
     transition: var(--transition-slow);
-    z-index: -1;
+    z-index: -1; /* Slides behind the text but above the button's base */
 }
 
 .btn:hover {
-    background-color: transparent;
-    color: var(--accent);
+    color: var(--bg-elevated);
     box-shadow: 0 10px 25px var(--accent-glow);
     transform: translateY(-3px);
 }
@@ -469,55 +541,60 @@ a {
     width: 100%;
 }
 
+/* --- PRIMARY BUTTON: GOLD THEMED --- */
 .btn-primary {
-    background: var(--accent);
-    color: #000;
-    border: 1px solid var(--accent);
-}
-
-.btn-primary::before {
-    background: var(--text);
+    background: var(--accent-antique);
+    color: #fff;
+    border: 1px solid var(--accent-antique);
 }
 
 .btn-primary:hover {
-    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+    background-color: transparent; /* Allows the ::before color to show */
+    box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
+    color: #fff;
 }
 
+/* --- OUTLINE BUTTON: ELEGANT BORDER ONLY --- */
 .btn-outline {
     background-color: transparent;
-    border: 1px solid var(--accent-secondary); /* Soft Champagne */
-    color: var(--accent-secondary);
+    border: 1px solid var(--accent-antique); 
+    color: var(--accent-antique);
 }
 
 .btn-outline:hover {
-    background-color: var(--accent-secondary);
+    background-color: var(--accent-antique);
     color: #fff;
-    box-shadow: 0 10px 25px rgba(198, 169, 107, 0.2);
+    box-shadow: 0 10px 25px rgba(197, 160, 89, 0.2);
     transform: translateY(-3px);
 }
 
-/* --- 6. SCROLL REVEAL UTILITY --- */
+/* --- 6. SCROLL REVEAL UTILITY: FOR FADE-IN ANIMATIONS --- */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Prevents layout shifts during the animation */
+    will-change: transform, opacity; 
 }
 
 .reveal.active {
-    opacity: 1 !important; /* The !important ensures it overrides any conflicts */
+    opacity: 1 !important; 
     transform: translateY(0);
 }
 
-/* --- 7. COMMISSION CARDS (GLASS ARCHITECTURE) --- */
+/* --- 7. COMMISSION CARDS: THE GLASS GALLERY GRID --- */
 .comm-grid-container {
     display: grid;
+    /* Smart grid: will drop to 1 column on phones and 2/3 on desktop automatically */
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 .comm-card {
-    background: var(--glass);
+    background: var(--glass-surface); /* Frosted light blue/white */
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -526,19 +603,22 @@ a {
     display: flex;
     flex-direction: column;
     transition: var(--transition-slow);
-    overflow: hidden; /* Contains the hover sheen */
+    overflow: hidden; /* Clips the gold light-sweep effect */
 }
 
-/* Light-Sweep Effect on Hover */
+/* THE "LIGHT-SWEEP": A cinematic gold shimmer on hover */
 .comm-card::before {
     content: '';
     position: absolute;
-    top: 0; left: -150%;
-    width: 100%; height: 100%;
+    top: 0; 
+    left: -150%;
+    width: 100%; 
+    height: 100%;
+    /* Gradient changed to Antique Gold shimmer */
     background: linear-gradient(
         90deg, 
         transparent, 
-        rgba(255, 255, 255, 0.04), 
+        rgba(197, 160, 89, 0.1), 
         transparent
     );
     transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -550,31 +630,34 @@ a {
 
 .comm-card:hover {
     transform: translateY(-15px) scale(1.01);
-    background: var(--glass-surface);
-    border-color: var(--accent);
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 
-                0 0 25px var(--accent-glow);
+    background: rgba(227, 242, 253, 0.95); /* Brightens on hover */
+    border-color: var(--accent-antique); /* Gold border glows on hover */
+    /* Updated shadow to feel "lighter" and more luxurious */
+    box-shadow: 0 30px 60px rgba(107, 143, 163, 0.15), 
+                0 0 20px rgba(197, 160, 89, 0.1);
 }
 
-/* Featured Card Distinction */
+/* --- FEATURED CARD: THE HIGHLIGHTED CHOICE --- */
 .comm-card.featured {
-    border-color: rgba(212, 175, 55, 0.3);
-    background: rgba(212, 175, 55, 0.02);
+    /* Stronger gold presence for the "Most Popular" or "Best" choice */
+    border-color: var(--accent-antique);
+    background: rgba(197, 160, 89, 0.03);
 }
 
 .comm-card.featured .tag {
     position: absolute;
-    top: 0; right: 0;
-    background: var(--accent);
-    color: #000;
+    top: 0; 
+    right: 0;
+    background: var(--accent-antique); /* Gold background for the tag */
+    color: #fff;
     font-size: 0.6rem;
-    padding: 6px 15px;
-    font-weight: 800;
+    padding: 8px 18px;
+    font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
-/* --- 8. PRICE LIST --- */
+/* --- 8. PRICE LIST: THE "MENU" STYLE LAYOUT --- */
 .price-list {
     list-style: none;
     margin: 30px 0 40px 0;
@@ -583,202 +666,170 @@ a {
 .price-list li {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-end; /* Keeps the price aligned with the baseline of the text */
     padding: 20px 0;
     border-bottom: 1px solid var(--glass-border);
 }
 
+/* Service Name (Left Side) */
 .price-list li span:first-child {
     font-size: 0.75rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 2.5px;
-    color: var(--text-dim);
+    color: var(--text-soft); /* Subtle blue-grey */
 }
 
+/* The Price Tag (Right Side) */
 .price-list li span:last-child {
     font-family: 'Playfair Display', serif;
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--accent-antique); /* Gold highlights for the value */
     line-height: 1;
 }
 
-/* Card Description Text */
+/* Card Description: Editorial body text */
 .comm-desc {
     font-size: 0.9rem;
-    color: var(--text-maint);
+    color: var(--text);
     line-height: 1.8;
     margin-bottom: 30px;
     font-weight: 300;
+    opacity: 0.9;
 }
 
-/* --- 7. COMMISSION CARDS (GLASS ARCHITECTURE) --- */
-.comm-grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    margin: 0 auto;
-}
-
-.comm-card {
-    background: var(--glass);
+/* --- 9A. INQUIRY FORM: REFINED ARCHITECTURAL INPUTS --- */
+.form-container {
+    /* Muted deep-blue shadow instead of heavy black */
+    box-shadow: 0 20px 50px rgba(107, 143, 163, 0.15); 
+    background: var(--glass-surface);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 70px 50px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    transition: var(--transition-slow);
-    overflow: hidden; /* Contains the hover sheen */
-}
-
-/* Light-Sweep Effect on Hover */
-.comm-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -150%;
-    width: 100%; height: 100%;
-    background: linear-gradient(
-        90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.04), 
-        transparent
-    );
-    transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.comm-card:hover::before {
-    left: 150%;
-}
-
-.comm-card:hover {
-    transform: translateY(-15px) scale(1.01);
-    background: var(--glass-surface);
-    border-color: var(--accent);
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 
-                0 0 25px var(--accent-glow);
-}
-
-/* Featured Card Distinction */
-.comm-card.featured {
-    border-color: rgba(212, 175, 55, 0.3);
-    background: rgba(212, 175, 55, 0.02);
-}
-
-.comm-card.featured .tag {
-    position: absolute;
-    top: 0; right: 0;
-    background: var(--accent);
-    color: #000;
-    font-size: 0.6rem;
-    padding: 6px 15px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-/* --- 8. PRICE LIST  --- */
-.price-list {
-    list-style: none;
-    margin: 30px 0 40px 0;
-}
-
-.price-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--glass-border);
-}
-
-.price-list li span:first-child {
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    color: var(--text-dim);
-}
-
-.price-list li span:last-child {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-}
-
-/* Card Description Text */
-.comm-desc {
-    font-size: 0.9rem;
-    color: var(--text-maint);
-    line-height: 1.8;
-    margin-bottom: 30px;
-    font-weight: 300;
-}
-
-/* --- 12. INQUIRY FORM  --- */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 10px;
+    padding: 40px;
 }
 
 input, textarea, select {
     width: 100%;
     padding: 22px;
-    background: rgba(255, 255, 255, 0.015);
+    background: rgba(227, 242, 253, 0.05); 
     border: 1px solid var(--glass-border);
     color: var(--text);
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem; /* Essential for iOS - no auto-zoom */
+    font-size: 1rem; /* Locked at 1rem to prevent iOS zoom-in */
     font-weight: 300;
     letter-spacing: 1px;
     outline: none;
-    transition: var(--transition-slow);
-    border-radius: 0;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border-radius: 0; /* Sharp, editorial corners preserved */
 }
 
-/* Custom Styled Select Dropdown */
+/* Custom styling for the dropdown arrow (Syncing with Antique Gold) */
 select {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    /* Updated to use var(--accent-antique) hex: %23C5A059 */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23C5A059'%3E%3Cpath d='M0 2l6 8 6-8z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: calc(100% - 25px) center;
     cursor: pointer;
 }
 
 input:focus, textarea:focus, select:focus {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: var(--accent);
-    box-shadow: inset 0 2px 15px rgba(0,0,0,0.4), 
-                0 0 15px var(--accent-glow);
+    border-color: var(--accent-antique) !important;
+    /* Added the faint gold tint from your new code */
+    background: rgba(197, 160, 89, 0.05) !important; 
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.15);
 }
 
-::placeholder {
-    color: rgba(255, 255, 255, 0.15);
-    font-size: 0.85rem;
+/* --- 9B. ELEGANT FORM COMPONENTS: CONTACT TILES --- */
+
+/* The label above the tiles (e.g., "PREFERRED CONTACT METHOD") */
+.elegant-label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    color: var(--accent-antique); /* Antique Gold */
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
-/* --- 13. GUIDELINES (CONTRACT STYLING) --- */
+.contact-method-grid {
+    display: grid;
+    /* Automatically fits as many tiles as possible in one row */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.method-tile {
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+
+/* Hide the actual ugly radio/checkbox button */
+.method-tile input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* 1. Base State: The "Unselected" Glass Tile */
+.method-tile span {
+    display: block;
+    padding: 18px 10px;
+    background-color: rgba(227, 242, 253, 0.05); /* Very faint blue */
+    border: 1px solid var(--glass-border);
+    color: var(--text-soft);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    transition: var(--transition-fast);
+    text-align: center;
+    user-select: none; 
+}
+
+/* 2. Hover State: A subtle Gold outline */
+.method-tile:hover input:not(:checked) + span {
+    border-color: var(--accent-antique);
+    color: var(--accent-antique);
+    background-color: rgba(197, 160, 89, 0.05);
+}
+
+/* 3. The "Selected" State: The Tile turns solid Gold */
+.method-tile input:checked + span {
+    background-color: var(--accent-antique) !important;
+    color: #FFFFFF !important; /* High contrast white text on gold */
+    border-color: var(--accent-antique) !important;
+    box-shadow: 0 5px 20px rgba(197, 160, 89, 0.3);
+    transform: translateY(-2px);
+    z-index: 2;
+}
+
+/* 4. Hovering over a tile that is ALREADY selected */
+.method-tile input:checked:hover + span {
+    color: #FFFFFF !important;
+    opacity: 0.9;
+}
+
+/* --- 10A. GUIDELINES: ARCHITECTURAL CONTRACT STYLING --- */
 .guideline-block {
+    /* The vertical "thread" on the left */
     border-left: 1px solid var(--glass-border);
     padding: 0 0 40px 30px;
     position: relative;
     transition: var(--transition-slow);
 }
 
+/* The Animated Gold "Fill" on the vertical line */
 .guideline-block::before {
     content: '';
     position: absolute;
-    top: 0; left: -1px;
-    width: 1px; height: 0;
-    background: var(--accent);
+    top: 0; 
+    left: -1px; /* Overlays perfectly on the border-left */
+    width: 1px; 
+    height: 0;
+    background: var(--accent-antique); /* Turns gold on hover */
     transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -789,381 +840,436 @@ input:focus, textarea:focus, select:focus {
 .guideline-block h3 {
     font-size: 0.75rem;
     letter-spacing: 4px;
-    color: var(--accent);
+    color: var(--accent-antique); /* Gold header */
     margin-bottom: 15px;
     text-transform: uppercase;
+    font-weight: 700;
 }
 
 .guideline-block p {
     font-size: 0.95rem;
     line-height: 1.9;
-    color: var(--text-maint);
+    color: var(--text);
+    font-weight: 300;
 }
 
+/* Bold text inside guidelines for emphasis */
 .guideline-block b {
-    color: #fff;
+    color: var(--text); /* Matches main text but adds weight */
     font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
-/* --- 14. FOOTER (THE SIGN-OFF) --- */
-footer {
-    padding: 100px 0 60px 0;
-    text-align: center;
-    border-top: 1px solid var(--glass-border);
+/* --- 10B. ACCORDION SYSTEM: COLLAPSIBLE GUIDELINES --- */
+.guidelines-accordion {
+    border: 1px solid var(--glass-border);
+    background: var(--glass-surface); /* Frosted Sky Blue */
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
-    display: block;
-    opacity: 0.8;
+.accordion-header {
+    background: rgba(227, 242, 253, 0.05) !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+    padding: 25px 40px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    transition: var(--transition-fast);
 }
 
-.footer-credits {
-    font-size: 0.6rem;
-    letter-spacing: 3px;
-    color: var(--text-dim);
+.accordion-header:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: var(--accent-antique) !important; /* Gold glow on hover */
+}
+
+.accordion-header span {
+    color: var(--text-soft); /* Muted blue-grey */
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
-/* --- 15. TABLET & DESKTOP REFINEMENTS (1024px - 1440px) --- */
-@media (max-width: 1200px) {
-    .container { width: 92%; }
-    .comm-card { padding: 50px 35px; }
+/* Icon/Arrow inside the header */
+.accordion-header::after {
+    content: '+';
+    color: var(--accent-antique);
+    font-size: 1.2rem;
+    transition: var(--transition-fast);
 }
 
+.accordion-content {
+    max-height: 0; /* Hidden by default */
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(107, 143, 163, 0.05); /* Very faint blue tint */
+}
+
+/* Logic for the 'open' class triggered by JS */
+.accordion-content.open {
+    max-height: 1500px; /* High enough to fit long rules */
+    opacity: 1;
+    padding: 40px;
+    border-top: 1px solid var(--glass-border);
+}
+
+/* --- 10C. ACCORDION ITEM STYLING --- */
+.g-item {
+    border-left: 1px solid var(--glass-border);
+    padding-left: 20px;
+    margin-bottom: 20px; /* Added for breathing room between rules */
+    transition: var(--transition-slow);
+}
+
+.g-item:hover {
+    border-left-color: var(--accent-antique); /* Subtle gold glow when hovering a specific rule */
+}
+
+/* --- 11. FOOTER: THE CINEMATIC SIGN-OFF --- */
+footer {
+    padding: 100px 6% 60px 6%; /* Added side padding for mobile safety */
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    background: transparent;
+    position: relative;
+    z-index: 10;
+}
+
+/* Footer Brand: A smaller, more subtle version of your main logo */
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    display: block;
+    color: var(--accent-antique); /* Antique Gold branding */
+    text-transform: uppercase;
+    opacity: 0.8;
+    transition: var(--transition-fast);
+}
+
+.footer-logo:hover {
+    opacity: 1;
+    letter-spacing: 7px; /* Elegant expansion on hover */
+}
+
+/* Footer Credits: Copyright and "Built By" info */
+.footer-credits {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    line-height: 2;
+}
+
+/* Visual divider for credits if you have multiple lines */
+.footer-credits span {
+    margin: 0 10px;
+    opacity: 0.3;
+}
+
+/* --- 12. RESPONSIVE REFINEMENTS: TABLET & DESKTOP --- */
+
+/* Laptops & Large Tablets (e.g., iPad Pro, Small MacBooks) */
+@media (max-width: 1200px) {
+    .container { 
+        width: 92%; 
+    }
+    
+    .comm-card { 
+        padding: 50px 35px; /* Slightly tighter padding for smaller screens */
+    }
+    
+    .navbar {
+        padding: 25px 6%; /* Shrinks the header height slightly */
+    }
+}
+
+/* Standard Tablets & Small Laptops */
 @media (max-width: 1024px) {
     :root {
-        --fs-h1: 4rem;
+        /* Prevents the hero title from overlapping the art on tablets */
+        --fs-h1: 3.5rem; 
     }
+    
     .comm-grid-container {
+        /* Adjusted min-width to ensure cards don't get too skinny */
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 25px;
     }
+    
+    .nav-links {
+        gap: 20px; /* Brings menu items closer together */
+    }
 }
 
-/* --- 16. MOBILE CORE (768px and below) --- */
+/* --- 13. MOBILE CORE: OPTIMIZED FOR TOUCH & SMALL SCREENS (768px and below) --- */
 @media (max-width: 768px) {
     :root {
-        --fs-h1: 3.2rem;
-        --fs-h2: 2.4rem;
+        --fs-h1: 2.8rem; /* Slightly smaller to prevent word-breaking */
+        --fs-h2: 2.2rem;
     }
 
-    /* Kill custom cursor on touch - prevents input lag */
-    .cursor-dot, .cursor-outline { 
+    /* 1. Performance: Kill custom cursor to prevent input lag/ghosting */
+    .cursor-dot, 
+    .cursor-outline { 
         display: none !important; 
     }
 
-    /* Adjust Navigation for Mobile */
+    /* 2. Navigation: Compact for small headers */
     .navbar {
-        padding: 20px 6%;
+        padding: 15px 6%;
+        height: 70px; /* Locked height for mobile */
     }
 
     .nav-links {
-        display: none; /* Recommended: Add a Hamburger Menu or keep it simple */
+        /* If no JS menu is ready, this keeps links accessible but small */
+        gap: 15px;
+        display: none; /* Keep hidden if you are building a hamburger menu */
     }
 
-    /* Section Spacing */
+    /* 3. Layout: Stack everything to a single vertical column */
     section {
-        padding: 80px 0;
+        padding: 60px 5%; /* Tighter padding for mobile real estate */
     }
 
     .hero-header {
-        margin-top: 120px !important;
-        margin-bottom: 50px !important;
+        margin-top: 100px !important;
+        margin-bottom: 40px !important;
+        text-align: center; /* Centers the title for better mobile balance */
     }
 
-    /* Stack Grids to Single Column */
+    /* 4. Grid System: Single column flow */
     .comm-grid-container, 
     .comm-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
 
-    /* Adjust Card Padding for small screens */
+    /* 5. Card Scaling: Reduce padding to save screen space */
     .comm-card {
-        padding: 45px 30px;
+        padding: 40px 25px;
         min-height: auto;
     }
 
     .price-list li span:last-child {
-        font-size: 1.3rem;
+        font-size: 1.2rem; /* Keeps prices from looking giant on small phones */
     }
 
-    /* Vouch Overlay scaling for mobile */
+    /* 6. Vouch Overlay: Ensure it fits iPhone SE / small screens */
     #vouch-overlay {
-        padding: 15px;
+        padding: 20px;
+        align-items: flex-start; /* Better for long scrolling testimonials */
     }
 
     .close-overlay {
-        top: 20px;
-        right: 20px;
-        font-size: 2rem;
+        top: 15px;
+        right: 15px;
+        font-size: 1.8rem;
+        background: var(--glass-surface);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
-/* --- 17. SMALL PHONE OPTIMIZATION (480px and below) --- */
+/* --- 14. SMALL PHONE OPTIMIZATION (480px and below) --- */
 @media (max-width: 480px) {
     :root {
-        --fs-h1: 2.8rem;
+        --fs-h1: 2.5rem; /* Dropped slightly more to ensure "Commissions" fits 100% width */
     }
 
     .h1-hero {
         line-height: 1.1;
+        letter-spacing: 2px; /* Tightened slightly for small screens */
     }
 
+    /* Full-width buttons are much better for thumb-reach on small phones */
     .btn {
-        width: 100%; /* Bigger tap targets */
+        width: 100%; 
         padding: 20px;
+        letter-spacing: 2px;
     }
 
+    /* The "No-Zoom" iOS Fix */
     input, textarea, select {
         padding: 18px;
-        font-size: 16px; /* Strict 16px to prevent iOS zoom-in glitch */
+        font-size: 16px !important; /* Forces 16px to override any inherited scaling */
     }
 
+    /* Tighter spacing for the "Contract/Timeline" section */
     .guideline-block {
         padding: 0 0 30px 20px;
     }
     
-    /* Ensure images in the gallery don't get too tiny */
+    /* Art Card adjustments for tight margins */
     .art-card {
         padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Ensure the footer doesn't feel too bottom-heavy */
+    footer {
+        padding: 60px 6% 40px 6%;
     }
 }
 
-/* --- 18. PRINT & UTILITY --- */
-.hidden { display: none !important; }
+/* --- 15. EDITORIAL GRID & UTILITY SYSTEM --- */
 
-/* Selection Color - The Final Polish */
-::selection {
-    background: var(--accent);
-    color: #000;
+/* Utility: For elements that need to be removed via JS/Logic */
+.hidden { 
+    display: none !important; 
 }
 
-/* --- EDITORIAL GRID (Desktop) --- */
+/* Selection Color: The "Gold Leaf" highlight effect */
+::selection {
+    background: var(--accent-antique); 
+    color: #fff; /* White text on gold background for high contrast */
+}
+
+/* Editorial Layout: A sophisticated 40/60 split for Art & Text */
 .editorial-grid {
     display: grid;
-    grid-template-columns: 1fr 1.5fr; /* Art is 40%, Text is 60% */
+    /* Art takes up 1 part, Text takes up 1.5 parts */
+    grid-template-columns: 1fr 1.5fr; 
     gap: 80px;
     align-items: start;
+    width: 100%;
+    margin-bottom: 100px;
 }
 
+/* Quote Body: For testimonials or artistic statements */
 .quote-body p {
-    color: var(--text-maint);
+    color: var(--text);
     font-weight: 300;
-    line-height: 2;
+    line-height: 2.2; /* Extra breathing room for long quotes */
     margin-bottom: 25px;
     font-style: italic;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    position: relative;
+    opacity: 0.9;
 }
 
-/* --- MOBILE RESPONSIVENESS (The Fix) --- */
+/* Mobile fix for the Editorial Grid */
 @media (max-width: 992px) {
     .editorial-grid {
-        grid-template-columns: 1fr; /* Stacks art on top of text */
+        grid-template-columns: 1fr; /* Stacks vertically on smaller screens */
+        gap: 40px;
+    }
+}
+
+/* --- 16. STRUCTURAL OVERRIDES: THE RESPONSIVE FIX --- */
+
+/* Tablet & Small Laptop (992px) */
+@media (max-width: 992px) {
+    .editorial-grid {
+        /* Stacks art on top of text for a clean vertical flow */
+        grid-template-columns: 1fr; 
         gap: 50px;
     }
     
     .art-display-box {
         max-width: 500px;
-        margin: 0 auto; /* Centers the art on mobile */
+        margin: 0 auto; /* Keeps your art centered when the side-by-side split breaks */
+        border: 1px solid var(--glass-border);
     }
 
     .testimony-content {
-        text-align: center;
+        text-align: center; /* Centers quotes for better mobile balance */
     }
     
     .testimony-footer {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 15px;
     }
 }
 
+/* Phones & Portrait Tablets (768px) */
 @media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr !important; /* Stack Name and Discord vertically */
+
+    /* 1. TYPOGRAPHY: Shrink headers so they don't cause side-scrolling */
+    .h2-editorial {
+        font-size: 2.2rem; 
+        line-height: 1.2;
+        letter-spacing: 2px;
     }
-    
-    .accordion-content.open {
-        padding: 25px 15px; /* Less padding on small screens */
+
+    /* 2. SPACING: Ensure content doesn't touch the glass edges */
+    .container {
+        padding: 0 20px; 
     }
-    
-    .form-container {
-        padding: 25px 20px !important;
+
+    .accordion-content {
+        padding: 0 15px 30px 15px; /* Bottom padding for breathing room */
+    }
+
+    /* 3. THE GRID: Force everything into a single, elegant column */
+    .comm-grid-container, 
+    .vouch-masonry, 
+    .guideline-detailed-grid {
+        grid-template-columns: 1fr !important;
+        gap: 25px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* 4. ITEMS: Prevent cards from pushing outside the screen */
+    .comm-card, .vouch-card, .g-item, .rule-box {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 25px 15px;
+    }
+
+    /* 5. TEXT: Handle long words (like 'Commissions' or 'Sovereignty') */
+    .text-dim, .vouch-quote, .g-item p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+
+    /* 6. BUTTONS: The "Hero" buttons should stack or sit side-by-side */
+    .hero-btns {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap; 
+        width: 100%;
+    }
+
+    .btn {
+        flex: 1; 
+        min-width: 140px; 
+        max-width: 100%; /* Allows them to go full-width on tiny phones */
+    }
+
+    /* 7. SPECIAL BOXES: The Legal/Sovereignty Clause */
+    .rights-clause {
+        margin: 0 10px 30px 10px;
+        padding: 20px;
+        width: auto;
     }
 }
 
-/* --- 19. ACCORDION (Guidelines) --- */
-.guidelines-accordion {
-    border: 1px solid var(--glass-border);
-    background: var(--glass);
-    overflow: hidden;
-}
+/* --- 17. SUCCESS STATE: CINEMATIC FORM COMPLETION --- */
 
-.accordion-header {
-    background: var(--glass-surface) !important;
-    border: 1px solid var(--glass-border) !important;
-    padding: 25px 40px !important;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 1000px; /* Adjust to match your form width */
-    margin: 0 auto;
-    cursor: pointer;
-    transition: var(--transition-fast);
-}
-
-.accordion-header:hover {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border-color: var(--accent) !important;
-}
-
-.accordion-header span {
-    color: var(--text-dim);
-    letter-spacing: 2px;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-}
-
-.accordion-content {
-    max-height: 0; /* Hidden by default */
-    opacity: 0;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    background: rgba(0, 0, 0, 0.2);
-}
-
-/* Logic for the 'open' class triggered by JS */
-.accordion-content.open {
-    max-height: 1200px; /* Large enough for all text */
-    opacity: 1;
-    padding: 40px;
-}
-
-/* --- 20. FORM REFINEMENTS --- */
-.form-container {
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-
-input, textarea, select {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    border-radius: 0; /* Sharp, editorial corners */
-}
-
-input:focus, textarea:focus, select:focus {
-    border-color: var(--accent) !important;
-    background: rgba(212, 175, 55, 0.05) !important;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
-}
-
-/* Custom styling for the dropdown arrow */
-select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23d4af37'%3E%3Cpath d='M0 2l6 8 6-8z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 20px center;
-}
-
-/* --- ELEGANT FORM STYLING --- */
-.elegant-label {
-    display: block;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent); /* New Muted Blue */
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.contact-method-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 12px;
-}
-
-.method-tile {
-    cursor: pointer;
-    position: relative;
-    text-align: center;
-}
-
-.method-tile input {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* 1. Base State */
-.method-tile span {
-    display: block;
-    padding: 18px 10px;
-    background-color: var(--bg-elevated);
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    transition: var(--transition-fast);
-    text-align: center;
-    user-select: none; /* Prevents text highlighting on double click */
-}
-
-/* 2. Hover State (PC specific) */
-/* We add :not(:checked) so the hover doesn't fight the selected blue */
-.method-tile:hover input:not(:checked) + span {
-    border-color: var(--accent);
-    color: var(--accent);
-    background-color: var(--accent-soft);
-}
-
-/* 3. The "Checked" State (The Fix for PC) */
-/* We use the input:checked selector to force the style */
-.method-tile input:checked + span {
-    background-color: var(--accent) !important;
-    color: #FFFFFF !important;
-    border-color: var(--accent) !important;
-    box-shadow: 0 5px 15px var(--accent-glow);
-    transform: translateY(-2px);
-    z-index: 2;
-}
-
-/* 4. Text stays white even if hovering over a selected item */
-.method-tile input:checked:hover + span {
-    color: #FFFFFF !important;
-    opacity: 0.9;
-}
-
-/* THE FIX: When the radio is checked, use the Blue Accent */
-.method-tile input:checked + span {
-    background: var(--accent) !important; /* Muted Blue */
-    border-color: var(--accent) !important;
-    color: #FFFFFF !important;            /* Pure White text for contrast */
-    box-shadow: 0 5px 15px var(--accent-glow);
-    transform: translateY(-2px);
-}
-
-.method-tile:hover span {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-soft); /* Very light blue tint on hover */
-}
-
-/* Accordion spacing fix */
-.g-item {
-    border-left: 1px solid var(--glass-border);
-    padding-left: 20px;
-}
-
-/* --- SUCCESS STATE ANIMATION --- */
+/* The message that appears once the form is sent */
 .success-overlay {
     text-align: center;
     padding: 100px 20px;
+    /* Uses the signature 1.2s "growth" animation */
     animation: fadeInScale 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -1173,6 +1279,15 @@ select {
     align-items: center;
 }
 
+/* The Success Icon (Syncing with Antique Gold) */
+.success-icon {
+    font-size: 3rem;
+    color: var(--accent-antique);
+    margin-bottom: 25px;
+    filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.3));
+}
+
+/* Keyframes: The "Fade and Lift" motion */
 @keyframes fadeInScale {
     0% {
         opacity: 0;
@@ -1184,118 +1299,31 @@ select {
     }
 }
 
-/* Optional: Make the form fade out smoothly when submitted */
+/* Applied via JS to the form container as it exits */
 .form-fade-out {
     opacity: 0;
     transform: translateY(-20px);
     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
+    pointer-events: none; /* Disables interaction during the transition */
 }
 
-/* Ensure the soft charcoal background applies everywhere */
-html, body, section, .request-section, .commissions-section {
-    background-color: var(--bg) !important;
-    color: var(--text);
-}
+/* --- 18A. Vouch Masonry & Lightbox System --- */
 
-/* Let's lighten the "Glass" slightly so it's visible against the charcoal */
-.form-container, .vouch-card, .accordion-header {
-    background: var(--glass-surface) !important;
-    border: 1px solid var(--glass-border) !important;
-}
-
-select {
-    appearance: none; /* Removes default browser arrow */
-    background-color: #222224 !important; /* Matches your modern slate */
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D1B67C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 20px center;
-    background-size: 15px;
-    border: 1px solid var(--glass-border) !important;
-    color: var(--text) !important;
-    padding: 18px 25px !important;
-    width: 100%;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-select:focus {
-    border-color: var(--accent) !important;
-    outline: none;
-}
-
-/* Fixes the "Options" list inside the dropdown */
-select option {
-    background-color: #1A1A1C; /* Matches your background */
-    color: var(--text);
-    padding: 10px;
-}
-
-/* Forces the navbar to blend with the charcoal background */
-header, nav, .navbar {
-    background-color: var(--bg); /* Keeps it Sky Blue */
-    background: var(--bg) !important; /* Catch-all for gradients */
-    border-bottom: 1px solid #C5A059; /* A deeper, more visible "Vintage Gold" */
-    opacity: 0.8; /* Keeps it elegant rather than a solid plastic yellow */
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4); /* A tiny "highlight" under the gold line */
-}
-
-/* If you have a sticky/fixed header, ensure it doesn't have a shadow that looks like black ink */
-header.sticky {
-    background-color: rgba(26, 26, 28, 0.95) !important; /* Matches slate with slight transparency */
-    backdrop-filter: blur(10px);
-    box-shadow: none !important;
-}
-
-/* 1. Kill any existing gradients that start with black */
-.navbar, 
-.hero-header, 
-.commissions-hero, 
-header, 
-nav {
-    background-image: none !important; 
-    background: var(--bg) !important;
-    box-shadow: none !important;
-}
-
-/* 2. Fix the "Gap" at the top of the screen */
-html, body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg) !important;
-}
-
-/* 3. If there is a 'fade' effect at the top of your page, this kills it */
-body::before, 
-body::after, 
-.main-content::before {
-    display: none !important;
-    background: none !important;
-}
-
-/* 4. Ensure the Navbar doesn't have a fixed height that creates a black void */
-.navbar {
-    min-height: 80px;
-    height: auto;
-    display: flex;
-    align-items: center;
-}
-
-/* --- VOUCH MASONRY & GRID ARRANGEMENT --- */
+/* 3-Column Grid that allows cards to have different heights */
 .vouch-masonry {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 column desktop layout */
+    grid-template-columns: repeat(3, 1fr); 
     grid-auto-rows: minmax(200px, auto);
     gap: 30px;
     align-items: start;
 }
 
-/* Featured Card (Vollarae) - Stands out and takes more vertical space */
+/* Featured Card: Stands out with a Gold border and slight lift */
 .vouch-featured {
     grid-row: span 2; 
-    border: 1px solid var(--accent) !important;
-    background: rgba(209, 182, 124, 0.03) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--accent-antique) !important;
+    background: rgba(197, 160, 89, 0.05) !important; /* Faint gold tint */
+    box-shadow: 0 20px 40px rgba(107, 143, 163, 0.2);
 }
 
 .vouch-card {
@@ -1312,32 +1340,14 @@ body::after,
 }
 
 .vouch-clickable:hover {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: var(--accent);
+    background: rgba(227, 242, 253, 0.08);
+    border-color: var(--accent-antique);
     transform: translateY(-10px);
 }
 
-/* Template/Reserved State */
-.vouch-template {
-    filter: grayscale(1);
-    opacity: 0.5;
-    cursor: default;
-}
-
-/* --- VOUCH CONTENT STYLING --- */
-.vouch-badge {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 0.5rem;
-    letter-spacing: 2px;
-    color: var(--accent);
-    border: 1px solid rgba(209, 182, 124, 0.3);
-    padding: 4px 10px;
-}
-
+/* Content Styling */
 .client-name {
-    font-family: 'Playfair Display';
+    font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     margin-bottom: 5px;
     color: var(--text);
@@ -1346,44 +1356,26 @@ body::after,
 .client-title {
     display: block;
     font-size: 0.65rem;
-    color: var(--accent);
+    color: var(--accent-antique);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 25px;
-    opacity: 0.8;
 }
 
 .vouch-quote {
-    color: var(--text-dim);
+    color: var(--text-soft);
     font-style: italic;
     line-height: 1.8;
     margin-bottom: 30px;
     font-size: 0.95rem;
 }
 
-.vouch-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--glass-border);
-    padding-top: 20px;
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.view-label {
-    color: var(--accent);
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 2px;
-}
-
-/* --- LIGHTBOX OVERLAY --- */
+/* --- LIGHTBOX / OVERLAY --- */
 .vouch-overlay {
-    display: none;
+    display: none; /* Triggered by JS */
     position: fixed;
     inset: 0;
-    background: rgba(10, 10, 11, 0.98);
+    background: rgba(227, 242, 253, 0.98); /* Sky blue tinted backdrop */
     backdrop-filter: blur(25px);
     z-index: 9999;
     padding: 40px;
@@ -1396,28 +1388,10 @@ body::after,
     position: relative;
     max-width: 900px;
     width: 95%;
-    background: #161618;
-    border: 1px solid var(--accent);
+    background: var(--bg);
+    border: 1px solid var(--accent-antique);
     padding: 20px;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-    cursor: default;
-}
-
-#overlay-img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Privacy Text Styling */
-.privacy-note {
-    text-align: center;
-    padding: 80px 40px;
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    line-height: 2;
-    text-transform: uppercase;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.2);
 }
 
 /* THE X BUTTON */
@@ -1427,13 +1401,12 @@ body::after,
     right: 30px;
     width: 50px;
     height: 50px;
-    background: var(--accent);
-    color: #111;
+    background: var(--accent-antique);
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: 1.5rem;
     border-radius: 50%;
     cursor: pointer;
     z-index: 10000;
@@ -1444,36 +1417,70 @@ body::after,
     transform: rotate(90deg) scale(1.1);
 }
 
-/* --- RESPONSIVE BREAKPOINTS --- */
-@media (max-width: 1100px) {
+/* Mobile fix for Masonry */
+@media (max-width: 992px) {
     .vouch-masonry {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr; /* 2 columns on tablets */
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .vouch-masonry {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* 1 column on phones */
     }
     .vouch-featured {
-        grid-row: auto;
-    }
-    .vouch-card {
-        padding: 30px;
+        grid-row: span 1;
     }
 }
 
-/* Initial Hidden State */
+/* --- 18B. VOUCH RESPONSIVE LOGIC --- */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 1100px) {
+    .vouch-masonry {
+        /* Drops from 3 columns to 2 */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Phones & Vertical Tablets */
+@media (max-width: 768px) {
+    .vouch-masonry {
+        /* Single column for easy scrolling */
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .vouch-featured {
+        /* CRITICAL: Resets the "Double Height" so it doesn't break the flow on mobile */
+        grid-row: auto; 
+        border-width: 2px; /* Makes the featured card slightly bolder on small screens */
+    }
+
+    .vouch-card {
+        padding: 30px 20px; /* Tighter padding for mobile screens */
+    }
+
+    .client-name {
+        font-size: 1.5rem; /* Slightly smaller typography for small devices */
+    }
+}
+
+/* --- 19. FORM STATUS & SUCCESS CONTAINER --- */
+
+/* Initial Hidden State - Waiting for JS */
 #form-status {
-    display: none; /* Script will change this to 'flex' */
+    display: none; 
     opacity: 0;
     transform: translateY(20px);
     transition: var(--transition-slow);
     text-align: center;
     padding: 100px 20px;
+    width: 100%;
 }
 
-/* The 'Show' State (This is what the script triggers) */
+/* The 'Active' State - Triggered upon successful send */
 #form-status.active {
     display: flex !important;
     flex-direction: column;
@@ -1483,118 +1490,72 @@ body::after,
     transform: translateY(0) !important;
 }
 
+/* The Inner Content Box */
 .success-inner {
     max-width: 500px;
     background: var(--glass-surface);
-    border: 1px solid var(--accent);
+    border: 1px solid var(--accent-antique); /* Antique Gold */
     padding: 60px;
-    box-shadow: 0 0 50px var(--accent-glow);
+    /* Uses a soft gold glow instead of harsh black shadows */
+    box-shadow: 0 15px 50px rgba(197, 160, 89, 0.15); 
+    position: relative;
 }
 
-/* --- GUIDELINE CONTENT FIX --- */
+/* Optional: Add a small decorative gold line inside the success box */
+.success-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: var(--accent-antique);
+}
 
+/* --- 20. ACCORDION MECHANICS: THE SLIDE SYSTEM --- */
+
+/* Initial State: Perfectly flat and hidden */
 #guidelineContent {
-    max-height: 0; /* Keeps it closed initially */
-    overflow: hidden; /* Necessary for the slide effect */
-    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); /* Smoother expansion */
-    width: 100%; /* Ensures it fills the container */
+    max-height: 0; 
+    /* Important: Keeps the text from "peeking out" while closed */
+    overflow: hidden; 
+    /* The "Bezier" curve here makes the closing snap feel snappy but premium */
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); 
+    width: 100%;
 }
 
+/* The 'Open' State: Triggered by JS */
 #guidelineContent.open {
-    max-height: 2000px; /* Give it plenty of room to grow */
-    transition: max-height 0.5s ease-in-out;
+    /* 2000px is a "safety height" to ensure long text doesn't get cut off */
+    max-height: 2000px; 
+    transition: max-height 0.8s ease-in-out;
 }
 
-/* The wrapper inside the accordion */
+/* The Layout inside the Accordion */
 .guideline-grid {
     display: grid;
+    /* This makes your rules sit side-by-side on desktop but stack on mobile */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
-    padding: 60px 0; /* Padding top/bottom */
+    padding: 60px 0;
     width: 100%;
     box-sizing: border-box;
 }
 
-/* Ensure individual rule boxes don't overflow */
+/* Individual Rule Blocks (The 'g-item' equivalent) */
 .rule-box {
-    border-left: 1px solid rgba(209, 182, 124, 0.2);
+    /* Using Antique Gold for the vertical accent line */
+    border-left: 1px solid rgba(197, 160, 89, 0.2);
     padding-left: 25px;
     margin-bottom: 20px;
+    transition: border-color 0.3s ease;
 }
 
-/* --- MOBILE REFINEMENTS --- */
-@media (max-width: 768px) {
-    /* Shrink the massive headers so they don't push the screen wide */
-    .h2-editorial {
-        font-size: 2.2rem !important; 
-        line-height: 1.2;
-    }
-
-    /* Give the overall container more side-room */
-    .container {
-        padding: 0 25px; 
-    }
-
-    /* Fix the button/tile padding in the form */
-    .method-tile {
-        padding: 10px;
-        font-size: 0.7rem;
-    }
-
-    /* Ensure the accordion content has internal padding so text doesn't touch the border */
-    .accordion-content {
-        padding: 0 15px;
-    }
+.rule-box:hover {
+    border-left-color: var(--accent-antique);
 }
 
-.hero-btns { /* Replace with whatever class contains those two buttons */
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap; /* This allows them to stack vertically on tiny phones */
-    width: 100%;
-}
-
-.btn {
-    flex: 1; /* Makes them equal width */
-    min-width: 140px; /* Prevents them from getting TOO skinny */
-    max-width: 200px;
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    /* 1. Force the grid to stay within screen bounds */
-    .guideline-detailed-grid {
-        grid-template-columns: 1fr !important; /* Force single column */
-        gap: 20px !important;
-        padding: 20px 10px !important; /* Reduce side padding */
-        width: 100% !important;
-        margin: 0 auto !important;
-    }
-
-    /* 2. Prevent the items from pushing outward */
-    .g-item {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding-right: 10px !important; /* Ensure text doesn't hit the right edge */
-        box-sizing: border-box !important;
-    }
-
-    /* 3. Handle long words in the text */
-    .text-dim {
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-        white-space: normal !important;
-        font-size: 0.8rem !important; /* Slightly smaller for better fit */
-    }
-
-    /* 4. Fix the Sovereignty box width */
-    .rights-clause {
-        margin: 0 10px 30px 10px !important;
-        padding: 20px !important;
-        width: auto !important;
-    }
-}
 
 /* Ensure inputs and selects have consistent, readable colors */
 input, 
@@ -1605,83 +1566,61 @@ select {
     border: 1px solid #dddddd !important; /* A light grey border */
 }
 
-/* Fix for the dropdown options specifically */
-select option {
-    background-color: #ffffff;
-    color: #333333;
+/* --- 21. LUXURY CUSTOM CURSOR & INPUT POLISH --- */
+
+/* 1. THE MOUSE REMOVER: Hides the default OS cursor on everything */
+html, body, a, button, input, textarea, select, label, .nav-links a, .comm-card {
+    cursor: none !important;
 }
 
-/* Update the focus state so it doesn't turn black when clicking */
-input:focus, 
-textarea:focus, 
-select:focus {
-    background-color: #f9f9f9 !important;
-    border-color: var(--accent) !important;
-    color: #000000 !important;
-    outline: none;
-}
-
-/* Hide the default mouse so the gold one takes over */
-html, body {
-    cursor: none;
-}
-
-.cursor-dot, .cursor-outline {
+/* 2. THE GOLD DOT: The core pointer */
+.cursor-dot {
     pointer-events: none;
     position: fixed;
     top: 0; left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 10000;
-}
-
-.cursor-dot {
     width: 8px;
     height: 8px;
-    background-color: #D4AF37; /* Brighter Gold */
-    /* This double shadow makes it glow on white backgrounds */
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.9), 
-                0 0 2px rgba(0, 0, 0, 0.2); 
-    z-index: 10001;
+    background-color: var(--accent-antique);
+    border-radius: 50%;
+    /* Double glow: gold for vibe, dark for visibility on light colors */
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.8), 0 0 2px rgba(0, 0, 0, 0.2);
+    z-index: 2147483647 !important; /* Ultimate priority */
+    transform: translate(-50%, -50%);
 }
 
+/* 3. THE GOLD OUTLINE: The trailing ring */
 .cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
     width: 35px;
     height: 35px;
-    border: 2px solid #D4AF37; /* Thicker line */
-    background-color: rgba(212, 175, 55, 0.03); 
-    z-index: 10000;
+    border: 1.5px solid var(--accent-antique);
+    background-color: rgba(197, 160, 89, 0.03);
+    border-radius: 50%;
+    z-index: 2147483646 !important;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, background-color 0.3s ease;
 }
 
-/* mouse remover */
-html, body, a, button, input, textarea, .nav-links a {
-    cursor: none !important;
-}
-
+/* 4. HOVER STATE: Triggered via JS when hovering over links/buttons */
 .cursor-active-outline {
-    transform: translate(-50%, -50%) scale(1.4);
-    background-color: rgba(212, 175, 55, 0.2);
-    border-color: #FFFFFF; /* Turns white-gold when hovering for max contrast */
-    border-width: 1px;
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: rgba(197, 160, 89, 0.15);
+    border-color: #FFFFFF; /* High contrast white-gold on hover */
 }
 
-html, body, a, button, 
-input, textarea, select, 
-label, .nav-links a, 
-option, .form-control {
-    cursor: none !important;
+/* 5. INPUT READABILITY SYNC (Merged from your snippet) */
+input, textarea, select {
+    background-color: rgba(255, 255, 255, 0.6) !important; /* Semi-transparent white for legibility */
+    color: var(--text) !important;
+    border: 1px solid var(--glass-border) !important;
+    backdrop-filter: blur(5px); /* Keeps the "Glass" look while being readable */
 }
 
-/* Specifically target select boxes and their options */
-select, 
-select *, 
-option, 
-optgroup {
-    cursor: none !important;
-    appearance: none; /* Helps remove some default OS styling */
-}
-
-.cursor-dot, 
-.cursor-outline {
-    z-index: 2147483647 !important; /* The highest possible number in CSS */
+input:focus, textarea:focus, select:focus {
+    background-color: #ffffff !important; /* Goes solid white on focus for typing ease */
+    border-color: var(--accent-antique) !important;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+    outline: none;
 }
