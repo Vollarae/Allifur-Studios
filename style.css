@@ -1649,3 +1649,26 @@ html, body {
     /* This makes the ring follow with a tiny, smooth 'lag' */
     transition: all 0.1s ease-out; 
 }
+
+/* mouse remover */
+html, body, a, button, input, textarea, .nav-links a {
+    cursor: none !important;
+}
+
+/* More visibility */
+.cursor-dot {
+    width: 8px; /* Slightly larger */
+    height: 8px;
+    background-color: #D4AF37; /* Brighter "Vivid Gold" */
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), /* Stronger glow */
+                0 0 5px rgba(255, 255, 255, 0.5); /* White core for "pop" */
+    z-index: 10001;
+}
+
+.cursor-outline {
+    width: 35px; /* Larger ring */
+    height: 35px;
+    border: 2px solid #D4AF37; /* Thicker, solid gold ring */
+    background-color: rgba(212, 175, 55, 0.05); /* Very faint gold fill */
+    z-index: 10000;
+}
