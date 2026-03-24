@@ -386,31 +386,32 @@ a {
     text-transform: uppercase;
     transition: var(--transition-fast);
     opacity: 0.8;
+    position: relative; /* CRITICAL: This allows the underline to position correctly */
+    padding-bottom: 8px; /* Gives the underline some breathing room */
 }
 
-.nav-links a:hover {
-    color: var(--accent);
+/* THE GOLD HIGHLIGHT: Hover and Active states */
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--accent-secondary) !important; /* Champagne Gold */
     opacity: 1;
 }
 
-/* Elegant Underline Animation */
+/* Elegant Gold Underline Animation */
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 0;
-    width: 0; height: 1px;
-    background: var(--accent);
+    bottom: 0; 
+    left: 0;
+    width: 0; 
+    height: 1px;
+    background: var(--accent-secondary); /* Champagne Gold */
     transition: var(--transition-fast);
 }
 
 .nav-links a:hover::after, 
 .nav-links a.active::after {
     width: 100%;
-}
-
-.nav-links a:hover, 
-.nav-links a.active {
-    color: var(--accent);
 }
 
 /* --- 5. BUTTON SYSTEM (HIGH-END) --- */
