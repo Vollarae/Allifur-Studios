@@ -1690,13 +1690,6 @@ footer {
     opacity: 0.9;
 }
 
-/* Mobile fix for the Editorial Grid */
-@media (max-width: 992px) {
-    .editorial-grid {
-        grid-template-columns: 1fr; /* Stacks vertically on smaller screens */
-        gap: 40px;
-    }
-}
 
 /* --- 16. STRUCTURAL OVERRIDES: THE RESPONSIVE FIX --- */
 
@@ -1751,22 +1744,27 @@ footer {
     opacity: 1 !important;
 }
 
-/* Tablet & Small Laptop (992px) */
+/* Tablets & Small Laptops (992px) */
 @media (max-width: 992px) {
-    .editorial-grid {
-        /* Stacks art on top of text for a clean vertical flow */
-        grid-template-columns: 1fr; 
+    /* 1. THE GRID: Stacks art on top of text for a clean vertical flow */
+    .editorial-grid,
+    .comm-grid {
+        grid-template-columns: 1fr !important; 
         gap: 50px;
+        max-width: 700px;
+        margin: 0 auto;
     }
     
+    /* 2. ART DISPLAY: Keeps art centered and framed when side-by-side split breaks */
     .art-display-box {
         max-width: 500px;
-        margin: 0 auto; /* Keeps your art centered when the side-by-side split breaks */
+        margin: 0 auto;
         border: 1px solid var(--glass-border);
     }
 
+    /* 3. TESTIMONY: Centers quotes for better tablet/mobile balance */
     .testimony-content {
-        text-align: center; /* Centers quotes for better mobile balance */
+        text-align: center; 
     }
     
     .testimony-footer {
@@ -1775,88 +1773,100 @@ footer {
         align-items: center;
         gap: 15px;
     }
+
+    /* 4. VOUCHES: Transition to 2 columns before hitting the 1-column mobile fix */
+    .vouch-masonry {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px;
+    }
+
+    /* 5. TYPOGRAPHY: Scale headers for medium screens */
+    .h1-hero { font-size: 3.8rem; }
+    .h2-editorial { font-size: 2.8rem; }
 }
 
 /* Phones & Portrait Tablets (600px) */
 @media (max-width: 600px) {
 
-    /* 1. TYPOGRAPHY: Shrink headers so they don't cause side-scrolling */
+    /* 1. TYPOGRAPHY: Scale down for mobile readability */
+    .h1-hero {
+        font-size: 2.8rem; /* Slightly smaller to prevent title breaks */
+        line-height: 1.1;
+    }
+
     .h2-editorial {
-        font-size: 2.2rem; 
+        font-size: 1.8rem; /* Tighter for "Commission Types" header */
         line-height: 1.2;
         letter-spacing: 2px;
     }
 
-    /* 2. SPACING: Ensure content doesn't touch the glass edges */
+    /* 2. SPACING: Prevent glass-edge touching */
     .container {
-        padding: 0 20px; 
+        padding: 0 15px; 
     }
 
-    .accordion-content {
-        padding: 0 15px 30px 15px; /* Bottom padding for breathing room */
+    .comm-list-section {
+        padding: 30px 0; /* Reduced vertical section padding */
     }
 
-    /* 3. THE GRID: Force everything into a single, elegant column */
-    .comm-grid-container, 
+    /* 3. THE GRID: Single column with tighter gaps */
+    .comm-grid, 
     .vouch-masonry, 
     .guideline-detailed-grid {
         grid-template-columns: 1fr !important;
-        gap: 25px;
+        gap: 20px; /* Reduced gap to save vertical space */
         width: 100%;
-        margin: 0 auto;
     }
 
-    /* 4. ITEMS: Prevent cards from pushing outside the screen */
+    /* 4. ITEMS: Fix the "Too Big" box issue */
     .comm-card, .vouch-card, .g-item, .rule-box {
         width: 100%;
-        max-width: 100%;
         box-sizing: border-box;
-        padding: 25px 15px;
+        padding: 20px 15px; /* Reduced from 25px to keep card compact */
     }
 
-    /* 5. TEXT: Handle long words (like 'Commissions' or 'Sovereignty') */
-    .text-dim, .vouch-quote, .g-item p {
+    /* Art Frame specifically for mobile */
+    .art-frame {
+        aspect-ratio: 16/10; /* Better for mobile viewing */
+        margin-bottom: 20px; /* Less space between art and price list */
+    }
+
+    /* 5. TEXT: Prevent overflow and shrink descriptions */
+    .card-desc, .text-dim, .vouch-quote, .g-item p {
         word-wrap: break-word;
         overflow-wrap: break-word;
-        font-size: 0.85rem;
-        line-height: 1.6;
+        font-size: 0.8rem; /* Smaller text for a "slicker" look */
+        line-height: 1.5;
     }
 
-    /* 6. BUTTONS: The "Hero" buttons should stack or sit side-by-side */
+    /* 6. BUTTONS: Stacked and consistent */
     .hero-btns {
         display: flex;
         flex-direction: column;
         width: 100%;
-        margin-top: 20px;
-        gap: 15px; /* Tighter gap for mobile */
+        margin-top: 25px;
+        gap: 12px;
     }
 
-.btn {
-    padding: 16px 20px;
-    text-decoration: none;
-    margin-left: 0 !important;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: all 0.4s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-width: 200px; /* Ensures buttons are consistent size */
-}
-
-    /* 7. ADJUST MAIN HEADER SIZE */
-    .h1-hero {
-        font-size: 3.2rem; 
-        line-height: 1.05;
+    .btn, .comm-btn {
+        padding: 14px 20px;
+        font-size: 0.7rem;
+        width: 100%;
+        box-sizing: border-box;
+        margin-left: 0 !important;
+        min-width: unset; /* Remove min-width to prevent side-scrolling */
     }
-    
+
+    /* 7. PRICE MENU: Tighter list for mobile */
+    .price-menu li {
+        font-size: 0.75rem;
+        padding: 6px 0;
+    }
+
     /* 8. SPECIAL BOXES: The Legal/Sovereignty Clause */
     .rights-clause {
-        margin: 0 10px 30px 10px;
-        padding: 20px;
+        margin: 0 5px 25px 5px;
+        padding: 15px;
         width: auto;
     }
 }
