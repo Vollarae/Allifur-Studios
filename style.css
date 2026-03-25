@@ -715,28 +715,74 @@ a {
 .art-frame {
     width: 100%;
     aspect-ratio: 16/9;
-    background: #0d0d0d; /* Deeper black for contrast */
+    background: #0d0d0d;
     border: 1px solid rgba(197, 160, 89, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* Changed to relative so we can layer the filename/zoom text over the image */
+    position: relative; 
+    overflow: hidden;
     margin-bottom: 35px;
-    
-    /* Inner glow makes the black box feel "3D" */
     box-shadow: inset 0 0 20px rgba(197, 160, 89, 0.15);
     transition: 0.5s ease;
+}
+
+/* --- THE IMAGE FIX --- */
+.art-frame img {
+    width: 100%;
+    height: 100%;
+    /* This removes the black bars by making the image fill the 16/9 box */
+    object-fit: cover; 
+    /* This keeps the characters' heads/faces in view */
+    object-position: center top; 
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .comm-card:hover .art-frame {
     border-color: var(--accent-antique);
     box-shadow: inset 0 0 30px rgba(197, 160, 89, 0.3);
-    transform: scale(1.02);
 }
 
+/* This makes the image slightly grow inside the frame when hovered */
+.comm-card:hover .art-frame img {
+    transform: scale(1.08);
+}
+
+/* --- THE OVERLAYS (Filename & Zoom) --- */
 .file-name {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 0.55rem;
     letter-spacing: 3px;
     color: rgba(197, 160, 89, 0.4);
+    pointer-events: none; /* Keeps the click going through to the card */
+    z-index: 2;
+}
+
+.zoom-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 13, 13, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-antique);
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    opacity: 0;
+    transition: 0.4s ease;
+    z-index: 3;
+}
+
+.comm-card:hover .zoom-overlay {
+    opacity: 1;
+}
+
+/* Glow effect on hover */
+.comm-card:hover .price-value {
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
 }
 
 /* --- PRICE LIST --- */
@@ -773,11 +819,6 @@ a {
     font-weight: 700;
     color: var(--accent-antique);
     transition: 0.3s ease;
-}
-
-/* Glow effect on hover */
-.comm-card:hover .price-value {
-    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
 }
 
 /* --- BUTTONS --- */
