@@ -1585,7 +1585,8 @@ footer {
 
     /* 5. Card Scaling: Reduce padding to save screen space */
     .comm-card {
-        padding: 40px 15px;
+        padding: 12px; /* Minimal breathing room */
+        margin-bottom: 10px; /* Bring cards closer together */
         min-height: auto;
     }
 
