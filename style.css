@@ -274,20 +274,25 @@ body.loading {
     letter-spacing: 2px;
     color: var(--text-soft);
 }
+
 /* --- COMMISSION HEADER --- */
-.hero-header .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Forces everything to the horizontal center */
-    text-align: center;
+.hero-header {
     width: 100%;
+    display: block !important; /* Resetting flex to be safe */
+    text-align: center;
+    padding: 180px 0 60px 0 !important;
 }
 
-.sub-title {
-    display: block;
+.hero-header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: block; /* Stack elements naturally */
+}
+
+.sub-title, .h2-editorial {
     text-align: center;
     width: 100%;
-    margin-bottom: 10px;
+    display: block;
 }
 
 /* --- 1A. RESET & PERFORMANCE: CORE BROWSER NORMALIZATION --- */
@@ -700,52 +705,58 @@ a {
 }
 
 .price-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Keeps text and prices vertically aligned */
-    padding: 15px 0;
-    gap: 10px; /* Prevents the dotted line from touching the text */
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Name | Stretchy Dots | Price */
+    align-items: baseline;
+    gap: 15px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+    transition: all 0.4s ease;
 }
 
 /* Service Name */
 .price-list li span:first-child {
-    font-size: 0.7rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    letter-spacing: 3px;
     color: var(--text-soft);
-    white-space: nowrap; /* Prevents text from wrapping */
 }
 
 /* THE DOTTED LINE (The "Leader") */
 .price-list li::after {
-    content: '';
-    flex: 1; /* Takes up all available space in the middle */
-    border-bottom: 1px dotted rgba(197, 160, 89, 0.3);
-    margin: 0 15px;
-    height: 1px;
+    content: "....................................................................................................";
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgba(197, 160, 89, 0.2);
+    font-size: 14px;
+    letter-spacing: 2px;
 }
 
 /* The Price Tag */
 .price-list li span:last-child {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem; /* Slightly larger for readability */
-    color: var(--accent-antique);
+    font-size: 1.8rem;
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 4px; /* Essential: separates the $ from the number */
+    color: var(--accent-antique);
     line-height: 1;
-    min-width: fit-content; /* Prevents the number from squishing */
+    display: inline-block;
+    transition: transform 0.3s ease;
 }
 
 /* Interaction: Highlight the line on hover */
 .price-list li:hover {
-    border-bottom-color: var(--accent-antique);
+    background: rgba(197, 160, 89, 0.03); /* Subtle highlight behind the row */
 }
 
 .price-list li:hover span:last-child {
-    transform: scale(1.1); /* Subtle "growth" of the price */
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+}
+
+/* --- THE HOVER GLOW FAILSAFE --- */
+/* Ensures the specific list item glows when hovering the CARD */
+.comm-card:hover .price-list li {
+    border-bottom-color: rgba(197, 160, 89, 0.4);
 }
 
 /* Card Description */
