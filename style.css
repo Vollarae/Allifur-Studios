@@ -50,10 +50,11 @@ html, body {
 
 /* --- LAYOUT WRAPPER: KEEPS CONTENT CENTERED ON WIDE SCREENS --- */
 .container {
+    max-width: 1200px; /* Standard luxury width */
+    margin: 0 auto;    /* The horizontal centering secret */
+    padding: 0 40px;   /* Prevents content from hitting screen edges on mobile */
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 /* --- CUSTOM GOLD SCROLLBAR --- */
@@ -918,7 +919,16 @@ input:focus, textarea:focus, select:focus {
 /* --- 9. INQUIRY HTML --- */
 /* --- INQUIRY HERO --- */
 .request-section {
-    padding: 180px 20px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the internal flex items */
+    text-align: center;  /* Centers the text-based elements like headers */
+}
+
+.editorial-header {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 80px;
 }
 
 .editorial-header h1 {
@@ -933,6 +943,22 @@ input:focus, textarea:focus, select:focus {
     background: var(--accent-antique);
     margin: 30px auto;
     opacity: 0.5;
+}
+
+.guidelines-accordion, 
+.form-container {
+    width: 100%;
+    max-width: 900px; /* Slightly narrower than the container for "breathing room" */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left; /* Keeps the text inside the boxes readable while the box itself is centered */
+}
+
+/* Mobile Fix: Stack them when the screen is too narrow */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* --- SLEEK ACCORDION --- */
@@ -986,7 +1012,7 @@ input:focus, textarea:focus, select:focus {
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
     gap: 30px;
     margin-bottom: 40px;
 }
