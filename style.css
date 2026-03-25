@@ -644,16 +644,20 @@ a {
 .comm-list-section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 60px 20px; /* Balanced side padding for mobile */
+    display: flex;
+    justify-content: center; /* Centers the grid if only one item exists */
 }
 
 .comm-grid {
     display: grid;
-    /* This creates 2 equal columns. Use '1fr 1fr 1fr' for 3 columns */
-    grid-template-columns: 1fr 1fr; 
+    /* This creates 2 columns on desktop, but adjusts for mobile automatically */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
     gap: 40px;
-    align-items: start;
+    width: 100%;
+    max-width: 1000px;
 }
+
 
 @media (max-width: 900px) {
     .comm-grid {
@@ -670,11 +674,14 @@ a {
     
     /* Stronger initial border */
     border: 1px solid rgba(197, 160, 89, 0.2); 
+    width: 100%; /* Ensures it doesn't bleed out of the grid */
     padding: 60px 50px;
     position: relative;
     display: flex;
     height: 100%; /* Makes all cards in a row the same height */
     flex-direction: column;
+    box-sizing: border-box; /* Crucial for preventing mobile cutoff */
+    margin: 0 auto; /* Centers the card within its grid cell */
     
     /* Soft shadow for depth */
     box-shadow: 0 15px 35px rgba(107, 143, 163, 0.1);
@@ -1578,7 +1585,7 @@ footer {
 
     /* 5. Card Scaling: Reduce padding to save screen space */
     .comm-card {
-        padding: 40px 25px;
+        padding: 40px 15px;
         min-height: auto;
     }
 
