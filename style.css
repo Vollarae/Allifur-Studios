@@ -1852,13 +1852,24 @@ footer {
     box-shadow: 0 20px 40px rgba(107, 143, 163, 0.2);
 }
 
+/* --- THE VOUCH CARD FRAME --- */
 .vouch-card {
-    background: var(--glass-surface);
-    border: 1px solid var(--glass-border);
-    padding: 40px;
+    background: rgba(255, 255, 255, 0.4); /* Glassmorphism look */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(197, 160, 89, 0.1);
+    border-left: 4px solid var(--accent-antique); /* The "Editorial" signature line */
+    padding: 50px 40px;
+    margin-bottom: 40px;
     position: relative;
-    transition: var(--transition-slow);
-    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.vouch-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 30px 60px rgba(197, 160, 89, 0.1);
+    border-color: rgba(197, 160, 89, 0.3);
 }
 
 .vouch-clickable {
@@ -1874,73 +1885,73 @@ footer {
 /* Content Styling */
 .client-name {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-    color: var(--text);
+    font-size: 2.2rem; /* Increased for editorial impact */
+    margin-bottom: 8px;
+    color: #1a1a1a;
+    font-weight: 400;
 }
 
 .client-title {
     display: block;
-    font-size: 0.65rem;
+    font-size: 0.6rem; /* Smaller but more spaced out */
     color: var(--accent-antique);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
+    letter-spacing: 4px; /* Double the spacing for luxury feel */
+    margin-bottom: 35px;
+    opacity: 0.8;
 }
 
 .vouch-quote {
-    color: var(--text-soft);
+    color: #4a4a4a;
+    font-family: 'Playfair Display', serif; /* Matching the header font */
     font-style: italic;
-    line-height: 1.8;
-    margin-bottom: 30px;
-    font-size: 0.95rem;
+    line-height: 2; /* More breathing room for long quotes */
+    margin-bottom: 40px;
+    font-size: 1.1rem;
 }
 
 /* --- LIGHTBOX / OVERLAY --- */
 .vouch-overlay {
-    display: none; /* Triggered by JS */
+    background: rgba(255, 255, 255, 0.1) !important; /* Transparent base */
+    backdrop-filter: blur(20px) saturate(150%); /* High-end blur */
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    display: none; 
     position: fixed;
     inset: 0;
-    background: rgba(227, 242, 253, 0.98); /* Sky blue tinted backdrop */
-    backdrop-filter: blur(25px);
     z-index: 9999;
-    padding: 40px;
-    justify-content: center;
-    align-items: center;
+    padding: 20px;
     cursor: zoom-out;
 }
 
 .overlay-wrapper {
-    position: relative;
-    max-width: 900px;
-    width: 95%;
-    background: var(--bg);
-    border: 1px solid var(--accent-antique);
-    padding: 20px;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.2);
+    background: rgba(255, 252, 245, 0.8) !important; /* Antique Frost tint */
+    border: 1px solid rgba(197, 160, 89, 0.2) !important;
+    padding: 80px 60px; /* Much larger padding for the "Plaque" look */
+    max-width: 800px;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* THE X BUTTON */
+/* --- MINIMALIST CLOSE --- */
 .overlay-close {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--accent-antique);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10000;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: absolute; /* Move inside wrapper or keep fixed */
+    top: 40px;
+    right: 40px;
+    width: 30px;
+    height: 30px;
+    background: transparent !important; /* Remove the solid circle */
+    color: var(--accent-antique);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 2rem;
+    transition: opacity 0.3s, transform 0.4s;
 }
 
 .overlay-close:hover {
-    transform: rotate(90deg) scale(1.1);
+    transform: rotate(90deg);
+    opacity: 0.6;
 }
 
 /* Mobile fix for Masonry */
