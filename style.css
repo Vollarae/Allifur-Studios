@@ -1828,8 +1828,10 @@ footer {
 
     /* Art Frame specifically for mobile */
     .art-frame {
-        aspect-ratio: 16/10; /* Better for mobile viewing */
-        margin-bottom: 20px; /* Less space between art and price list */
+        /* Switch from 16:9 to a much shorter height */
+        height: 180px; 
+        aspect-ratio: auto; /* Disables the desktop ratio */
+        margin-bottom: 15px;
     }
 
     /* 5. TEXT: Prevent overflow and shrink descriptions */
