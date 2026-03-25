@@ -275,6 +275,28 @@ body.loading {
     color: var(--text-soft);
 }
 
+/* --- COMMISSION PAGE LAYOUT --- */
+.commission-hero {
+    padding: 160px 0 60px 0; /* Pushes content down from Nav */
+    text-align: center;
+    background-color: #E3F2FD;
+}
+
+.service-menu-label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent-antique);
+    margin-bottom: 10px;
+}
+
+.h2-editorial {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 20px;
+}
+
 /* --- 1A. RESET & PERFORMANCE: CORE BROWSER NORMALIZATION --- */
 * { 
     margin: 0; 
@@ -590,76 +612,93 @@ a {
 /* --- 7. COMMISSION CARDS: THE GLASS GALLERY GRID --- */
 .comm-grid-container {
     display: grid;
-    /* Smart grid: will drop to 1 column on phones and 2/3 on desktop automatically */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 50px; /* Increased gap for "Luxury" breathing room */
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 1300px;
+    margin: 80px auto; /* Gives space from the header */
+    padding: 0 40px;
 }
 
 .comm-card {
-    background: var(--glass-surface); /* Frosted light blue/white */
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 70px 50px;
+    background: rgba(255, 255, 255, 0.4); /* Glass surface */
+    border: 1px solid rgba(197, 160, 89, 0.15); /* Soft gold border */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 60px 40px; /* Balanced padding */
     position: relative;
     display: flex;
     flex-direction: column;
-    transition: var(--transition-slow);
-    overflow: hidden; /* Clips the gold light-sweep effect */
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: visible; /* Changed to visible so the 'Recommended' tag can pop out */
 }
 
-/* THE "LIGHT-SWEEP": A cinematic gold shimmer on hover */
-.comm-card::before {
+/* THE TOP ACCENT: That thin gold line from the luxury designs */
+.comm-card::after {
     content: '';
     position: absolute;
-    top: 0; 
-    left: -150%;
-    width: 100%; 
-    height: 100%;
-    /* Gradient changed to Antique Gold shimmer */
-    background: linear-gradient(
-        90deg, 
-        transparent, 
-        rgba(197, 160, 89, 0.1), 
-        transparent
-    );
-    transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-antique);
+    transform: scaleX(0.3); /* Starts small/elegant */
+    transition: 0.6s ease;
 }
 
-.comm-card:hover::before {
+.comm-card:hover::after {
+    transform: scaleX(1); /* Expands to full width on hover */
+}
+
+/* THE LIGHT-SWEEP (Cinematic Shimmer) */
+.comm-card-shimmer {
+    position: absolute;
+    top: 0; left: -150%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.08), transparent);
+    transition: 0.8s;
+    pointer-events: none;
+}
+
+.comm-card:hover .comm-card-shimmer {
     left: 150%;
 }
 
 .comm-card:hover {
-    transform: translateY(-15px) scale(1.01);
-    background: rgba(227, 242, 253, 0.95); /* Brightens on hover */
-    border-color: var(--accent-antique); /* Gold border glows on hover */
-    /* Updated shadow to feel "lighter" and more luxurious */
-    box-shadow: 0 30px 60px rgba(107, 143, 163, 0.15), 
-                0 0 20px rgba(197, 160, 89, 0.1);
+    transform: translateY(-20px); /* More dramatic lift */
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--accent-antique);
+    box-shadow: 0 40px 80px rgba(107, 143, 163, 0.12);
+}
+
+/* --- THE IMAGE BOX (THE SAMPLES IN YOUR SCREENSHOT) --- */
+.sample-box {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border: 1px solid rgba(197, 160, 89, 0.4); /* Framed look */
+    margin-bottom: 30px;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(197, 160, 89, 0.2);
 }
 
 /* --- FEATURED CARD: THE HIGHLIGHTED CHOICE --- */
 .comm-card.featured {
-    /* Stronger gold presence for the "Most Popular" or "Best" choice */
-    border-color: var(--accent-antique);
-    background: rgba(197, 160, 89, 0.03);
+    border: 1px solid var(--accent-antique);
+    background: rgba(197, 160, 89, 0.05);
 }
 
 .comm-card.featured .tag {
     position: absolute;
-    top: 0; 
-    right: 0;
-    background: var(--accent-antique); /* Gold background for the tag */
+    top: -15px; /* Pops above the card border */
+    right: 30px;
+    background: var(--accent-antique);
     color: #fff;
-    font-size: 0.6rem;
-    padding: 8px 18px;
+    font-size: 0.65rem;
+    padding: 6px 20px;
     font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    letter-spacing: 3px;
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
 }
 
 /* --- 8. PRICE LIST: THE "MENU" STYLE LAYOUT --- */
