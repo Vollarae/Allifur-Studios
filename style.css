@@ -1065,12 +1065,22 @@ input:focus, textarea:focus, select:focus {
 }
 
 .form-container {
-    background: rgba(255, 255, 255, 0.4) !important; /* Glassmorphism base */
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 80px 60px !important; /* Extra breathing room */
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05);
-    margin-top: 50px;
+    /* A very pale, warm gold-tinted white */
+    background: rgba(255, 252, 245, 0.4) !important; 
+    
+    /* The blur is what makes it look expensive */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* A thin, defined gold border */
+    border: 1px solid rgba(197, 160, 89, 0.2) !important;
+    
+    /* Soft elevation shadow */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+    
+    padding: 80px 60px !important;
+    position: relative;
+    z-index: 1;
 }
 
 /* Section Dividers */
@@ -1137,6 +1147,16 @@ input:focus, textarea:focus, select:focus {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c5a059' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 20px center;
+}
+
+/* Force the cursor to recognize these as "hover-able" targets */
+.custom-input, 
+.custom-select, 
+.custom-textarea, 
+.method-tile, 
+.submit-btn, 
+.accordion-header {
+    cursor: none !important; /* This allows your custom dot to take over */
 }
 
 /* --- 10. GUIDELINES: ARCHITECTURAL CONTRACT STYLING --- */
