@@ -235,55 +235,28 @@ body.loading {
 /* --- THE ARTWORK FRAME --- */
 .art-frame {
     width: 100%;
-    height: 320px; /* Lock this height to keep cards uniform */
+    height: 280px; /* This locks the height so the image can't get 'too big' */
     overflow: hidden;
     position: relative;
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.03); /* A very light tint instead of black */
+    cursor: pointer;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
 }
 
 .art-frame img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This prevents the "giant image" look */
-    display: block;
-}
-
-.inner-frame {
-    position: relative;
-    width: 100%;
-    height: 450px; /* Set a consistent height for the editorial look */
-    background: rgba(255, 255, 255, 0.03); /* Soft glass tint instead of black */
-    border: 1px solid rgba(197, 160, 89, 0.2);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.inner-frame img {
-    width: 100%;
-    height: 100%;
-    /* This ensures the image fills the box and stays proportional */
+    /* This is a critical fix: it fills the 280px box perfectly 
+       without stretching or leaving black bars */
     object-fit: cover; 
-    object-position: center;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    object-position: center top; 
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.inner-frame .text-dim {
-    position: absolute;
-    bottom: 10px;
-    right: 15px;
-    margin: 0;
-    color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
-    font-style: italic;
-    letter-spacing: 1px;
-    z-index: 2;
-}
-
-/* Hover effect to match premium feel */
-.inner-frame:hover img {
-    transform: scale(1.05);
+/* Adds a subtle zoom when you hover the card */
+.comm-card:hover .art-frame img {
+    transform: scale(1.08);
 }
 
 /* The small floating label on the top-left of the art frame */
@@ -1962,47 +1935,66 @@ footer {
 }
 
 /* --- LIGHTBOX / OVERLAY --- */
-.vouch-overlay {
-    background: rgba(255, 255, 255, 0.1) !important; /* Transparent base */
-    backdrop-filter: blur(20px) saturate(150%); /* High-end blur */
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    display: none; 
+.global-overlay {
+    display: none; /* Controlled by JS */
     position: fixed;
     inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
     z-index: 9999;
     padding: 20px;
+    justify-content: center;
+    align-items: center;
     cursor: zoom-out;
 }
 
 .overlay-wrapper {
-    background: rgba(255, 252, 245, 0.8) !important; /* Antique Frost tint */
-    border: 1px solid rgba(197, 160, 89, 0.2) !important;
-    padding: 80px 60px; /* Much larger padding for the "Plaque" look */
-    max-width: 800px;
+    background: rgba(255, 252, 245, 0.95) !important; /* Slightly more solid for readability */
+    border: 1px solid rgba(197, 160, 89, 0.3) !important;
+    padding: 60px 40px; 
+    max-width: 900px;
+    width: 95%;
+    max-height: 90vh; /* Keeps it from going off-screen */
+    overflow-y: auto; /* Adds a scrollbar ONLY if the content is huge */
     box-shadow: 0 50px 100px rgba(0, 0, 0, 0.1);
-    transform: scale(0.95);
+    position: relative;
+    cursor: default; /* Stops the 'zoom-out' cursor when hovering the art itself */
+    transform: scale(1);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* THE X BUTTON */
-/* --- MINIMALIST CLOSE --- */
+/* --- THE CLOSE BUTTON --- */
 .overlay-close {
-    position: absolute; /* Move inside wrapper or keep fixed */
-    top: 40px;
-    right: 40px;
+    position: absolute;
+    top: 20px;
+    right: 25px;
     width: 30px;
     height: 30px;
-    background: transparent !important; /* Remove the solid circle */
+    background: transparent !important;
     color: var(--accent-antique);
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
-    font-size: 2rem;
+    font-size: 2.2rem;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10010;
     transition: opacity 0.3s, transform 0.4s;
 }
 
 .overlay-close:hover {
     transform: rotate(90deg);
-    opacity: 0.6;
+    opacity: 0.5;
+}
+
+/* --- IMAGE STYLING INSIDE OVERLAY --- */
+#fullArtImage {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Ensures art is never squished or cut */
+    margin-bottom: 20px;
+    border: 1px solid rgba(197, 160, 89, 0.1);
 }
 
 /* Mobile fix for Masonry */
