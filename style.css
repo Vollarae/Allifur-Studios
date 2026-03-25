@@ -1176,53 +1176,54 @@ footer {
 
 /* --- PC SPECIFIC ALIGNMENT --- */
 @media (min-width: 992px) {
-.hero {
-        /* Padding to push content away from the Nav */
-        padding: 180px 0 120px 0; 
-        /* Flex column keeps everything in a vertical line */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Keeps text left-aligned */
-        min-height: 100vh; /* Ensures the section takes up the full screen */
+    .hero {
+        display: grid !important;
+        /* Row 1: Top Space | Row 2: Content | Row 3: Bottom Space */
+        grid-template-rows: 180px auto 100px; 
+        min-height: 100vh;
         width: 100%;
+        padding: 0 40px;
         background-color: #E3F2FD;
+        align-items: start;
     }
-    
+
     .hero-wrapper {
-        width: 100%;
-        max-width: 900px;
-        z-index: 2;
+        grid-row: 2; /* Put all text and buttons in the middle row */
+        display: block;
+        z-index: 10;
     }
 
     .h1-hero {
         font-size: 5.5rem;
-        line-height: 1.1;
         margin: 20px 0 30px 0;
+        line-height: 1.1;
+    }
+
+    .text-dim {
+        margin-bottom: 50px; /* Forces a gap ABOVE the buttons */
         display: block;
     }
 
+    /* THE BUTTONS */
     .hero-btns {
         display: flex !important;
         flex-direction: row !important;
-        gap: 25px;
-        margin-top: 40px;
-        width: 100%;
+        gap: 30px;
+        /* Ensure they aren't hidden */
+        position: relative;
+        z-index: 20;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     .btn {
-        flex: 0 0 auto !important; /* Forces buttons to stay as rectangles */
-        width: 240px; /* Specific width for PC elegance */
-        padding: 20px 0;
+        flex: 0 0 auto;
+        width: 240px;
+        padding: 22px 0;
         text-align: center;
+        /* Temporary background for testing visibility */
+        border: 2px solid var(--accent-antique); 
     }
-}
-
-/* --- THE SCALPED TEXT FIX --- */
-.sub-title {
-    display: inline-block !important;
-    line-height: 2 !important; 
-    margin-bottom: 10px;
-    padding-top: 5px;
 }
 
 /* Tablet & Small Laptop (992px) */
