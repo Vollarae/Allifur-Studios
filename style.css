@@ -1052,36 +1052,141 @@ input:focus, textarea:focus, select:focus {
 
 /* --- 10. GUIDELINES: ARCHITECTURAL CONTRACT STYLING --- */
 .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(0, 0, 0, 0.2); /* Deepens the background for focus */
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.1); /* Subtle inner depth */
 }
 
 .guideline-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    padding: 40px;
-    border-top: 1px solid rgba(197, 160, 89, 0.1);
+    padding: 60px 50px; /* More generous whitespace */
+    gap: 50px 30px; /* Wider vertical gap between rows */
 }
 
 .g-item {
-    border-left: 1px solid rgba(197, 160, 89, 0.2);
-    padding-left: 20px;
+    border-left: 1px solid rgba(197, 160, 89, 0.15); /* Fainter gold line */
+    padding-left: 30px;
+    position: relative;
+    transition: all 0.5s ease;
 }
 
 .g-num {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: var(--accent-antique);
+    font-size: 1.5rem; /* Larger, more elegant */
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    display: inline-block;
+    background: linear-gradient(to right, var(--accent-antique), #fff); /* Gold to white fade */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
+.g-item h3 {
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.g-item b {
+    color: var(--accent-antique); /* Gold highlights for keywords like NSFW or 100% */
+    font-weight: 600;
+}
+
+.g-item:hover {
+    border-left-color: var(--accent-antique);
+    transform: translateX(8px);
+    background: rgba(197, 160, 89, 0.02); /* Very faint gold wash on the background */
+}
+
+/* Subtle line animation under the header */
+.g-item::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 30px;
+    width: 0;
+    height: 1px;
+    background: var(--accent-antique);
+    transition: width 0.4s ease;
+    opacity: 0.3;
+}
+
+.g-item:hover::after {
+    width: 40px;
+}
+
+/* --- THE SOVEREIGNTY CLAUSE --- */
 .rights-clause {
-    padding: 30px;
-    background: rgba(197, 160, 89, 0.03);
-    border: 1px solid rgba(197, 160, 89, 0.1);
-    margin: 0 40px 30px;
+    margin: 20px 40px 40px;
+    padding: 40px;
+    background: rgba(197, 160, 89, 0.05); /* Very soft gold wash */
+    border: 1px solid rgba(197, 160, 89, 0.2);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Adding a decorative "seal" or accent in the background */
+.rights-clause::before {
+    content: 'A'; /* Or use a logo icon if you have one */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    opacity: 0.03; /* Barely visible watermark */
+    pointer-events: none;
+}
+
+.rights-clause h4 {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--accent-antique);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.text-dim-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- ACCORDION SAFETY FOOTER --- */
+.safety-footer {
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.3); /* Darker "anchor" for the bottom */
+    border-top: 1px solid rgba(197, 160, 89, 0.1);
+    text-align: center;
+}
+
+.agreement-text {
+    font-size: 0.6rem;
+    color: var(--accent-antique);
+    letter-spacing: 2px;
+    font-weight: 500;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+/* Ensure content fades in smoothly after the box expands */
+.accordion-content.open .guideline-grid,
+.accordion-content.open .rights-clause {
+    animation: fadeInContent 0.8s ease forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+@keyframes fadeInContent {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- METHOD TILES --- */
