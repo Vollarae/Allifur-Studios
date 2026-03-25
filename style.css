@@ -1043,13 +1043,40 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* --- FORM STYLING --- */
+/* --- FORM TYPOGRAPHY --- */
+.elegant-label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-antique);
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+/* Subtle detail: adding a tiny gold dot before each label */
+.elegant-label::before {
+    content: '•';
+    margin-right: 10px;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
 .form-container {
-    max-width: 900px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(197, 160, 89, 0.1);
-    padding: 60px;
+    background: rgba(255, 255, 255, 0.4) !important; /* Glassmorphism base */
     backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 80px 60px !important; /* Extra breathing room */
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05);
+    margin-top: 50px;
+}
+
+/* Section Dividers */
+.form-group {
+    margin-bottom: 45px;
+    position: relative;
 }
 
 .form-grid {
@@ -1069,26 +1096,47 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Base Input Styles */
+/* --- MODERN INPUT STYLING --- */
 .custom-input, 
 .custom-select, 
 .custom-textarea {
-    background: rgba(0, 0, 0, 0.04) !important; /* Recessed look */
-    border: 1px solid rgba(197, 160, 89, 0.2) !important;
-    border-radius: 0; /* Sharp, modern edges */
-    padding: 20px !important;
-    color: #333 !important; /* Darker text for readability */
+    width: 100%;
+    background: rgba(0, 0, 0, 0.05) !important; /* The "Recessed" Tint */
+    border: 1px solid rgba(197, 160, 89, 0.15) !important;
+    border-radius: 0 !important; /* Keep it sharp and editorial */
+    padding: 22px !important;
+    color: #222 !important; /* High contrast for readability */
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Slick Focus State */
+/* Placeholder Styling */
+.custom-input::placeholder, 
+.custom-textarea::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Focus State: The "Glow" */
 .custom-input:focus, 
 .custom-textarea:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.8) !important;
+    background: rgba(255, 255, 255, 0.7) !important; /* Highlights the active field */
     border-color: var(--accent-antique) !important;
-    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1);
+    box-shadow: 0 15px 35px rgba(197, 160, 89, 0.1);
+    transform: translateY(-2px); /* Subtle lift */
+    outline: none;
+}
+
+/* Custom Dropdown Arrow */
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c5a059' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
 }
 
 /* --- 10. GUIDELINES: ARCHITECTURAL CONTRACT STYLING --- */
