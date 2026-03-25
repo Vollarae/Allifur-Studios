@@ -1934,6 +1934,27 @@ footer {
     font-size: 1.1rem;
 }
 
+/* Styling for the Private/Access Restricted note */
+.privacy-note {
+    text-align: center;
+    padding: 40px 20px;
+    border: 1px dashed rgba(197, 160, 89, 0.3);
+    background: rgba(197, 160, 89, 0.05);
+}
+
+.privacy-note i {
+    font-size: 0.7rem;
+    color: var(--accent-antique);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.privacy-note p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--text-dim);
+}
+
 /* --- LIGHTBOX / OVERLAY --- */
 .global-overlay {
     display: none; /* Controlled by JS */
