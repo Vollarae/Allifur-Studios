@@ -963,74 +963,75 @@ input:focus, textarea:focus, select:focus {
     letter-spacing: 0.5px;
 }
 
-/* --- 10B. ACCORDION SYSTEM: COLLAPSIBLE GUIDELINES --- */
+/* --- 10B. ACCORDION SYSTEM --- */
 .guidelines-accordion {
-    border: 1px solid var(--glass-border);
-    background: var(--glass-surface); /* Frosted Sky Blue */
-    overflow: hidden;
-    max-width: 1000px;
-    margin: 0 auto;
+    border: 1px solid rgba(197, 160, 89, 0.2); /* Subtle Antique Gold */
+    background: rgba(255, 255, 255, 0.05); /* Glass surface */
+    backdrop-filter: blur(10px);
+    margin: 0 auto 80px;
+    transition: all 0.5s ease;
 }
 
+/* Fixed: Removed the ::after pseudo-element to stop the double plus sign */
 .accordion-header {
-    background: rgba(227, 242, 253, 0.05) !important;
-    border-bottom: 1px solid var(--glass-border) !important;
-    padding: 25px 40px !important;
+    background: transparent !important;
+    border: none !important; /* Let the parent container handle the outer border */
+    padding: 35px 40px !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     cursor: pointer;
-    transition: var(--transition-fast);
 }
 
-.accordion-header:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border-color: var(--accent-antique) !important; /* Gold glow on hover */
-}
-
-.accordion-header span {
-    color: var(--text-soft); /* Muted blue-grey */
-    letter-spacing: 2px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-/* Icon/Arrow inside the header */
-.accordion-header::after {
-    content: '+';
+/* Targeting the specific span in your HTML for the icon */
+.accordion-header .icon {
     color: var(--accent-antique);
-    font-size: 1.2rem;
-    transition: var(--transition-fast);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Rotating the existing icon when open */
+.guidelines-accordion.active .icon {
+    transform: rotate(45deg); /* Turns + into a clean x */
 }
 
 .accordion-content {
-    max-height: 0; /* Hidden by default */
-    opacity: 0;
+    max-height: 0;
     overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    background: rgba(107, 143, 163, 0.05); /* Very faint blue tint */
+    /* Smooth slide-down logic */
+    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.02);
 }
 
-/* Logic for the 'open' class triggered by JS */
-.accordion-content.open {
-    max-height: 1500px; /* High enough to fit long rules */
-    opacity: 1;
-    padding: 40px;
-    border-top: 1px solid var(--glass-border);
+/* When the JS triggers the open state */
+.accordion-content[style*="max-height"] {
+    border-top: 1px solid rgba(197, 160, 89, 0.1); /* Subtle separator line */
+}
+
+/* Internal grid styling */
+.guideline-detailed-grid {
+    padding: 50px 40px !important; /* Proper breathing room */
 }
 
 /* --- 10C. ACCORDION ITEM STYLING --- */
 .g-item {
-    border-left: 1px solid var(--glass-border);
-    padding-left: 20px;
-    margin-bottom: 20px; /* Added for breathing room between rules */
-    transition: var(--transition-slow);
+    border-left: 1px solid rgba(197, 160, 89, 0.2);
+    padding: 5px 0 5px 25px;
+    transition: all 0.4s ease;
 }
 
 .g-item:hover {
-    border-left-color: var(--accent-antique); /* Subtle gold glow when hovering a specific rule */
+    border-left-color: var(--accent-antique);
+    transform: translateX(5px); /* Subtle nudge for "sleek" feel */
+}
+
+.g-num {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    opacity: 0.7;
 }
 
 /* --- 11. FOOTER: THE CINEMATIC SIGN-OFF --- */
