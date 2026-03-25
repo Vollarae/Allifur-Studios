@@ -923,6 +923,8 @@ input:focus, textarea:focus, select:focus {
     flex-direction: column;
     align-items: center; /* Centers the internal flex items */
     text-align: center;  /* Centers the text-based elements like headers */
+    padding-top: 220px !important; 
+    padding-bottom: 100px;
 }
 
 .editorial-header {
