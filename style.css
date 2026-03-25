@@ -639,26 +639,38 @@ a {
 
 /* --- BASE CARD --- */
 .comm-card {
-    background: rgba(255, 255, 255, 0.5); /* Semi-transparent base */
-    backdrop-filter: blur(15px); /* Frosted glass effect */
-    border: 1px solid rgba(197, 160, 89, 0.1); /* Subtle gold border */
-    padding: 50px 40px;
+    /* Changed to a crisp white with higher opacity for better visibility */
+    background: rgba(255, 255, 255, 0.7); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* Stronger initial border */
+    border: 1px solid rgba(197, 160, 89, 0.2); 
+    padding: 60px 50px;
     position: relative;
     display: flex;
     flex-direction: column;
-    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    
+    /* Soft shadow for depth */
+    box-shadow: 0 15px 35px rgba(107, 143, 163, 0.1);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .comm-card:hover {
-    transform: translateY(-10px); /* Lift effect */
-    border-color: var(--accent-antique); /* Border lights up */
-    box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+    transform: translateY(-15px);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--accent-antique);
+    
+    /* Multi-layered glow: Blue-grey depth + Antique Gold radiance */
+    box-shadow: 
+        0 30px 60px rgba(107, 143, 163, 0.2), 
+        0 0 25px rgba(197, 160, 89, 0.2);
 }
 
-/* --- FEATURED CARD --- */
+/* Featured card gets a permanent subtle glow */
 .comm-card.featured {
-    border: 1px solid var(--accent-antique);
-    background: rgba(197, 160, 89, 0.03); /* Slight gold tint */
+    border: 1px solid rgba(197, 160, 89, 0.5);
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1);
 }
 
 .recom-tag {
@@ -677,13 +689,23 @@ a {
 /* --- SAMPLE IMAGE CONTAINER --- */
 .art-frame {
     width: 100%;
-    aspect-ratio: 16/9; /* Consistent box shape */
-    background: #000;
-    border: 1px solid rgba(197, 160, 89, 0.3);
+    aspect-ratio: 16/9;
+    background: #0d0d0d; /* Deeper black for contrast */
+    border: 1px solid rgba(197, 160, 89, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
+    
+    /* Inner glow makes the black box feel "3D" */
+    box-shadow: inset 0 0 20px rgba(197, 160, 89, 0.15);
+    transition: 0.5s ease;
+}
+
+.comm-card:hover .art-frame {
+    border-color: var(--accent-antique);
+    box-shadow: inset 0 0 30px rgba(197, 160, 89, 0.3);
+    transform: scale(1.02);
 }
 
 .file-name {
@@ -735,25 +757,49 @@ a {
 
 /* --- BUTTONS --- */
 .comm-btn {
-    margin-top: auto; /* Always pushes to card bottom */
+    margin-top: auto;
     display: block;
     text-align: center;
-    padding: 18px;
+    padding: 20px;
     text-decoration: none;
+    
+    /* Hollow state */
+    background: transparent;
     border: 1px solid var(--accent-antique);
     color: var(--accent-antique);
-    font-size: 0.7rem;
+    
+    font-size: 0.75rem;
+    font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 600;
-    transition: 0.4s;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
 }
 
-/* Secondary/Hover state */
-.comm-btn.primary, 
+/* Hover: Fills with Gold, Text turns White */
 .comm-btn:hover {
     background: var(--accent-antique);
-    color: white;
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Click/Active: Pushes down slightly and darkens */
+.comm-btn:active {
+    transform: translateY(1px);
+    background: #ac8a4d; /* Slightly darker gold */
+    box-shadow: 0 5px 10px rgba(197, 160, 89, 0.2);
+}
+
+/* Featured Button starts pre-filled */
+.comm-card.featured .comm-btn {
+    background: var(--accent-antique);
+    color: #fff;
+}
+
+.comm-card.featured .comm-btn:hover {
+    background: #1a1a1a; /* Flips to black for high-end contrast */
+    border-color: #1a1a1a;
 }
 
 /* --- 9A. INQUIRY FORM: REFINED ARCHITECTURAL INPUTS --- */
