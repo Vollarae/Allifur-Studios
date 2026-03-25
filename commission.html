@@ -41,40 +41,31 @@
 <section class="comm-list-section">
     <div class="comm-grid">
 
-        <div class="comm-card reveal">
+        <div class="comm-card reveal" data-img="images/traditional.jpg" data-title="Clean Sketch">
             <div class="art-frame">
                 <img src="images/traditional.jpg" alt="Clean Sketch Commission Sample">
-                <span class="file-name">SKETCH_SAMPLE.JPG</span> </div>
+                <div class="zoom-overlay">VIEW FULL ART</div>
+                <span class="file-name">SKETCH_SAMPLE.JPG</span> 
+            </div>
             
             <h3 class="card-title">Clean Sketch</h3>
             <p class="card-desc">Perfect for quick character concepts. High-energy pencil strokes with minimal cleanup.</p>
             
             <ul class="price-menu">
-                <li>
-                    <span class="service-name">Headshot</span>
-                    <div class="dots"></div>
-                    <span class="price-value">$5</span>
-                </li>
-                <li>
-                    <span class="service-name">Bust Up</span>
-                    <div class="dots"></div>
-                    <span class="price-value">$10</span>
-                </li>
-                <li>
-                    <span class="service-name">Full Body</span>
-                    <div class="dots"></div>
-                    <span class="price-value">$15</span>
-                </li>
+                <li><span class="service-name">Headshot</span><div class="dots"></div><span class="price-value">$5</span></li>
+                <li><span class="service-name">Bust Up</span><div class="dots"></div><span class="price-value">$10</span></li>
+                <li><span class="service-name">Full Body</span><div class="dots"></div><span class="price-value">$15</span></li>
             </ul>
             
-            <a href="request.html" class="comm-btn">Start Order</a>
+            <a href="request.html" class="comm-btn" onclick="event.stopPropagation()">Start Order</a>
         </div>
 
-        <div class="comm-card featured reveal">
+        <div class="comm-card featured reveal" data-img="images/digital.jpg" data-title="Soft Render">
             <div class="recom-tag">Recommended</div>
             
             <div class="art-frame">
                 <img src="images/digital.jpg" alt="Soft Render Commission Sample">
+                <div class="zoom-overlay">VIEW FULL ART</div>
                 <span class="file-name">POLISHED_SAMPLE.JPG</span>
             </div>
             
@@ -82,28 +73,24 @@
             <p class="card-desc">Traditional pencil work enhanced with soft digital shading and focus on lighting.</p>
             
             <ul class="price-menu">
-                <li>
-                    <span class="service-name">Headshot</span>
-                    <div class="dots"></div>
-                    <span class="price-value">$12</span>
-                </li>
-                <li>
-                    <span class="service-name">Bust Up</span>
-                    <div class="dots"></div>
-                    <span class="price-value">$20</span>
-                </li>
-                <li>
-                    <span class="service-name">Full Body</span>
-                    <div class="dots"></div>
-                    <span class="price-value">$35</span>
-                </li>
+                <li><span class="service-name">Headshot</span><div class="dots"></div><span class="price-value">$12</span></li>
+                <li><span class="service-name">Bust Up</span><div class="dots"></div><span class="price-value">$20</span></li>
+                <li><span class="service-name">Full Body</span><div class="dots"></div><span class="price-value">$35</span></li>
             </ul>
             
-            <a href="request.html" class="comm-btn primary">Start Order</a>
+            <a href="request.html" class="comm-btn primary" onclick="event.stopPropagation()">Start Order</a>
         </div>
 
     </div>
 </section>
+
+    <div id="artOverlay" class="global-overlay">
+    <div class="overlay-wrapper">
+        <span class="overlay-close" onclick="closeArtOverlay()">&times;</span>
+        <img id="fullArtImage" src="" alt="Full Art View">
+        <h3 id="artCaption" class="client-name" style="margin-top:20px; text-align:center;"></h3>
+    </div>
+</div>
 
     <footer>
         <div class="container">
