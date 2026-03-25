@@ -654,16 +654,23 @@ a {
 
 /* --- GRID LAYOUT --- */
 .comm-list-section {
-    padding: 0 40px 100px;
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 60px 20px;
 }
 
 .comm-grid {
     display: grid;
-    /* Cards won't shrink below 340px; fills available space */
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    /* This creates 2 equal columns. Use '1fr 1fr 1fr' for 3 columns */
+    grid-template-columns: 1fr 1fr; 
     gap: 40px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .comm-grid {
+        grid-template-columns: 1fr; /* Stacks on mobile */
+    }
 }
 
 /* --- BASE CARD --- */
