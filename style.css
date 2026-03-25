@@ -1072,22 +1072,23 @@ input:focus, textarea:focus, select:focus {
 .custom-input, 
 .custom-select, 
 .custom-textarea {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(197, 160, 89, 0.1);
-    padding: 18px;
-    color: white;
+    background: rgba(0, 0, 0, 0.04) !important; /* Recessed look */
+    border: 1px solid rgba(197, 160, 89, 0.2) !important;
+    border-radius: 0; /* Sharp, modern edges */
+    padding: 20px !important;
+    color: #333 !important; /* Darker text for readability */
     font-family: 'Montserrat', sans-serif;
-    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Slick Focus State */
 .custom-input:focus, 
 .custom-textarea:focus {
     outline: none;
-    border-color: var(--accent-antique);
-    background: rgba(0, 0, 0, 0.4);
-    box-shadow: 0 0 15px rgba(197, 160, 89, 0.1);
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-color: var(--accent-antique) !important;
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1);
 }
 
 /* --- 10. GUIDELINES: ARCHITECTURAL CONTRACT STYLING --- */
@@ -1236,50 +1237,53 @@ input:focus, textarea:focus, select:focus {
     gap: 10px;
 }
 
-.method-tile input {
-    display: none; /* Hide default radio */
-}
-
 .method-tile span {
-    display: block;
-    padding: 15px;
-    text-align: center;
-    border: 1px solid rgba(197, 160, 89, 0.1);
+    background: transparent;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    color: rgba(197, 160, 89, 0.6);
+    padding: 15px 10px;
     font-size: 0.65rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-    transition: 0.3s;
-    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
 }
 
-.method-tile input:checked + span {
-    background: var(--accent-antique);
-    color: white;
+.method-tile:hover span {
     border-color: var(--accent-antique);
-    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.2);
+    color: var(--accent-antique);
+    background: rgba(197, 160, 89, 0.05);
+}
+
+/* The Active/Selected Tile */
+.method-tile input:checked + span {
+    background: var(--accent-antique) !important;
+    color: #fff !important;
+    border-color: var(--accent-antique) !important;
+    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+    transform: translateY(-2px);
 }
 
 /* --- SUBMIT BUTTON --- */
+/* --- THE SUBMIT ACTION --- */
 .submit-btn {
     width: 100%;
-    padding: 25px;
     background: transparent;
     border: 1px solid var(--accent-antique);
     color: var(--accent-antique);
-    font-size: 0.8rem;
-    letter-spacing: 4px;
+    padding: 25px !important;
+    font-size: 0.75rem;
     font-weight: 700;
-    transition: all 0.4s ease;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 40px;
     cursor: pointer;
-    margin-top: 20px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .submit-btn:hover {
     background: var(--accent-antique);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(197, 160, 89, 0.3);
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(197, 160, 89, 0.2);
+    transform: translateY(-5px);
 }
 
 /* --- 11. FOOTER: THE CINEMATIC SIGN-OFF --- */
