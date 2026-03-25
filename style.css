@@ -275,26 +275,6 @@ body.loading {
     color: var(--text-soft);
 }
 
-/* --- COMMISSION HEADER --- */
-.hero-header {
-    width: 100%;
-    display: block !important; /* Resetting flex to be safe */
-    text-align: center;
-    padding: 180px 0 60px 0 !important;
-}
-
-.hero-header .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: block; /* Stack elements naturally */
-}
-
-.sub-title, .h2-editorial {
-    text-align: center;
-    width: 100%;
-    display: block;
-}
-
 /* --- 1A. RESET & PERFORMANCE: CORE BROWSER NORMALIZATION --- */
 * { 
     margin: 0; 
@@ -607,184 +587,173 @@ a {
     transform: translateY(0);
 }
 
-/* --- 7. COMMISSION CARDS: THE GLASS GALLERY GRID --- */
-.comm-grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 50px; /* Increased gap for "Luxury" breathing room */
-    width: 100%;
-    max-width: 1300px;
-    margin: 80px auto; /* Gives space from the header */
-    padding: 0 40px;
+/* --- 7A. COMMISSION HTML --- */
+/* --- COMMISSION HERO --- */
+.comm-hero {
+    padding: 180px 20px 60px; /* Vertical clearance for fixed navbar */
+    text-align: center;
+    background: var(--bg);
 }
 
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sub-label {
+    font-size: 0.7rem;
+    letter-spacing: 5px; /* Spaced-out luxury look */
+    text-transform: uppercase;
+    color: var(--accent-antique);
+    display: block;
+    margin-bottom: 15px;
+}
+
+.editorial-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem); /* Scales based on screen size */
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.price-disclaimer {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.6; /* Softens the legal text */
+}
+
+/* --- GRID LAYOUT --- */
+.comm-list-section {
+    padding: 0 40px 100px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.comm-grid {
+    display: grid;
+    /* Cards won't shrink below 340px; fills available space */
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
+}
+
+/* --- BASE CARD --- */
 .comm-card {
-    background: rgba(255, 255, 255, 0.4); 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(197, 160, 89, 0.1);
-    padding: 60px 45px;
-    justify-content: flex-start;
-    height: 100%; /* Ensures all cards in a row are the same height */
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent base */
+    backdrop-filter: blur(15px); /* Frosted glass effect */
+    border: 1px solid rgba(197, 160, 89, 0.1); /* Subtle gold border */
+    padding: 50px 40px;
+    position: relative;
     display: flex;
     flex-direction: column;
-}
-
-.comm-card .btn {
-    width: 100%;
-    margin-top: auto; /* Pushes button to the bottom of the card */
-    padding: 18px 0;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    border: 1px solid var(--accent-antique);
-}
-
-/* THE TOP ACCENT: That thin gold line from the luxury designs */
-.comm-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--accent-antique);
-    transform: scaleX(0.3); /* Starts small/elegant */
-    transition: 0.6s ease;
-}
-
-.comm-card:hover::after {
-    transform: scaleX(1); /* Expands to full width on hover */
-}
-
-/* THE LIGHT-SWEEP (Cinematic Shimmer) */
-.comm-card-shimmer {
-    position: absolute;
-    top: 0; left: -150%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.08), transparent);
-    transition: 0.8s;
-    pointer-events: none;
-}
-
-.comm-card:hover .comm-card-shimmer {
-    left: 150%;
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 .comm-card:hover {
-    transform: translateY(-20px); /* More dramatic lift */
-    background: rgba(255, 255, 255, 0.8);
-    border-color: var(--accent-antique);
-    box-shadow: 0 40px 80px rgba(107, 143, 163, 0.12);
+    transform: translateY(-10px); /* Lift effect */
+    border-color: var(--accent-antique); /* Border lights up */
+    box-shadow: 0 30px 60px rgba(0,0,0,0.05);
 }
 
-/* --- FEATURED CARD: THE HIGHLIGHTED CHOICE --- */
+/* --- FEATURED CARD --- */
 .comm-card.featured {
     border: 1px solid var(--accent-antique);
-    background: rgba(197, 160, 89, 0.04); /* Very subtle gold tint */
+    background: rgba(197, 160, 89, 0.03); /* Slight gold tint */
 }
 
-.comm-card.featured .tag {
+.recom-tag {
     position: absolute;
-    top: -12px; /* Pulls it slightly above the card edge */
-    right: 20px;
+    top: -15px; /* Sits on the top edge */
+    right: 30px;
     background: var(--accent-antique);
-    color: #fff;
-    padding: 6px 16px;
+    color: white;
+    padding: 6px 15px;
     font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 2px;
-    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+    text-transform: uppercase;
 }
 
-/* --- 8. PRICE LIST: THE MENU STYLE LAYOUT --- */
-.price-list {
+/* --- SAMPLE IMAGE CONTAINER --- */
+.art-frame {
+    width: 100%;
+    aspect-ratio: 16/9; /* Consistent box shape */
+    background: #000;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.file-name {
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+    color: rgba(197, 160, 89, 0.4);
+}
+
+/* --- PRICE LIST --- */
+.price-menu {
     list-style: none;
-    margin: 30px 0 40px 0;
     padding: 0;
+    margin: 30px 0;
 }
 
-.price-list li {
-    display: grid;
-    grid-template-columns: auto 1fr auto; /* Name | Stretchy Dots | Price */
-    align-items: baseline;
-    gap: 15px;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
-    transition: all 0.4s ease;
+.price-menu li {
+    display: flex;
+    align-items: baseline; /* Aligns text and numbers on the bottom */
+    margin-bottom: 15px;
 }
 
-/* Service Name */
-.price-list li span:first-child {
+.service-name {
     font-size: 0.75rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--text-soft);
-}
-
-/* THE DOTTED LINE (The "Leader") */
-.price-list li::after {
-    content: "....................................................................................................";
     white-space: nowrap;
-    overflow: hidden;
-    color: rgba(197, 160, 89, 0.2);
-    font-size: 14px;
-    letter-spacing: 2px;
 }
 
-/* The Price Tag */
-.price-list li span:last-child {
+.dots {
+    flex: 1; /* Stretches to fill middle space */
+    border-bottom: 1px dotted rgba(197, 160, 89, 0.3);
+    margin: 0 15px;
+    height: 1px;
+}
+
+.price-value {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--accent-antique);
-    line-height: 1;
-    display: inline-block;
-    transition: transform 0.3s ease;
+    transition: 0.3s ease;
 }
 
-/* Interaction: Highlight the line on hover */
-.price-list li:hover {
-    background: rgba(197, 160, 89, 0.03); /* Subtle highlight behind the row */
+/* Glow effect on hover */
+.comm-card:hover .price-value {
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
 }
 
-.price-list li:hover span:last-child {
-    transform: scale(1.1);
-    text-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
-}
-
-/* --- THE HOVER GLOW FAILSAFE --- */
-/* Ensures the specific list item glows when hovering the CARD */
-.comm-card:hover .price-list li {
-    border-bottom-color: rgba(197, 160, 89, 0.4);
-}
-
-/* Card Description */
-.comm-desc {
-    font-size: 0.85rem;
-    color: var(--text);
-    line-height: 1.8;
-    margin: 20px 0 35px 0;
-    font-weight: 400;
-    opacity: 0.8;
-    min-height: 60px; /* Keeps card heights consistent */
-}
-
-/* The Art Box (Sample Preview) from your HTML */
-.art-placeholder {
-    width: 100%;
-    height: 200px;
-    background: #000;
-    border: 1px solid rgba(197, 160, 89, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(197, 160, 89, 0.4);
-    font-size: 0.55rem;
-    letter-spacing: 4px;
+/* --- BUTTONS --- */
+.comm-btn {
+    margin-top: auto; /* Always pushes to card bottom */
+    display: block;
+    text-align: center;
+    padding: 18px;
+    text-decoration: none;
+    border: 1px solid var(--accent-antique);
+    color: var(--accent-antique);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 30px;
-    box-shadow: inset 0 0 40px rgba(197, 160, 89, 0.05);
+    font-weight: 600;
+    transition: 0.4s;
+}
+
+/* Secondary/Hover state */
+.comm-btn.primary, 
+.comm-btn:hover {
+    background: var(--accent-antique);
+    color: white;
 }
 
 /* --- 9A. INQUIRY FORM: REFINED ARCHITECTURAL INPUTS --- */
