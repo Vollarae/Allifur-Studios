@@ -274,19 +274,20 @@ body.loading {
     letter-spacing: 2px;
     color: var(--text-soft);
 }
-
 /* --- COMMISSION HEADER --- */
-.hero-header .h2-editorial {
-    font-size: 4rem !important; /* Forces the luxury scale */
-    margin-top: 10px;
-    letter-spacing: -1px;
+.hero-header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Forces everything to the horizontal center */
+    text-align: center;
+    width: 100%;
 }
 
-.hero-header .sub-title {
-    font-size: 0.7rem;
-    letter-spacing: 6px;
-    color: var(--accent-antique);
+.sub-title {
     display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 /* --- 1A. RESET & PERFORMANCE: CORE BROWSER NORMALIZATION --- */
@@ -617,7 +618,9 @@ a {
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(197, 160, 89, 0.1);
-    padding: 50px 40px;
+    padding: 60px 45px;
+    justify-content: flex-start;
+    height: 100%; /* Ensures all cards in a row are the same height */
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
@@ -626,7 +629,7 @@ a {
 .comm-card .btn {
     width: 100%;
     margin-top: auto; /* Pushes button to the bottom of the card */
-    padding: 15px 0;
+    padding: 18px 0;
     font-size: 0.7rem;
     letter-spacing: 3px;
     border: 1px solid var(--accent-antique);
@@ -698,10 +701,10 @@ a {
 
 .price-list li {
     display: flex;
-    align-items: baseline; /* Perfectly aligns text bottoms */
+    justify-content: space-between;
+    align-items: center; /* Keeps text and prices vertically aligned */
     padding: 15px 0;
-    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
-    transition: all 0.3s ease;
+    gap: 10px; /* Prevents the dotted line from touching the text */
 }
 
 /* Service Name */
@@ -726,11 +729,14 @@ a {
 /* The Price Tag */
 .price-list li span:last-child {
     font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.8rem; /* Slightly larger for readability */
     color: var(--accent-antique);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Essential: separates the $ from the number */
     line-height: 1;
-    transition: transform 0.3s ease;
+    min-width: fit-content; /* Prevents the number from squishing */
 }
 
 /* Interaction: Highlight the line on hover */
