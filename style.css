@@ -1354,6 +1354,41 @@ input:focus, textarea:focus, select:focus {
     transform: translateY(-5px);
 }
 
+/* --- Inquiry Mobile Fixes --- */
+@media (max-width: 768px) {
+    /* 1. Force the main container to ignore side margins */
+    .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        max-width: 100% !important;
+    }
+
+    /* 2. Make the form box touch both edges of the screen */
+    .form-container {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 40px 20px !important; /* Keep vertical padding but reduce sides */
+        border-left: none !important;  /* Optional: remove side borders for a cleaner look */
+        border-right: none !important;
+    }
+
+    /* 3. Ensure the accordion guidelines also span full width */
+    .guidelines-accordion {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+    }
+
+    /* 4. Adjust the contact method tiles to fit properly in the new space */
+    .contact-method-grid {
+        grid-template-columns: 1fr 1fr; /* Two per row on mobile for better visibility */
+        gap: 8px;
+    }
+}
+
 /* --- 11. FOOTER: THE CINEMATIC SIGN-OFF --- */
 footer {
     padding: 100px 6% 60px 6%; /* Added side padding for mobile safety */
