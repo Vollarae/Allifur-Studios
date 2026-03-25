@@ -152,48 +152,64 @@ const initFormSubmission = () => {
 };
 
 /**
- * --- 6. VOUCH OVERLAY ENGINE ---
- */
-const initVouchOverlay = () => {
-    const vouchCards = document.querySelectorAll('.vouch-clickable');
-    const overlay = document.getElementById('vouch-overlay');
-    const overlayImg = document.getElementById('overlay-img');
+ /* --- 6. MASTER OVERLAY ENGINE (Vouches & Commissions) --- */
+const initGlobalOverlay = () => {
+    // Selects both your old vouch cards and new commission cards
+    const clickables = document.querySelectorAll('.vouch-clickable, .comm-card');
+    const overlay = document.getElementById('artOverlay'); // Ensure your HTML ID matches this
+    const overlayImg = document.getElementById('fullArtImage');
     const overlayWrapper = document.querySelector('.overlay-wrapper');
-    const closeOverlayBtn = document.querySelector('.overlay-close');
+    const captionText = document.getElementById('artCaption');
 
     if (!overlay) return;
 
-    vouchCards.forEach(card => {
+    clickables.forEach(card => {
         card.addEventListener('click', () => {
-            const proofSrc = card.getAttribute('data-img');
+            // 1. Get data from the card
+            const imgPath = card.getAttribute('data-img') || card.querySelector('img')?.src;
+            const title = card.getAttribute('data-title') || card.querySelector('.card-title')?.innerText || "";
             const isPrivate = card.getAttribute('data-privacy');
+
+            // 2. Clean up old privacy notes
             const oldNote = overlayWrapper.querySelector('.privacy-note');
             if (oldNote) oldNote.remove();
 
+            // 3. Logic for Privacy vs. Regular Art
             if (isPrivate === "true") {
                 overlayImg.style.display = "none";
                 const note = document.createElement('div');
                 note.className = 'privacy-note';
-                note.innerHTML = `<i style="display:block; margin-bottom:15px; opacity:0.5;">[ ACCESS RESTRICTED ]</i><p>Client anonymity active.</p>`;
+                note.innerHTML = `
+                    <i style="display:block; margin-bottom:15px; opacity:0.5; letter-spacing:3px;">[ ACCESS RESTRICTED ]</i>
+                    <p style="font-family:'Playfair Display'; font-style:italic;">Client anonymity active.</p>
+                `;
                 overlayWrapper.appendChild(note);
+                if(captionText) captionText.innerText = "Restricted Record";
             } else {
-                overlayImg.src = proofSrc;
+                overlayImg.src = imgPath;
                 overlayImg.style.display = "block";
+                if(captionText) captionText.innerText = title;
             }
+
+            // 4. Show the Overlay
             overlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         });
     });
 
-    const hideOverlay = () => {
+    // Close logic
+    const closeOverlay = () => {
         overlay.style.display = 'none';
         document.body.style.overflow = 'auto';
     };
 
-    if (closeOverlayBtn) closeOverlayBtn.addEventListener('click', hideOverlay);
-    overlay.addEventListener('click', hideOverlay);
+    overlay.addEventListener('click', closeOverlay);
+    // This part is crucial: it stops the window from closing if clicked the art/text itself
     if (overlayWrapper) overlayWrapper.addEventListener('click', (e) => e.stopPropagation());
 };
+
+// Start the engine
+document.addEventListener('DOMContentLoaded', initGlobalOverlay);
 
 /**
  * --- 7. CINEMATIC PRELOADER & QUOTES ---
