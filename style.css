@@ -275,26 +275,18 @@ body.loading {
     color: var(--text-soft);
 }
 
-/* --- COMMISSION PAGE LAYOUT --- */
-.commission-hero {
-    padding: 160px 0 60px 0; /* Pushes content down from Nav */
-    text-align: center;
-    background-color: #E3F2FD;
+/* --- COMMISSION HEADER --- */
+.hero-header .h2-editorial {
+    font-size: 4rem !important; /* Forces the luxury scale */
+    margin-top: 10px;
+    letter-spacing: -1px;
 }
 
-.service-menu-label {
-    display: block;
-    font-size: 0.8rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
+.hero-header .sub-title {
+    font-size: 0.7rem;
+    letter-spacing: 6px;
     color: var(--accent-antique);
-    margin-bottom: 10px;
-}
-
-.h2-editorial {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 20px;
+    display: block;
 }
 
 /* --- 1A. RESET & PERFORMANCE: CORE BROWSER NORMALIZATION --- */
@@ -621,16 +613,23 @@ a {
 }
 
 .comm-card {
-    background: rgba(255, 255, 255, 0.4); /* Glass surface */
-    border: 1px solid rgba(197, 160, 89, 0.15); /* Soft gold border */
+    background: rgba(255, 255, 255, 0.4); 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    padding: 60px 40px; /* Balanced padding */
-    position: relative;
+    border: 1px solid rgba(197, 160, 89, 0.1);
+    padding: 50px 40px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow: visible; /* Changed to visible so the 'Recommended' tag can pop out */
+}
+
+.comm-card .btn {
+    width: 100%;
+    margin-top: auto; /* Pushes button to the bottom of the card */
+    padding: 15px 0;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    border: 1px solid var(--accent-antique);
 }
 
 /* THE TOP ACCENT: That thin gold line from the luxury designs */
@@ -671,76 +670,104 @@ a {
     box-shadow: 0 40px 80px rgba(107, 143, 163, 0.12);
 }
 
-/* --- THE IMAGE BOX (THE SAMPLES IN YOUR SCREENSHOT) --- */
-.sample-box {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: #000;
-    border: 1px solid rgba(197, 160, 89, 0.4); /* Framed look */
-    margin-bottom: 30px;
-    position: relative;
-    box-shadow: inset 0 0 20px rgba(197, 160, 89, 0.2);
-}
-
 /* --- FEATURED CARD: THE HIGHLIGHTED CHOICE --- */
 .comm-card.featured {
     border: 1px solid var(--accent-antique);
-    background: rgba(197, 160, 89, 0.05);
+    background: rgba(197, 160, 89, 0.04); /* Very subtle gold tint */
 }
 
 .comm-card.featured .tag {
     position: absolute;
-    top: -15px; /* Pops above the card border */
-    right: 30px;
+    top: -12px; /* Pulls it slightly above the card edge */
+    right: 20px;
     background: var(--accent-antique);
     color: #fff;
-    font-size: 0.65rem;
-    padding: 6px 20px;
+    padding: 6px 16px;
+    font-size: 0.6rem;
     font-weight: 700;
-    letter-spacing: 3px;
-    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+    letter-spacing: 2px;
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
 }
 
-/* --- 8. PRICE LIST: THE "MENU" STYLE LAYOUT --- */
+/* --- 8. PRICE LIST: THE MENU STYLE LAYOUT --- */
 .price-list {
     list-style: none;
     margin: 30px 0 40px 0;
+    padding: 0;
 }
 
 .price-list li {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end; /* Keeps the price aligned with the baseline of the text */
-    padding: 20px 0;
-    border-bottom: 1px solid var(--glass-border);
+    align-items: baseline; /* Perfectly aligns text bottoms */
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+    transition: all 0.3s ease;
 }
 
-/* Service Name (Left Side) */
+/* Service Name */
 .price-list li span:first-child {
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-size: 0.7rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
-    color: var(--text-soft); /* Subtle blue-grey */
+    letter-spacing: 3px;
+    color: var(--text-soft);
+    white-space: nowrap; /* Prevents text from wrapping */
 }
 
-/* The Price Tag (Right Side) */
+/* THE DOTTED LINE (The "Leader") */
+.price-list li::after {
+    content: '';
+    flex: 1; /* Takes up all available space in the middle */
+    border-bottom: 1px dotted rgba(197, 160, 89, 0.3);
+    margin: 0 15px;
+    height: 1px;
+}
+
+/* The Price Tag */
 .price-list li span:last-child {
     font-family: 'Playfair Display', serif;
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--accent-antique); /* Gold highlights for the value */
+    color: var(--accent-antique);
     line-height: 1;
+    transition: transform 0.3s ease;
 }
 
-/* Card Description: Editorial body text */
+/* Interaction: Highlight the line on hover */
+.price-list li:hover {
+    border-bottom-color: var(--accent-antique);
+}
+
+.price-list li:hover span:last-child {
+    transform: scale(1.1); /* Subtle "growth" of the price */
+}
+
+/* Card Description */
 .comm-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text);
     line-height: 1.8;
+    margin: 20px 0 35px 0;
+    font-weight: 400;
+    opacity: 0.8;
+    min-height: 60px; /* Keeps card heights consistent */
+}
+
+/* The Art Box (Sample Preview) from your HTML */
+.art-placeholder {
+    width: 100%;
+    height: 200px;
+    background: #000;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(197, 160, 89, 0.4);
+    font-size: 0.55rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
     margin-bottom: 30px;
-    font-weight: 300;
-    opacity: 0.9;
+    box-shadow: inset 0 0 40px rgba(197, 160, 89, 0.05);
 }
 
 /* --- 9A. INQUIRY FORM: REFINED ARCHITECTURAL INPUTS --- */
