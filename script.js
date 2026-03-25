@@ -197,16 +197,30 @@ const initGlobalOverlay = () => {
         });
     });
 
-    // Close logic
+// Define the close function
     const closeOverlay = () => {
         overlay.style.display = 'none';
         document.body.style.overflow = 'auto';
     };
 
+    // FIX: Attach the listener directly to the X button
+    const closeBtn = overlay.querySelector('.overlay-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevents conflict
+            closeOverlay();
+        });
+    }
+
+    // Close when clicking the blurred background
     overlay.addEventListener('click', closeOverlay);
-    // This part is crucial: it stops the window from closing if clicked the art/text itself
-    if (overlayWrapper) overlayWrapper.addEventListener('click', (e) => e.stopPropagation());
-};
+
+    // Keep the box open when clicking the art/content
+    if (overlayWrapper) {
+        overlayWrapper.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
 
 // Start the engine
 document.addEventListener('DOMContentLoaded', initGlobalOverlay);
