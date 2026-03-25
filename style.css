@@ -233,6 +233,21 @@ body.loading {
 }
 
 /* --- THE ARTWORK FRAME --- */
+.art-frame {
+    width: 100%;
+    height: 320px; /* Lock this height to keep cards uniform */
+    overflow: hidden;
+    position: relative;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.art-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This prevents the "giant image" look */
+    display: block;
+}
+
 .inner-frame {
     position: relative;
     width: 100%;
@@ -685,6 +700,7 @@ a {
     padding: 60px 50px;
     position: relative;
     display: flex;
+    height: 100%; /* Makes all cards in a row the same height */
     flex-direction: column;
     
     /* Soft shadow for depth */
